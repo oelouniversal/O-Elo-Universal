@@ -628,13 +628,46 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Interatividade nos Cards Iniciáticos da Seção 2 (Suporte a Toque Mobile e Clique)
+  // Revelação Automática dos Cards por Scroll (Otimizado para Mobile)
   const symbolCards = document.querySelectorAll(".symbol-card");
-  symbolCards.forEach(function (card) {
-    card.addEventListener("click", function () {
-      card.classList.toggle("is-flipped");
+  if (symbolCards.length > 0 && "IntersectionObserver" in window) {
+    const scrollRevealObserver = new IntersectionObserver(
+      function (entries) {
+        if (window.innerWidth < 768) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-scroll-revealed");
+            } else {
+              entry.target.classList.remove("is-scroll-revealed");
+            }
+          });
+        }
+      },
+      {
+        root: null,
+        rootMargin: "-20% 0px -20% 0px", // Área de leitura focal central
+        threshold: 0.35
+      }
+    );
+
+    symbolCards.forEach(function (card) {
+      scrollRevealObserver.observe(card);
+      // Toque opcional no mobile caso o leitor deseje alternar manualmente
+      card.addEventListener("click", function () {
+        if (window.innerWidth < 768) {
+          card.classList.toggle("is-scroll-revealed");
+        }
+      });
     });
-  });
+
+    window.addEventListener("resize", function () {
+      if (window.innerWidth >= 768) {
+        symbolCards.forEach(function (card) {
+          card.classList.remove("is-scroll-revealed");
+        });
+      }
+    });
+  }
 });
 
 
