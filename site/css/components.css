@@ -2252,17 +2252,17 @@ body.is-dev .dev-only {
   left: 0;
   right: 0;
   z-index: 900;
-  background-color: rgba(16, 17, 21, 0.97);
+  background-color: rgba(16, 17, 21, 0.95);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-top: 1px solid rgba(217, 169, 75, 0.35);
   box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.7), 0 -1px 0 rgba(217, 169, 75, 0.15);
-  padding: 0.65rem var(--space-md);
+  padding: 0.65rem 1rem;
   padding-bottom: max(0.65rem, env(safe-area-inset-bottom));
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-sm);
+  gap: 0.75rem;
   transform: translateY(100%);
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -2274,9 +2274,10 @@ body.is-dev .dev-only {
 .sticky-content {
   display: flex;
   align-items: center;
-  gap: 0.65rem;
+  gap: 0.6rem;
   min-width: 0;
-  flex-grow: 1;
+  flex: 1;
+  overflow: hidden;
 }
 
 .sticky-brand-icon {
@@ -2288,7 +2289,7 @@ body.is-dev .dev-only {
   justify-content: center;
   background: rgba(217, 169, 75, 0.1);
   border: 1px solid rgba(217, 169, 75, 0.3);
-  border-radius: 4px;
+  border-radius: 6px;
 }
 
 .sticky-brand-icon img {
@@ -2300,6 +2301,7 @@ body.is-dev .dev-only {
   display: flex;
   flex-direction: column;
   min-width: 0;
+  overflow: hidden;
 }
 
 .sticky-title {
@@ -2313,40 +2315,15 @@ body.is-dev .dev-only {
   line-height: 1.2;
 }
 
-.sticky-meta {
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
+.sticky-subtitle {
   font-family: var(--font-ui);
-  font-size: 0.72rem;
-  color: var(--color-osso-mute);
-  margin-top: 2px;
-  white-space: nowrap;
-}
-
-.sticky-tag {
-  color: var(--color-ambar-300);
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  font-size: 0.65rem;
-}
-
-.sticky-sep {
-  color: rgba(217, 169, 75, 0.5);
   font-size: 0.7rem;
-}
-
-.sticky-price {
-  font-family: var(--font-title);
-  font-size: 0.92rem;
-  font-weight: 600;
   color: var(--color-ambar-300);
-}
-
-.sticky-condition {
-  font-size: 0.68rem;
-  color: var(--color-osso-mute);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 2px;
+  letter-spacing: 0.02em;
 }
 
 .sticky-btn {
@@ -2355,41 +2332,44 @@ body.is-dev .dev-only {
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  background-color: var(--color-ambar-300);
-  color: var(--color-grafite-950);
-  padding: 0.6rem 0.95rem;
+  background: linear-gradient(135deg, #ECC875 0%, #D9A94B 50%, #C18520 100%);
+  color: #121316;
+  padding: 0.6rem 1rem;
   min-height: 42px;
-  border-radius: var(--radius-sm);
+  border-radius: 999px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  border: 1px solid var(--color-ambar-300);
+  border: 1px solid rgba(255, 220, 140, 0.5);
   cursor: pointer;
   white-space: nowrap;
   flex-shrink: 0;
-  box-shadow: 0 2px 10px rgba(217, 169, 75, 0.3);
+  box-shadow: 0 2px 12px rgba(217, 169, 75, 0.35);
   transition: all var(--transition-fast);
+  text-decoration: none;
 }
 
 .sticky-btn:hover {
-  background-color: #e5b65b;
-  box-shadow: 0 4px 14px rgba(217, 169, 75, 0.45);
+  background: linear-gradient(135deg, #F5D78E 0%, #E5B65B 50%, #CF942E 100%);
+  box-shadow: 0 4px 16px rgba(217, 169, 75, 0.5);
+  color: #0b0c0e;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 380px) {
   .sticky-brand-icon {
     display: none;
   }
   .sticky-title {
-    font-size: 0.75rem;
+    font-size: 0.76rem;
   }
-  .sticky-meta {
-    font-size: 0.68rem;
+  .sticky-subtitle {
+    font-size: 0.65rem;
   }
   .sticky-btn {
-    font-size: 0.7rem;
-    padding: 0.5rem 0.75rem;
+    font-size: 0.68rem;
+    padding: 0.5rem 0.8rem;
+    min-height: 38px;
   }
 }
 
