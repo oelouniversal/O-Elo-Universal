@@ -3357,20 +3357,28 @@ body.is-dev .dev-only {
   font-weight: 600;
 }
 
-/* O Altar de Transmissão (Card do Formulário) */
+/* O Altar de Transmissao (Card do Formulario - Uiverse Yaya12085 & Sunhotep) */
 .altar-form-card {
-  background: linear-gradient(150deg, #181A20 0%, #111216 100%);
-  border: 1px solid rgba(217, 169, 75, 0.45);
-  border-radius: var(--radius-sm);
-  padding: var(--space-xl) var(--space-lg);
-  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.65), 0 0 35px rgba(217, 169, 75, 0.12);
+  background: linear-gradient(160deg, #151821 0%, #0D0F14 100%);
+  border: 1.5px solid rgba(217, 169, 75, 0.45);
+  border-radius: 20px;
+  padding: 2.2rem 1.8rem;
+  box-shadow: 0 20px 55px rgba(0, 0, 0, 0.7), 0 0 35px rgba(217, 169, 75, 0.12);
   position: relative;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+@media (max-width: 600px) {
+  .altar-form-card {
+    padding: 1.8rem 1.25rem;
+    border-radius: 16px;
+  }
 }
 
 .altar-seal-header {
   text-align: center;
-  margin-bottom: var(--space-lg);
-  padding-bottom: var(--space-md);
+  margin-bottom: 1.8rem;
+  padding-bottom: 1rem;
   border-bottom: 1px solid rgba(217, 169, 75, 0.2);
 }
 
@@ -3402,9 +3410,215 @@ body.is-dev .dev-only {
   line-height: 1.45;
 }
 
+/* --------------------------------------------------------------------------
+   Campo com Floating Label (Uiverse Sunhotep Adaptado)
+   -------------------------------------------------------------------------- */
+.form__group {
+  position: relative;
+  padding: 24px 0 0;
+  width: 100%;
+  margin-bottom: 1.6rem;
+}
+
+.form__field {
+  font-family: var(--font-body);
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid rgba(217, 169, 75, 0.4);
+  outline: 0;
+  font-size: 1.05rem;
+  color: #FFFDF8;
+  padding: 10px 0 8px;
+  background: transparent;
+  transition: border-color 0.25s ease, padding 0.25s ease;
+  box-sizing: border-box;
+}
+
+.form__field::placeholder {
+  color: transparent;
+}
+
+.form__field:placeholder-shown ~ .form__label {
+  font-size: 0.95rem;
+  cursor: text;
+  top: 28px;
+  color: #9A9385;
+  font-weight: 400;
+  letter-spacing: normal;
+  text-transform: none;
+  text-shadow: none;
+}
+
+.form__label {
+  position: absolute;
+  top: 2px;
+  display: block;
+  transition: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #FFE699;
+  font-weight: 700;
+  pointer-events: none;
+  text-shadow: 0 0 10px rgba(217, 169, 75, 0.45);
+}
+
+.form__field:focus {
+  padding-bottom: 8px;
+  font-weight: 500;
+  border-width: 2.5px;
+  border-bottom: 2.5px solid #F5D78E;
+  border-image: linear-gradient(to right, #FFE699, #D9A94B, #8E6620);
+  border-image-slice: 1;
+}
+
+.form__field:focus ~ .form__label {
+  position: absolute;
+  top: 2px;
+  display: block;
+  transition: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  font-size: 0.8rem;
+  color: #FFE699;
+  font-weight: 700;
+  text-shadow: 0 0 14px rgba(245, 215, 142, 0.8);
+}
+
+.form__field:required,
+.form__field:invalid {
+  box-shadow: none;
+}
+
+/* --------------------------------------------------------------------------
+   Controles com Toggle Switches Interativos (Uiverse Yaya12085 Adaptado)
+   -------------------------------------------------------------------------- */
+.form-toggles-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-bottom: 1.75rem;
+}
+
+.toggle-control-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.85rem 1rem;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(217, 169, 75, 0.2);
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+}
+
+.toggle-control-label:hover {
+  background: rgba(217, 169, 75, 0.07);
+  border-color: rgba(217, 169, 75, 0.45);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+}
+
+.toggle-text {
+  font-family: var(--font-ui);
+  color: #ECE5D7;
+  line-height: 1.35;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.toggle-title {
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: #FFFDF8;
+}
+
+.toggle-subtext {
+  font-size: 0.74rem;
+  color: #9A9385;
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+.toggle-link {
+  color: #F5D78E;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.2s;
+}
+
+.toggle-link:hover {
+  color: #FFFFFF;
+}
+
+/* Switch Wrapper & Pill */
+.toggle-switch-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 26px;
+  flex-shrink: 0;
+}
+
+.toggle-input {
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  position: absolute;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.toggle-slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #222630;
+  border: 1.5px solid rgba(142, 102, 32, 0.45);
+  border-radius: 999px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.toggle-slider::before {
+  content: "";
+  position: absolute;
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  top: 2.5px;
+  background: #64748B;
+  border-radius: 50%;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.toggle-input:checked + .toggle-slider {
+  background: rgba(217, 169, 75, 0.25);
+  border-color: #D9A94B;
+  box-shadow: 0 0 14px rgba(217, 169, 75, 0.45), inset 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.toggle-input:checked + .toggle-slider::before {
+  transform: translateX(22px);
+  background: #F5D78E;
+  box-shadow: 0 0 10px rgba(245, 215, 142, 0.95), 0 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+.toggle-input:focus-visible + .toggle-slider {
+  outline: 2px solid #F5D78E;
+  outline-offset: 2px;
+}
+
+/* Botao Submit e Rodape de Seguranca */
 .altar-submit-btn {
   width: 100%;
-  margin-top: var(--space-sm);
+  margin-top: 0.25rem;
   font-size: 0.95rem;
   letter-spacing: 0.06em;
 }
@@ -3431,72 +3645,6 @@ body.is-dev .dev-only {
 
 .security-chip svg {
   color: var(--color-ambar-300);
-}
-
-.form-wrapper {
-  max-width: 540px;
-  background-color: var(--color-grafite-950);
-  border: 1px solid var(--color-rule-dark);
-  border-radius: var(--radius-sm);
-  padding: var(--space-xl);
-  margin-top: var(--space-lg);
-}
-
-.form-group {
-  margin-bottom: var(--space-md);
-}
-
-.form-label {
-  display: block;
-  font-family: var(--font-ui);
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--color-osso);
-  margin-bottom: 0.35rem;
-}
-
-.form-input {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  font-family: var(--font-ui);
-  font-size: 0.95rem;
-  background-color: var(--color-grafite-900);
-  border: 1px solid var(--color-rule-dark);
-  border-radius: var(--radius-sm);
-  color: var(--color-osso);
-  transition: border-color var(--transition-fast);
-}
-
-.form-input:focus {
-  outline: none;
-  border-color: var(--color-ambar-300);
-}
-
-.form-checkbox-label {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.65rem;
-  font-family: var(--font-ui);
-  font-size: 0.82rem;
-  line-height: 1.4;
-  color: var(--color-osso-mute);
-  cursor: pointer;
-}
-
-.form-checkbox-label input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
-  margin-top: 2px;
-  accent-color: var(--color-ambar-300);
-  flex-shrink: 0;
-}
-
-.form-microcopy {
-  font-family: var(--font-ui);
-  font-size: 0.78rem;
-  color: var(--color-osso-mute);
-  margin-top: 0.5rem;
-  text-align: center;
 }
 
 .form-status {

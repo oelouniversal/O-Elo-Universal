@@ -20,7 +20,7 @@
   <!-- Estilos -->
   <link rel="stylesheet" href="css/tokens.css?v=6">
   <link rel="stylesheet" href="css/base.css?v=6">
-  <link rel="stylesheet" href="css/components.css?v=18">
+  <link rel="stylesheet" href="css/components.css?v=19">
 </head>
 <body>
   <!-- Acessibilidade: Pular para o conteúdo principal -->
@@ -754,15 +754,34 @@
               </div>
 
               <form id="form-capitulo" class="altar-form" novalidate>
-                <div class="form-group">
-                  <label for="lead-email" class="form-label">Seu melhor e-mail para envio sigiloso *</label>
-                  <input type="email" id="lead-email" name="email" class="form-input" placeholder="seuemail@exemplo.com" required autocomplete="email">
+                <!-- Campo de E-mail com Floating Label (Uiverse Sunhotep) -->
+                <div class="form__group">
+                  <input type="email" id="lead-email" name="email" class="form__field" placeholder=" " required autocomplete="email">
+                  <label for="lead-email" class="form__label">Seu melhor e-mail para envio sigiloso *</label>
                 </div>
 
-                <div class="form-group">
-                  <label class="form-checkbox-label">
-                    <input type="checkbox" id="lead-consent" name="consentimento" required>
-                    <span>Concordo em receber o Capítulo 1 confidencial e as cartas práticas de O Elo Universal. (Posso cancelar livremente quando desejar. <a href="privacidade.html" style="color: var(--color-ambar-300); text-decoration: underline;" target="_blank">Privacidade</a>).</span>
+                <!-- Controles com Toggle Switches Interativos (Uiverse Yaya12085) -->
+                <div class="form-toggles-wrapper">
+                  <label class="toggle-control-label" for="lead-consent">
+                    <span class="toggle-text">
+                      <span class="toggle-title">Concordo com os termos de envio confidencial *</span>
+                      <small class="toggle-subtext">Capítulo 1 entregue em PDF de alta resolução. (<a href="privacidade.html" target="_blank" class="toggle-link">Privacidade</a>)</small>
+                    </span>
+                    <div class="toggle-switch-wrapper">
+                      <input type="checkbox" id="lead-consent" name="consentimento" class="toggle-input" required>
+                      <span class="toggle-slider" aria-hidden="true"></span>
+                    </div>
+                  </label>
+
+                  <label class="toggle-control-label" for="lead-newsletter">
+                    <span class="toggle-text">
+                      <span class="toggle-title">Receber cartas práticas e avisos de campo</span>
+                      <small class="toggle-subtext">Estudos e reflexões sobre as 7 Leis. Cancele com 1 clique a qualquer momento.</small>
+                    </span>
+                    <div class="toggle-switch-wrapper">
+                      <input type="checkbox" id="lead-newsletter" name="newsletter" class="toggle-input" checked>
+                      <span class="toggle-slider" aria-hidden="true"></span>
+                    </div>
                   </label>
                 </div>
 
@@ -1244,6 +1263,6 @@
   <!-- Scripts -->
   <script src="js/config.js"></script>
   <script src="js/tracking.js"></script>
-  <script src="js/main.js?v=18"></script>
+  <script src="js/main.js?v=19"></script>
 </body>
 </html>

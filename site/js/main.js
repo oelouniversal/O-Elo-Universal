@@ -158,8 +158,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (!consentimentoValido) {
         formFeedback.className = "form-status status-info";
-        formFeedback.textContent = "É necessário concordar com os termos de consentimento para receber o capítulo.";
+        formFeedback.textContent = "É necessário ativar a autorização de envio confidencial para receber o capítulo.";
         consentInput.focus();
+        const toggleParent = consentInput.closest(".toggle-control-label");
+        if (toggleParent) {
+          toggleParent.style.borderColor = "#F5D78E";
+          toggleParent.style.boxShadow = "0 0 16px rgba(217, 169, 75, 0.45)";
+          setTimeout(function () {
+            toggleParent.style.borderColor = "";
+            toggleParent.style.boxShadow = "";
+          }, 2500);
+        }
         if (window.Tracking) window.Tracking.track("form_tentativa", { valido: false });
         return;
       }
