@@ -189,15 +189,17 @@ document.addEventListener("DOMContentLoaded", function () {
   const heroSection = document.getElementById("hero");
   const precoSection = document.getElementById("preco");
   const formSection = document.getElementById("capitulo-gratis");
+  const ctaFinalSection = document.getElementById("cta-final");
 
   if (stickyBar && heroSection && "IntersectionObserver" in window) {
     let heroVisible = true;
     let precoVisible = false;
     let formVisible = false;
+    let ctaFinalVisible = false;
 
     function updateStickyVisibility() {
-      // Aparece após o hero sair, some no preço ou no formulário
-      if (!heroVisible && !precoVisible && !formVisible) {
+      // Aparece após o hero sair, some no preço, no formulário ou no CTA final
+      if (!heroVisible && !precoVisible && !formVisible && !ctaFinalVisible) {
         stickyBar.classList.add("visible");
         stickyBar.setAttribute("aria-hidden", "false");
       } else {
@@ -211,6 +213,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (entry.target.id === "hero") heroVisible = entry.isIntersecting;
         if (entry.target.id === "preco") precoVisible = entry.isIntersecting;
         if (entry.target.id === "capitulo-gratis") formVisible = entry.isIntersecting;
+        if (entry.target.id === "cta-final") ctaFinalVisible = entry.isIntersecting;
       });
       updateStickyVisibility();
     }, { threshold: 0 });
@@ -218,6 +221,7 @@ document.addEventListener("DOMContentLoaded", function () {
     visibilityObserver.observe(heroSection);
     if (precoSection) visibilityObserver.observe(precoSection);
     if (formSection) visibilityObserver.observe(formSection);
+    if (ctaFinalSection) visibilityObserver.observe(ctaFinalSection);
   }
 
   // 6. Rastreamento de Abertura do FAQ (Seção 11 da Estratégia)
@@ -281,24 +285,83 @@ document.addEventListener("DOMContentLoaded", function () {
     updateProgressBar();
   }
 
-  // 9. Parallax: Profundidade Espacial Tridimensional (Fallback 60 FPS e Interatividade 3D)
+  // 9. Parallax & Profundidade: Interatividade 3D, Spotlight Alquímico e Fallbacks 60 FPS
   const prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   if (!prefersReduced) {
-    // 9.1 Parallax 3D Interativo no Mockup do Livro (Desktop com Pointer)
+    // 9.1 Parallax 3D Interativo no Mockup do Livro (Desktop com Pointer e Mobile com Touch/Giroscópio)
     const bookWrapper = document.querySelector(".book-mockup-wrapper");
     const bookMockup = document.querySelector(".book-mockup");
 
-    if (bookWrapper && bookMockup && window.matchMedia("(hover: hover)").matches) {
-      bookWrapper.addEventListener("mousemove", function (e) {
-        const rect = bookWrapper.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / rect.width - 0.5;
-        const y = (e.clientY - rect.top) / rect.height - 0.5;
-        bookMockup.style.transform = `perspective(1000px) rotateY(${x * 14}deg) rotateX(${-y * 12}deg) translateY(-4px)`;
-      });
+    if (bookWrapper && bookMockup) {
+      if (window.matchMedia("(hover: hover)").matches) {
+        bookWrapper.addEventListener("mousemove", function (e) {
+          const rect = bookWrapper.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width - 0.5;
+          const y = (e.clientY - rect.top) / rect.height - 0.5;
+          bookMockup.style.transition = "transform 0.08s ease-out";
+          bookMockup.style.transform = `perspective(1000px) rotateY(${x * 14}deg) rotateX(${-y * 12}deg) translateY(-4px)`;
+        });
 
-      bookWrapper.addEventListener("mouseleave", function () {
-        bookMockup.style.transform = "";
+        bookWrapper.addEventListener("mouseleave", function () {
+          bookMockup.style.transition = "transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1)";
+          bookMockup.style.transform = "";
+        });
+      } else {
+        // Mobile: Interação ao toque com amortecimento
+        bookWrapper.addEventListener("touchstart", function () {
+          bookMockup.style.transition = "transform 0.25s ease-out";
+          bookMockup.style.transform = "perspective(1000px) rotateY(-4deg) rotateX(4deg) translateY(-6px) scale(1.02)";
+        }, { passive: true });
+
+        bookWrapper.addEventListener("touchend", function () {
+          bookMockup.style.transition = "transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1)";
+          bookMockup.style.transform = "";
+        }, { passive: true });
+
+        // Giroscópio sutil em smartphones sem permissão invasiva (Android/Web API)
+        if (window.DeviceOrientationEvent && typeof DeviceOrientationEvent.requestPermission !== "function") {
+          let gyroTicking = false;
+          window.addEventListener("deviceorientation", function (e) {
+            if (!gyroTicking) {
+              const rect = bookWrapper.getBoundingClientRect();
+              if (rect.top < window.innerHeight && rect.bottom > 0) {
+                window.requestAnimationFrame(function () {
+                  const gamma = Math.max(Math.min(e.gamma || 0, 25), -25);
+                  const beta = Math.max(Math.min((e.beta || 0) - 45, 20), -20);
+                  bookMockup.style.transition = "transform 0.15s ease-out";
+                  bookMockup.style.transform = `perspective(1000px) rotateY(${gamma * 0.3}deg) rotateX(${-beta * 0.2}deg)`;
+                  gyroTicking = false;
+                });
+                gyroTicking = true;
+              }
+            }
+          }, { passive: true });
+        }
+      }
+    }
+
+    // 9.2 Spotlight Glow Místico nos Cards de Experimentos (Desktop e Touch)
+    const expCards = document.querySelectorAll(".card-experimento");
+    if (expCards.length > 0) {
+      expCards.forEach(function (card) {
+        function updateSpotlight(clientX, clientY) {
+          const rect = card.getBoundingClientRect();
+          const x = clientX - rect.left;
+          const y = clientY - rect.top;
+          card.style.setProperty("--spotlight-x", `${x}px`);
+          card.style.setProperty("--spotlight-y", `${y}px`);
+        }
+
+        card.addEventListener("mousemove", function (e) {
+          updateSpotlight(e.clientX, e.clientY);
+        }, { passive: true });
+
+        card.addEventListener("touchmove", function (e) {
+          if (e.touches && e.touches[0]) {
+            updateSpotlight(e.touches[0].clientX, e.touches[0].clientY);
+          }
+        }, { passive: true });
       });
     }
 
