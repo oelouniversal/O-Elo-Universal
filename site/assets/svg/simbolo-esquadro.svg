@@ -1,0 +1,15 @@
+<svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Círculo sutil de fundo -->
+  <circle cx="40" cy="40" r="34" stroke="#8E6620" stroke-width="1" stroke-dasharray="2 3" opacity="0.4"/>
+  <!-- Compasso (Vértice superior apontando para cima) -->
+  <circle cx="40" cy="18" r="3.5" stroke="#8E6620" stroke-width="1.8" fill="rgba(217,169,75,0.15)"/>
+  <line x1="40" y1="18" x2="16" y2="64" stroke="#8E6620" stroke-width="2.2"/>
+  <line x1="40" y1="18" x2="64" y2="64" stroke="#8E6620" stroke-width="2.2"/>
+  <!-- Arco do compasso -->
+  <path d="M26 48 A22 22 0 0 0 54 48" stroke="#D9A94B" stroke-width="1.4" fill="none"/>
+  <!-- Esquadro (Ângulo reto apontando para baixo) -->
+  <polyline points="20,34 40,62 60,34" stroke="#8E6620" stroke-width="3" stroke-linecap="square"/>
+  <polyline points="25,34 40,55 55,34" stroke="#D9A94B" stroke-width="1.2"/>
+  <!-- G central / Geometria sagrada -->
+  <circle cx="40" cy="38" r="2.5" fill="#D9A94B"/>
+</svg>

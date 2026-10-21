@@ -1,0 +1,391 @@
+{
+  "meta": {
+    "brand": "O Elo Universal",
+    "title": "Caderno das Leis Herméticas",
+    "subtitle": "Sete leis. Sete pistas. Sete experimentos.",
+    "tagline": "As leis que conectam tudo — do universo à sua mente.",
+    "lang": "pt-BR"
+  },
+  "chapters": [
+    {
+      "n": 1,
+      "slug": "mentalismo",
+      "name": "Mentalismo",
+      "epigraph": "“Tudo o que existe começa como pensamento.”",
+      "lede": "Antes de qualquer lei, uma pergunta: o que você deixou de ver hoje?",
+      "bonus": false,
+      "tradicao": [
+        {"t": "p", "x": "O primeiro princípio hermético diz que o Todo é mente e que o universo é mental. Essa formulação foi popularizada pelo Kybalion, em 1908, que a atribui a Hermes Trismegisto. A tradição hermética antiga é bem mais variada do que esses sete princípios."},
+        {"t": "p", "x": "Para a tradição, o que você pensa, repete e acredita não é enfeite da experiência. É a matéria de que ela é feita."},
+        {"t": "seal", "x": "Isto é uma afirmação filosófica e espiritual. Não é um fato demonstrado pela ciência."}
+      ],
+      "pista": [
+        {"t": "p", "x": "Em 1999, os psicólogos Daniel Simons e Christopher Chabris pediram a voluntários que contassem os passes de uma equipe de basquete num vídeo. No meio da cena, algo inesperado atravessava a imagem: uma pessoa fantasiada de gorila. Muitos voluntários não viram. Ela estava ali, à vista, e a atenção estava em outro lugar."},
+        {"t": "p", "x": "Outra linha de pesquisa, reunida por Raymond Nickerson em 1998, mostra que tendemos a procurar e interpretar evidências de modo favorável ao que já acreditamos."},
+        {"t": "sugere", "x": "a mente não registra o mundo inteiro. Ela filtra, e o filtro é guiado por foco e expectativa."},
+        {"t": "nao", "x": "que pensar algo faça esse algo existir. A ciência sustenta o filtro. Que a mente crie o universo é a hipótese da tradição, e aqui ela fica como hipótese, não como conclusão."},
+        {"t": "refrao", "x": "Uma pista, portanto. Não uma prova."}
+      ],
+      "experimento": {
+        "name": "O pensamento repetido",
+        "duration": "1 dia",
+        "blocks": [
+          {"t": "step", "h": "De manhã", "x": "Escolha um pensamento que você repete para si: uma dúvida, uma expectativa, uma crença. Pode ser negativo, positivo ou neutro. Escreva-o exatamente como ele soa na sua cabeça."},
+          {"t": "step", "h": "Durante o dia", "x": "Cada vez que o pensamento aparecer, faça uma marca. Depois anote duas coisas: o que estava acontecendo e o que você notou à sua volta naquele momento."},
+          {"t": "step", "h": "À noite", "x": "Responda por escrito: o que aconteceu hoje que não se encaixa nesse pensamento e que eu quase não registrei?"},
+          {"t": "note", "x": "Isto não é um teste de caráter nem um método de transformação. É só um jeito de olhar de perto para o seu filtro."}
+        ]
+      },
+      "registro": [
+        {"k": "area", "label": "O pensamento, como ele soa:", "lines": 2},
+        {"k": "marks", "label": "Marcas do dia (uma por aparição):", "n": 10},
+        {"k": "numbered", "label": "Quando apareceu, e o que eu notei ao redor:", "n": 3},
+        {"k": "area", "label": "O que não se encaixou hoje:", "lines": 3},
+        {"k": "area", "label": "O que eu percebi sobre o meu filtro (uma linha):", "lines": 2}
+      ],
+      "porta": {
+        "label": "Porta para a próxima lei",
+        "x": "Você acabou de observar um padrão de atenção. A segunda lei faz uma pergunta mais íntima: o que o seu jeito de fazer o pequeno diz sobre o seu jeito de fazer o grande?"
+      },
+      "fontes": [
+        "Simons, D. J., & Chabris, C. F. (1999). Gorillas in our midst: sustained inattentional blindness for dynamic events. Perception, 28(9), 1059–1074.",
+        "Nickerson, R. S. (1998). Confirmation bias: a ubiquitous phenomenon in many guises. Review of General Psychology, 2(2), 175–220."
+      ]
+    },
+    {
+      "n": 2,
+      "slug": "correspondencia",
+      "name": "Correspondência",
+      "epigraph": "“O que está em cima é como o que está embaixo.”",
+      "lede": "Um astrofísico e um neurocirurgião puseram o universo e o cérebro humano lado a lado. O que viram pede cuidado, e merece atenção.",
+      "bonus": false,
+      "tradicao": [
+        {"t": "p", "x": "A frase vem da Tábua de Esmeralda, texto da tradição hermética: o que está embaixo é como o que está em cima, e o que está em cima é como o que está embaixo. O Kybalion (1908) a organiza como a segunda das sete leis, o Princípio da Correspondência."},
+        {"t": "p", "x": "A ideia: certos padrões se repetem entre escalas muito diferentes, do grande ao pequeno, do mundo ao indivíduo."},
+        {"t": "seal", "x": "Isto é filosofia e tradição. Não é física."}
+      ],
+      "pista": [
+        {"t": "p", "x": "Em 2020, o astrofísico Franco Vazza e o neurocirurgião Alberto Feletti compararam duas redes: a dos neurônios do cérebro humano e a das galáxias do universo. Olharam para a estrutura de ambas, por exemplo quantas conexões cada ponto tem e como as conexões se agrupam em torno de pontos centrais."},
+        {"t": "p", "x": "Uma rede mede de micrômetros a décimos de milímetro. A outra se estende por milhões de anos-luz. Mesmo assim, encontraram um grau de semelhança que os próprios autores chamam de intrigante, e sugerem que princípios parecidos de organização em rede podem moldar os dois sistemas."},
+        {"t": "sugere", "x": "redes muito diferentes podem se organizar de formas parecidas."},
+        {"t": "nao", "items": [
+          "que o universo seja um cérebro;",
+          "que a semelhança seja uma lei da natureza. Foi um relatório breve de pesquisa, e a conectividade dos neurônios foi aproximada por proximidade, não medida conexão a conexão;",
+          "que o seu jeito de fazer o pequeno reflita o seu jeito de fazer o grande."
+        ], "after": "Esse último passo é a aplicação da tradição. Aqui ele vira hipótese para você testar."},
+        {"t": "refrao", "x": "Uma pista sobre redes. Não sobre você."}
+      ],
+      "experimento": {
+        "name": "O gesto e o padrão",
+        "duration": "3 dias",
+        "blocks": [
+          {"t": "step", "h": "Dia 1 — O pequeno", "x": "Escolha um gesto miúdo que você repete sem pensar: como reage a uma mensagem sem resposta, como espera numa fila, como age quando ninguém está vendo. Descreva como você o faz, passo a passo, sem julgar."},
+          {"t": "step", "h": "Dia 2 — O grande", "x": "Escolha uma área maior da sua vida em que você sente repetir um padrão: trabalho, relações, projetos. Descreva como você costuma agir nela."},
+          {"t": "step", "h": "Dia 3 — A comparação", "x": "Coloque os dois lado a lado. Há alguma semelhança de forma? Por exemplo: adiar, controlar, evitar, antecipar-se. Anote o que combina e, com o mesmo cuidado, o que não combina."},
+          {"t": "note", "x": "Se a correspondência não aparecer, esse também é um resultado válido. Você testou a lei, e é isso que o caderno pede."}
+        ]
+      },
+      "registro": [
+        {"k": "area", "label": "Dia 1 — O gesto pequeno, passo a passo:", "lines": 4},
+        {"k": "area", "label": "Dia 2 — O padrão grande, como costuma acontecer:", "lines": 4},
+        {"k": "area", "label": "Dia 3 — O que combina entre os dois:", "lines": 3},
+        {"k": "area", "label": "O que NÃO combina:", "lines": 3},
+        {"k": "area", "label": "Minha conclusão, em uma linha:", "lines": 2}
+      ],
+      "porta": {
+        "label": "Porta para a próxima lei",
+        "x": "A terceira lei só faz sentido para quem testou a segunda."
+      },
+      "fontes": [
+        "Vazza, F., & Feletti, A. (2020). The quantitative comparison between the neuronal network and the cosmic web. Frontiers in Physics, 8, 525731. https://doi.org/10.3389/fphy.2020.525731"
+      ]
+    },
+    {
+      "n": 3,
+      "slug": "vibracao",
+      "name": "Vibração",
+      "epigraph": "“Nada está parado. Tudo se move.”",
+      "lede": "Nada do que você registrou até aqui ficou parado. O que muda quando você olha de perto?",
+      "bonus": false,
+      "tradicao": [
+        {"t": "p", "x": "O terceiro princípio hermético, popularizado pelo Kybalion (1908), afirma que nada está em repouso: tudo se move, tudo vibra. Para a tradição, o que chamamos de coisas diferentes diferem no ritmo e na intensidade desse movimento."},
+        {"t": "seal", "x": "Isto é filosofia e tradição. Não é física."}
+      ],
+      "pista": [
+        {"t": "p", "x": "Duas pistas, de naturezas diferentes."},
+        {"t": "p", "x": "A primeira é física básica: átomos e moléculas estão em movimento constante. Nenhuma matéria, no nível mais fino, está de fato parada."},
+        {"t": "p", "x": "A segunda vem da neurociência. Uma revisão publicada na Science, em 2004, por György Buzsáki e Andreas Draguhn, descreve como as redes de neurônios do córtex oscilam em ritmos de tamanhos variados, numa faixa de frequências muito ampla. Esses ritmos se repetem ao longo da evolução dos mamíferos, o que sugere que cumprem alguma função: parecem ajudar a selecionar o que entra e a ligar neurônios em conjuntos."},
+        {"t": "sugere", "x": "o cérebro é uma estrutura em movimento rítmico, e esse movimento parece importar."},
+        {"t": "nao", "items": [
+          "que “oscilação neural” seja o mesmo que a “vibração” da tradição. É só uma analogia de palavra e de imagem;",
+          "que as suas emoções emitam uma frequência que atrai acontecimentos. Nada do que foi descrito sustenta a ideia popular de “vibrar alto” para atrair coisas;",
+          "que a função dessas oscilações esteja fechada. A revisão trata isso como indício."
+        ]},
+        {"t": "refrao", "x": "Uma pista sobre movimento. Não sobre atração."}
+      ],
+      "experimento": {
+        "name": "Três momentos",
+        "duration": "1 dia",
+        "blocks": [
+          {"t": "p", "x": "Escolha três momentos: manhã, tarde e noite. Em cada um, pare por um minuto e registre:"},
+          {"t": "ul", "items": ["seu estado, em uma palavra;", "sua energia, de 1 a 5;", "o que aconteceu na última hora."]},
+          {"t": "p", "x": "Se houver uma mudança brusca fora desses horários, marque também."},
+          {"t": "p", "x": "À noite, compare os três registros e responda: o que mais mexeu com o meu estado hoje? Onde estava a mudança?"},
+          {"t": "note", "x": "Não classifique estados como bons ou ruins. O objetivo é só constatar que nada ficou parado, e descobrir o que move você."}
+        ]
+      },
+      "registro": [
+        {"k": "head", "x": "Manhã"},
+        {"k": "inline2", "a": "Estado (uma palavra):", "b": "Energia (1 a 5):"},
+        {"k": "line", "label": "Na última hora:"},
+        {"k": "head", "x": "Tarde"},
+        {"k": "inline2", "a": "Estado (uma palavra):", "b": "Energia (1 a 5):"},
+        {"k": "line", "label": "Na última hora:"},
+        {"k": "head", "x": "Noite"},
+        {"k": "inline2", "a": "Estado (uma palavra):", "b": "Energia (1 a 5):"},
+        {"k": "line", "label": "Na última hora:"},
+        {"k": "area", "label": "Mudanças bruscas (hora e o que aconteceu):", "lines": 2},
+        {"k": "area", "label": "O que mais mexeu comigo hoje:", "lines": 2},
+        {"k": "area", "label": "O que eu percebi em uma linha:", "lines": 2}
+      ],
+      "porta": {
+        "label": "Porta para a próxima lei",
+        "x": "Toda oscilação vai de um extremo a outro. A quarta lei pergunta: onde ficam os seus?"
+      },
+      "fontes": [
+        "Buzsáki, G., & Draguhn, A. (2004). Neuronal oscillations in cortical networks. Science, 304(5679), 1926–1929. https://doi.org/10.1126/science.1099745"
+      ]
+    },
+    {
+      "n": 4,
+      "slug": "polaridade",
+      "name": "Polaridade",
+      "epigraph": "“Tudo é duplo. Tudo tem dois polos.”",
+      "lede": "Entre o que você rejeita e o que você busca existe uma distância. E distância se mede.",
+      "bonus": false,
+      "tradicao": [
+        {"t": "p", "x": "O quarto princípio hermético, popularizado pelo Kybalion (1908), diz que tudo tem dois polos e que os opostos não são essências diferentes: são o mesmo, em graus diferentes. Calor e frio, luz e sombra, amor e ódio ficariam, assim, nos extremos de uma mesma linha."},
+        {"t": "p", "x": "Para a tradição, isso importa porque o que está num extremo pode ser deslocado em direção ao outro, por graus."},
+        {"t": "seal", "x": "Isto é filosofia e tradição. Não é física."}
+      ],
+      "pista": [
+        {"t": "p", "x": "Duas pistas, de naturezas diferentes."},
+        {"t": "p", "x": "A primeira é física básica: quente e frio não são duas coisas separadas, e sim graus de um mesmo fenômeno, a agitação das moléculas. O que chamamos de opostos, ali, é uma questão de quanto."},
+        {"t": "p", "x": "A segunda vem da psicologia. Pesquisas sobre regulação emocional, reunidas numa revisão do psicólogo James Gross em 2002, estudam a reavaliação: mudar a maneira de interpretar uma situação para alterar o impacto emocional dela. Em estudos experimentais, reavaliar costuma ser mais eficaz do que simplesmente reprimir o que se sente."},
+        {"t": "sugere", "x": "aquilo que sentimos diante de algo depende em parte de como o interpretamos, e essa interpretação pode se mover."},
+        {"t": "nao", "items": [
+          "que opostos sejam idênticos em natureza. A ciência usa a ideia de grau em certos fenômenos, não em todos;",
+          "que qualquer sentimento possa ser trocado por outro à vontade;",
+          "que reavaliar seja um recurso terapêutico. A pesquisa descreve um mecanismo. Não receita nada."
+        ]},
+        {"t": "refrao", "x": "Uma pista sobre grau. Não sobre conversão."}
+      ],
+      "experimento": {
+        "name": "A escala e o passo",
+        "duration": "2 dias",
+        "blocks": [
+          {"t": "p", "x": "Escolha algo do cotidiano que você rejeita ou evita, de incômodo leve ou moderado: uma tarefa, um tipo de conversa, uma situação."},
+          {"t": "caution", "x": "Se o tema for doloroso, este caderno não é o lugar para trabalhá-lo. Procure o apoio de um profissional."},
+          {"t": "step", "h": "Dia 1 — O mapa", "ol": [
+            "Escreva o polo em que você está (por exemplo, “evito”) e o polo oposto (“busco” ou “aceito”).",
+            "Trace uma linha de 0 a 10 entre os dois e marque onde você está hoje.",
+            "Responda: o que há de verdadeiro no polo oposto? O que alguém do outro lado enxergaria?"
+          ]},
+          {"t": "step", "h": "Dia 2 — O passo de um grau", "ol": [
+            "Escreva um passo pequeno, de um grau, em direção ao outro polo. Não o polo inteiro.",
+            "Dê o passo, ou observe a situação a partir dele.",
+            "Marque de novo na linha: o que mudou? O que não mudou?"
+          ]},
+          {"t": "note", "x": "Você não precisa gostar do que escolheu. Só medir a distância."},
+          {"t": "note", "x": "Se nada se mover, esse também é um resultado."}
+        ]
+      },
+      "registro": [
+        {"k": "head", "x": "Dia 1"},
+        {"k": "line", "label": "O que eu rejeito ou evito:"},
+        {"k": "pair", "a": "Meu polo:", "b": "O polo oposto:"},
+        {"k": "scale", "label": "Onde estou hoje (marque):"},
+        {"k": "area", "label": "O que há de verdadeiro no polo oposto:", "lines": 3},
+        {"k": "head", "x": "Dia 2"},
+        {"k": "area", "label": "O passo de um grau:", "lines": 2},
+        {"k": "scale", "label": "Onde estou agora (marque):"},
+        {"k": "area", "label": "O que mudou, e o que não mudou:", "lines": 3},
+        {"k": "area", "label": "O que eu percebi em uma linha:", "lines": 2}
+      ],
+      "porta": {
+        "label": "Porta para a próxima lei",
+        "x": "Todo pêndulo que vai a um extremo volta. A quinta lei pergunta: com que ritmo o seu volta?"
+      },
+      "fontes": [
+        "Gross, J. J. (2002). Emotion regulation: affective, cognitive, and social consequences. Psychophysiology, 39(3), 281–291. https://doi.org/10.1017/s0048577201393198"
+      ]
+    },
+    {
+      "n": 5,
+      "slug": "ritmo",
+      "name": "Ritmo",
+      "epigraph": "“Tudo flui e reflui.”",
+      "lede": "Tudo o que sobe, em algum ponto, desce. O que a sua semana revela sobre o seu pêndulo?",
+      "bonus": false,
+      "tradicao": [
+        {"t": "p", "x": "O quinto princípio hermético, popularizado pelo Kybalion (1908), diz que tudo tem marés: sobe e desce, avança e recua, como o movimento de um pêndulo. Para a tradição, o ritmo compensa: a medida da oscilação para um lado é a medida da oscilação para o outro."},
+        {"t": "seal", "x": "Isto é filosofia e tradição. Não é física."}
+      ],
+      "pista": [
+        {"t": "p", "x": "Duas pistas, ambas sobre ritmos que a biologia já mediu."},
+        {"t": "p", "x": "Em 2017, o Prêmio Nobel de Fisiologia ou Medicina foi concedido a Jeffrey Hall, Michael Rosbash e Michael Young por descobrirem mecanismos moleculares do ritmo circadiano, o relógio biológico de cerca de um dia. Ele ajusta o organismo às fases do dia e influencia sono, comportamento, temperatura do corpo e metabolismo."},
+        {"t": "p", "x": "Uma revisão de Christina Schmidt e colegas, de 2007, reuniu estudos que mostram que o horário do dia afeta o desempenho em tarefas de atenção, de planejamento e de memória. E que esse efeito varia de pessoa para pessoa, conforme o cronotipo: a preferência individual por manhã ou noite."},
+        {"t": "sugere", "x": "o seu foco não é uma linha reta. Ele tem horários mais altos e mais baixos, e esses horários podem ser diferentes dos de outra pessoa."},
+        {"t": "nao", "items": [
+          "que todo ponto alto seja “pago” por um ponto baixo equivalente, como diz o pêndulo da tradição. Isso é metáfora;",
+          "que exista um horário ideal para todos;",
+          "que ciclos maiores da vida, de meses ou de anos, sigam o mesmo mecanismo do relógio de um dia."
+        ]},
+        {"t": "refrao", "x": "Uma pista sobre ritmo diário. Não sobre destino."}
+      ],
+      "experimento": {
+        "name": "O mapa da semana",
+        "duration": "7 dias",
+        "blocks": [
+          {"t": "p", "x": "Escolha quatro horários fixos do dia: manhã cedo, fim da manhã, tarde e noite. Em cada um, dê uma nota de 1 a 5 ao seu foco, que é a facilidade de manter a atenção no que está fazendo agora. Se quiser, anote o que pode ter influenciado: sono, refeição, cafeína."},
+          {"t": "p", "x": "No sétimo dia, olhe a grade inteira:"},
+          {"t": "ul", "items": [
+            "circule os dois horários de foco mais alto e os dois mais baixos da semana;",
+            "procure o que se repete entre os dias;",
+            "responda: o que eu faço com meus horários altos? E com os baixos?"
+          ]},
+          {"t": "note", "x": "O experimento observa, não prescreve. Não mude a rotina durante a semana: você quer ver o ritmo como ele é."}
+        ]
+      },
+      "registro": [
+        {"k": "table", "caption": "Foco, de 1 a 5", "cols": ["Dia", "Manhã cedo", "Fim da manhã", "Tarde", "Noite"], "rows": ["1", "2", "3", "4", "5", "6", "7"]},
+        {"k": "area", "label": "O que pode ter influenciado (sono, refeição, cafeína, outro):", "lines": 2},
+        {"k": "area", "label": "Meus dois horários mais altos:", "lines": 1},
+        {"k": "area", "label": "Meus dois horários mais baixos:", "lines": 1},
+        {"k": "area", "label": "O que eu faço com meus horários altos, e com os baixos:", "lines": 2},
+        {"k": "area", "label": "O que eu percebi em uma linha:", "lines": 2}
+      ],
+      "porta": {
+        "label": "Porta para a próxima lei",
+        "x": "Nenhum pêndulo se move sozinho: algo o empurra. A sexta lei pergunta: o que empurra o seu?"
+      },
+      "fontes": [
+        "Schmidt, C., Collette, F., Cajochen, C., & Peigneux, P. (2007). A time to think: circadian rhythms in human cognition. Cognitive Neuropsychology, 24(7), 755–789. https://doi.org/10.1080/02643290701754158",
+        "Prêmio Nobel de Fisiologia ou Medicina de 2017, concedido a Jeffrey C. Hall, Michael Rosbash e Michael W. Young."
+      ]
+    },
+    {
+      "n": 6,
+      "slug": "causa-e-efeito",
+      "name": "Causa e Efeito",
+      "epigraph": "“Toda causa tem o seu efeito.”",
+      "lede": "O acaso, dizem os herméticos, é só o nome de uma causa que ainda não foi reconhecida. Quantas você consegue reconhecer em quatro dias?",
+      "bonus": true,
+      "tradicao": [
+        {"t": "p", "x": "O sexto princípio hermético, popularizado pelo Kybalion (1908), diz que toda causa produz um efeito e todo efeito vem de uma causa. Para a tradição, o que chamamos de acaso é apenas uma causa que não reconhecemos."},
+        {"t": "seal", "x": "Isto é filosofia e tradição. Não é física."}
+      ],
+      "pista": [
+        {"t": "p", "x": "Duas pistas, uma de pesquisa e outra de método."},
+        {"t": "p", "x": "A de pesquisa: em 2010, a psicóloga Phillippa Lally e colegas pediram a 96 voluntários que escolhessem um comportamento do dia a dia, como beber água depois do café, e o repetissem diariamente, no mesmo contexto, por 12 semanas. Quanto mais consistentemente o comportamento era feito, mais automático ele ficava. O tempo para chegar ao patamar máximo de automaticidade variou de 18 a 254 dias entre as pessoas, e falhar um dia isolado não atrapalhou o processo de forma relevante."},
+        {"t": "p", "x": "A de método: duas coisas acontecerem juntas não prova que uma cause a outra. Para testar uma causa, você muda uma coisa de cada vez e observa o que acontece."},
+        {"t": "sugere", "x": "aquilo que você repete num contexto estável tende a virar automático. É uma causa e um efeito pequenos, mensuráveis."},
+        {"t": "nao", "items": [
+          "que tudo o que acontece na sua vida tenha uma causa que você possa identificar ou controlar. A vida real tem várias causas ao mesmo tempo, e muitas estão fora do seu alcance;",
+          "que o acaso não exista. A ciência trabalha com probabilidade e variação;",
+          "que o resultado seja “culpa” sua. Reconhecer uma causa é diferente de se culpar por ela;",
+          "que mudar uma causa mude o resultado."
+        ]},
+        {"t": "refrao", "x": "Uma pista sobre repetição. Não sobre culpa."}
+      ],
+      "experimento": {
+        "name": "A cadeia de causas",
+        "duration": "4 dias",
+        "blocks": [
+          {"t": "step", "h": "Dia 1 — Rastrear", "ol": [
+            "Escolha um resultado recorrente do cotidiano, de peso leve a moderado: chegar atrasado às segundas, terminar o dia sem ter feito a tarefa que importava.",
+            "Escreva três causas possíveis, como hipóteses (“pode ser que…”), da mais próxima à mais distante.",
+            "Escolha a que você consegue mudar sozinho e mude só essa. Escreva a mudança de forma concreta."
+          ]},
+          {"t": "step", "h": "Dias 2 a 4 — Testar", "x": "Aplique a mudança. No fim de cada dia, anote se o resultado aconteceu e o que mais mudou naquele dia (sono, agenda, clima, outras pessoas)."},
+          {"t": "step", "h": "Noite do dia 4 — Ler", "x": "Compare os dias. O resultado mudou? Pode ter sido a sua mudança ou outra coisa. O que dá para concluir, e o que não dá?"},
+          {"t": "note", "x": "Quatro dias são um teste pequeno, não uma prova. Se nada mudou, você descartou uma hipótese, e isso também é conhecimento."}
+        ]
+      },
+      "registro": [
+        {"k": "head", "x": "Dia 1"},
+        {"k": "area", "label": "O resultado que se repete:", "lines": 2},
+        {"k": "numbered", "label": "Três causas possíveis:", "n": 3, "prefix": "Pode ser que"},
+        {"k": "area", "label": "A causa que vou mudar, e a mudança concreta:", "lines": 2},
+        {"k": "head", "x": "Dias 2 a 4"},
+        {"k": "checktable", "cols": ["Dia", "O resultado aconteceu?", "O que mais mudou?"], "rows": ["2", "3", "4"]},
+        {"k": "head", "x": "Leitura"},
+        {"k": "area", "label": "O que dá para concluir:", "lines": 2},
+        {"k": "area", "label": "O que NÃO dá para concluir:", "lines": 2},
+        {"k": "area", "label": "O que eu percebi em uma linha:", "lines": 2}
+      ],
+      "porta": {
+        "label": "Porta para a próxima lei",
+        "x": "Toda causa pede um começo, e todo efeito, um tempo de gestação. A sétima lei pergunta: quando você inicia, e quando deixa amadurecer?"
+      },
+      "fontes": [
+        "Lally, P., van Jaarsveld, C. H. M., Potts, H. W. W., & Wardle, J. (2010). How are habits formed: modelling habit formation in the real world. European Journal of Social Psychology, 40(6), 998–1009. https://doi.org/10.1002/ejsp.674"
+      ]
+    },
+    {
+      "n": 7,
+      "slug": "genero",
+      "name": "Gênero",
+      "epigraph": "“O Gênero está em tudo.”",
+      "lede": "Toda obra tem dois tempos: o que se faz e o que se deixa acontecer.",
+      "bonus": true,
+      "tradicao": [
+        {"t": "p", "x": "O sétimo princípio hermético, popularizado pelo Kybalion (1908), diz que o Gênero está em tudo: toda coisa teria um princípio masculino e um feminino, e é da combinação deles que algo nasce ou se cria."},
+        {"t": "p", "x": "O Kybalion usa esses termos e os aplica a todos os planos, inclusive ao físico. Este caderno adota outra leitura: dois movimentos que existem em qualquer pessoa, sem ligação com sexo ou com gênero."},
+        {"t": "ul", "items": ["**Iniciar:** projetar, agir, dar o primeiro passo.", "**Gestar:** receber, esperar, deixar amadurecer."]},
+        {"t": "seal", "x": "Isto é filosofia e tradição, e a leitura em dois movimentos é uma escolha deste caderno. Não é física."}
+      ],
+      "pista": [
+        {"t": "p", "x": "Uma pista sobre o ciclo entre esforço e pausa."},
+        {"t": "p", "x": "Em 2009, os psicólogos Ut Na Sio e Thomas Ormerod reuniram 117 estudos sobre o que chamam de incubação: deixar um problema de lado por um tempo antes de voltar a ele. Concluíram que, em média, a pausa ajuda. O efeito foi maior em tarefas criativas, como pensar em usos incomuns para um objeto, do que em problemas de insight verbal ou visual. Foi maior quando houve mais tempo de trabalho antes da pausa e menor quando o intervalo foi preenchido com tarefas muito exigentes."},
+        {"t": "sugere", "x": "depois de trabalhar duro em algo, uma pausa pode ajudar, desde que a pausa não seja outro esforço pesado."},
+        {"t": "nao", "items": [
+          "nada nesta pista fala de homens, de mulheres ou de “energias” masculina e feminina;",
+          "que esperar sempre funcione. Alguns estudos não acharam efeito, e a pausa só rende depois de um esforço real;",
+          "que adiar seja uma estratégia. A pausa vem depois de iniciar, nunca no lugar."
+        ]},
+        {"t": "refrao", "x": "Uma pista sobre esforço e pausa. Não sobre gênero."}
+      ],
+      "experimento": {
+        "name": "Iniciar e gestar",
+        "duration": "4 dias",
+        "blocks": [
+          {"t": "p", "x": "Escolha algo seu que está em aberto e é criativo ou exige decisão: um texto, um plano, uma ideia, uma escolha."},
+          {"t": "step", "h": "Dia 1 — Iniciar", "x": "Trabalhe nisso por um bloco fixo de tempo, por exemplo 30 minutos, com atenção total. Anote o que produziu e onde travou."},
+          {"t": "step", "h": "Dias 2 e 3 — Gestar", "x": "Não trabalhe nisso. Ocupe os dias com coisas comuns e pouco exigentes, como caminhar ou arrumar a casa. Se uma ideia sobre o assunto aparecer, anote em uma linha, sem desenvolver."},
+          {"t": "step", "h": "Dia 4 — Retomar", "x": "Volte ao mesmo trabalho pelo mesmo bloco de tempo. Compare com o Dia 1: o ponto em que você travou mudou? O que apareceu de diferente?"},
+          {"t": "note", "x": "É um caso só, não uma prova. Se nada mudou, esse também é um resultado."}
+        ]
+      },
+      "registro": [
+        {"k": "head", "x": "Dia 1 — Iniciar"},
+        {"k": "area", "label": "O que escolhi:", "lines": 2},
+        {"k": "area", "label": "O que produzi:", "lines": 2},
+        {"k": "area", "label": "Onde travei:", "lines": 2},
+        {"k": "head", "x": "Dias 2 e 3 — Gestar"},
+        {"k": "area", "label": "Ideias que apareceram (uma linha cada):", "lines": 4},
+        {"k": "head", "x": "Dia 4 — Retomar"},
+        {"k": "area", "label": "O que mudou em relação ao Dia 1:", "lines": 2},
+        {"k": "area", "label": "O que não mudou:", "lines": 2},
+        {"k": "area", "label": "O que eu percebi sobre iniciar e gestar (uma linha):", "lines": 2}
+      ],
+      "porta": {
+        "label": "Porta para o fechamento",
+        "x": "Você testou sete leis. Falta a pergunta que só os sete registros juntos respondem: o que se repetiu?"
+      },
+      "fontes": [
+        "Sio, U. N., & Ormerod, T. C. (2009). Does incubation enhance problem solving? A meta-analytic review. Psychological Bulletin, 135(1), 94–120. https://doi.org/10.1037/a0014212"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+<svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Triângulo radiante sagrado -->
+  <polygon points="40,10 70,66 10,66" stroke="#8E6620" stroke-width="2" fill="rgba(217,169,75,0.06)"/>
+  <!-- Raios de iluminação -->
+  <line x1="40" y1="4" x2="40" y2="9" stroke="#D9A94B" stroke-width="1.5"/>
+  <line x1="56" y1="12" x2="60" y2="9" stroke="#D9A94B" stroke-width="1.5"/>
+  <line x1="24" y1="12" x2="20" y2="9" stroke="#D9A94B" stroke-width="1.5"/>
+  <line x1="72" y1="36" x2="77" y2="35" stroke="#D9A94B" stroke-width="1.5"/>
+  <line x1="8" y1="36" x2="3" y2="35" stroke="#D9A94B" stroke-width="1.5"/>
+  <!-- O Olho Central (Mentalismo / O Todo é Mente) -->
+  <path d="M26 44 C33 34, 47 34, 54 44 C47 54, 33 54, 26 44 Z" stroke="#8E6620" stroke-width="2" fill="none"/>
+  <circle cx="40" cy="44" r="5" stroke="#D9A94B" stroke-width="1.8" fill="#8E6620"/>
+  <circle cx="40" cy="44" r="2" fill="#F4EFE6"/>
+</svg>
