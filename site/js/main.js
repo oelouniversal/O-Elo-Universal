@@ -71,6 +71,28 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+  // 3. Suporte universal a rolagem suave para links de âncoras internas (#secao)
+  // Garante funcionamento confiável e responsivo no mobile (iOS/Android/Safari/Chrome)
+  const anchorLinks = document.querySelectorAll('a[href^="#"]');
+  anchorLinks.forEach(function (anchor) {
+    anchor.addEventListener("click", function (e) {
+      const targetId = this.getAttribute("href");
+      if (!targetId || targetId === "#") return;
+
+      // Se for CTA primário de checkout, o bloco anterior já gerencia
+      if (this.classList.contains("cta-checkout")) return;
+
+      const targetEl = document.querySelector(targetId);
+      if (targetEl) {
+        e.preventDefault();
+        targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
+        if (window.history && window.history.pushState) {
+          window.history.pushState(null, null, targetId);
+        }
+      }
+    });
+  });
+
   // 4. Tratamento do Formulário da Isca (Seção 8 do Briefing)
   const formCapitulo = document.getElementById("form-capitulo");
   const formFeedback = document.getElementById("form-feedback");
