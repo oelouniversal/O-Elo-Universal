@@ -660,6 +660,133 @@ body.is-dev .dev-only {
 }
 
 /* --------------------------------------------------------------------------
+   Parallax: Camadas de Profundidade Espacial Tridimensional (60 FPS)
+   -------------------------------------------------------------------------- */
+#tensao {
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-final-section {
+  overflow: hidden;
+}
+
+.parallax-watermark {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  user-select: none;
+  will-change: transform;
+}
+
+.watermark-tensao {
+  top: 8%;
+  right: -60px;
+  width: 460px;
+  height: 460px;
+  opacity: 0.055;
+  filter: drop-shadow(0 0 35px rgba(184, 134, 11, 0.45));
+  transition: transform 0.12s ease-out;
+}
+
+.watermark-portal {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 620px;
+  height: 620px;
+  opacity: 0.045;
+  filter: drop-shadow(0 0 50px rgba(217, 169, 75, 0.5));
+  transition: transform 0.12s ease-out;
+}
+
+.hero-visual.parallax-layer {
+  will-change: transform;
+  transition: transform 0.12s ease-out;
+}
+
+.hero-ambient-glow {
+  will-change: transform;
+}
+
+/* Suporte Nativo a CSS Scroll-Driven View Timeline */
+@supports (animation-timeline: view()) {
+  .watermark-tensao {
+    animation: parallaxDrift linear auto;
+    animation-timeline: view();
+    transition: none;
+  }
+
+  .watermark-portal {
+    animation: parallaxRotate linear auto;
+    animation-timeline: view();
+    transition: none;
+  }
+
+  .hero-visual.parallax-layer {
+    animation: heroBookParallax linear auto;
+    animation-timeline: view();
+    transition: none;
+  }
+
+  .hero-ambient-glow {
+    animation: heroGlowParallax linear auto;
+    animation-timeline: view();
+  }
+
+  @keyframes parallaxDrift {
+    entry 0% {
+      transform: translate3d(0, 40px, 0);
+    }
+    exit 100% {
+      transform: translate3d(0, -60px, 0);
+    }
+  }
+
+  @keyframes parallaxRotate {
+    entry 0% {
+      transform: translate3d(-50%, -46%, 0) rotate(-6deg) scale(0.96);
+    }
+    exit 100% {
+      transform: translate3d(-50%, -54%, 0) rotate(6deg) scale(1.04);
+    }
+  }
+
+  @keyframes heroBookParallax {
+    entry 0% {
+      transform: translate3d(0, 0, 0);
+    }
+    exit 100% {
+      transform: translate3d(0, -32px, 0);
+    }
+  }
+
+  @keyframes heroGlowParallax {
+    entry 0% {
+      transform: translateX(-50%) translate3d(0, 0, 0) scale(1);
+    }
+    exit 100% {
+      transform: translateX(-50%) translate3d(0, 45px, 0) scale(1.08);
+    }
+  }
+}
+
+/* Respeito estrito à preferência por redução de movimento no Parallax */
+@media (prefers-reduced-motion: reduce) {
+  .parallax-watermark,
+  .hero-visual.parallax-layer,
+  .hero-ambient-glow {
+    animation: none !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .watermark-portal {
+    transform: translate(-50%, -50%) !important;
+  }
+}
+
+
+/* --------------------------------------------------------------------------
    Layout Responsivo (Breakpoints: 390px, 820px, 1280px)
    -------------------------------------------------------------------------- */
 

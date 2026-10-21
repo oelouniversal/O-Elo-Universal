@@ -280,5 +280,93 @@ document.addEventListener("DOMContentLoaded", function () {
     window.addEventListener("resize", updateProgressBar, { passive: true });
     updateProgressBar();
   }
+
+  // 9. Parallax: Profundidade Espacial Tridimensional (Fallback 60 FPS e Interatividade 3D)
+  const prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (!prefersReduced) {
+    // 9.1 Parallax 3D Interativo no Mockup do Livro (Desktop com Pointer)
+    const bookWrapper = document.querySelector(".book-mockup-wrapper");
+    const bookMockup = document.querySelector(".book-mockup");
+
+    if (bookWrapper && bookMockup && window.matchMedia("(hover: hover)").matches) {
+      bookWrapper.addEventListener("mousemove", function (e) {
+        const rect = bookWrapper.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        bookMockup.style.transform = `perspective(1000px) rotateY(${x * 14}deg) rotateX(${-y * 12}deg) translateY(-4px)`;
+      });
+
+      bookWrapper.addEventListener("mouseleave", function () {
+        bookMockup.style.transform = "";
+      });
+    }
+
+    // 9.2 Fallback de Parallax em Scroll para navegadores sem View Timeline nativa
+    const supportsViewTimeline =
+      window.CSS &&
+      window.CSS.supports &&
+      (CSS.supports("animation-timeline", "view()") || CSS.supports("animation-timeline: view()"));
+
+    if (!supportsViewTimeline) {
+      const heroVisual = document.querySelector(".hero-visual.parallax-layer");
+      const heroGlow = document.querySelector(".hero-ambient-glow");
+      const watermarkTensao = document.querySelector(".watermark-tensao");
+      const tensaoSection = document.getElementById("tensao");
+      const watermarkPortal = document.querySelector(".watermark-portal");
+      const ctaFinalSection = document.getElementById("cta-final");
+
+      let tickingParallax = false;
+
+      function updateParallaxElements() {
+        const scrollY = window.scrollY || document.documentElement.scrollTop || 0;
+        const vh = window.innerHeight;
+
+        // Hero Book & Glow Parallax
+        if (scrollY < vh * 1.5) {
+          if (heroVisual) {
+            heroVisual.style.transform = `translate3d(0, ${-scrollY * 0.08}px, 0)`;
+          }
+          if (heroGlow) {
+            heroGlow.style.transform = `translateX(-50%) translate3d(0, ${scrollY * 0.1}px, 0)`;
+          }
+        }
+
+        // Tensão Watermark Parallax
+        if (watermarkTensao && tensaoSection) {
+          const tRect = tensaoSection.getBoundingClientRect();
+          if (tRect.top < vh && tRect.bottom > 0) {
+            const progress = (tRect.top - vh / 2) * 0.06;
+            watermarkTensao.style.transform = `translate3d(0, ${progress}px, 0)`;
+          }
+        }
+
+        // Portal Watermark Parallax
+        if (watermarkPortal && ctaFinalSection) {
+          const pRect = ctaFinalSection.getBoundingClientRect();
+          if (pRect.top < vh && pRect.bottom > 0) {
+            const progress = (pRect.top - vh / 2) * 0.05;
+            watermarkPortal.style.transform = `translate3d(-50%, calc(-50% + ${progress}px), 0)`;
+          }
+        }
+
+        tickingParallax = false;
+      }
+
+      window.addEventListener(
+        "scroll",
+        function () {
+          if (!tickingParallax) {
+            window.requestAnimationFrame(updateParallaxElements);
+            tickingParallax = true;
+          }
+        },
+        { passive: true }
+      );
+
+      updateParallaxElements();
+    }
+  }
 });
+
 
