@@ -862,65 +862,39 @@
   text-align: left;
 }
 
-/* Nocturne-Style Pill Badge com Lâmpada Pulsante */
+/* Editorial Kicker Superior (Sem Balão — Estilo Editorial Nobre) */
+.hero-kicker-line,
 .hero-kicker-badge {
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
-  padding: 0.4rem 1.05rem;
-  background: rgba(22, 24, 30, 0.75);
-  border: 1px solid rgba(217, 169, 75, 0.35);
-  border-radius: 999px;
-  margin-bottom: var(--space-sm);
+  gap: 0.65rem;
+  padding: 0;
+  margin-bottom: 0.85rem;
   width: fit-content;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 18px rgba(217, 169, 75, 0.12);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background: none !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
 }
 
-.hero-kicker-badge:hover {
-  border-color: rgba(217, 169, 75, 0.6);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 0 25px rgba(217, 169, 75, 0.2);
-}
-
-.kicker-pulse-beacon {
-  width: 6.5px;
-  height: 6.5px;
-  border-radius: 50%;
-  background: #D9A94B;
-  box-shadow: 0 0 8px #D9A94B;
-  animation: pulseBeacon 2.2s infinite ease-in-out;
-  flex-shrink: 0;
-}
-
-@keyframes pulseBeacon {
-  0%, 100% {
-    opacity: 0.6;
-    transform: scale(0.9);
-    box-shadow: 0 0 5px #D9A94B;
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.3);
-    box-shadow: 0 0 14px #F5D78E, 0 0 4px #FFF;
-  }
-}
-
-.hero-kicker-glyph {
-  color: var(--color-ambar-300);
-  font-size: 0.72rem;
-  filter: drop-shadow(0 0 5px rgba(217, 169, 75, 0.6));
+.hero-kicker-dash {
+  color: #D9A94B;
+  font-size: 0.85rem;
+  font-weight: 300;
+  opacity: 0.75;
 }
 
 .hero-kicker {
   font-family: var(--font-ui);
   font-weight: 700;
-  font-size: 0.72rem;
+  font-size: 0.76rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--color-ambar-300);
+  color: #F5D78E;
   margin: 0;
+  text-shadow: 0 0 14px rgba(217, 169, 75, 0.4);
 }
 
 .hero-title {
@@ -977,53 +951,70 @@
   }
 }
 
-/* Faixa do Septenário Hermético — Fita Iniciática em Vidro Fosco */
+/* Tríade do Septenário Hermético (Sem Balão — Aberta, Nobre e Fluida) */
+.hero-triad-row,
 .trust-strip {
   display: inline-flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.6rem 1rem;
-  padding: 0.65rem 1.35rem;
-  background: rgba(18, 20, 25, 0.75);
-  border: 1px solid rgba(217, 169, 75, 0.32);
-  border-radius: 999px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 0 18px rgba(217, 169, 75, 0.08);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  margin-bottom: var(--space-lg);
+  gap: 0.5rem 1.15rem;
+  padding: 0.35rem 0;
+  margin-bottom: 1.6rem;
+  background: none !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
   max-width: fit-content;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+.hero-triad-row:hover,
 .trust-strip:hover {
-  border-color: rgba(217, 169, 75, 0.5);
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 0 25px rgba(217, 169, 75, 0.15);
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
+.triad-item,
 .trust-item {
   font-family: var(--font-ui);
-  font-size: 0.84rem;
+  font-size: 0.88rem;
   font-weight: 600;
-  color: #FAF8F5;
+  color: #ECE5D7;
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
   letter-spacing: 0.02em;
+  transition: color 0.25s ease;
 }
 
+.triad-item:hover,
+.trust-item:hover {
+  color: #FFFDF8;
+}
+
+.triad-symbol,
 .trust-glyph {
-  color: var(--color-ambar-300);
-  font-size: 0.72rem;
-  opacity: 0.95;
-  filter: drop-shadow(0 0 5px rgba(217, 169, 75, 0.6));
+  color: #D9A94B;
+  font-size: 0.65rem;
+  opacity: 0.85;
+  filter: drop-shadow(0 0 5px rgba(217, 169, 75, 0.65));
+  transition: transform 0.25s ease, color 0.25s ease;
 }
 
+.triad-item:hover .triad-symbol,
+.trust-item:hover .trust-glyph {
+  color: #FFF5D6;
+  transform: scale(1.2);
+}
+
+.triad-separator,
 .trust-separator {
-  color: var(--color-ambar-300);
+  color: rgba(217, 169, 75, 0.45);
   font-size: 0.85rem;
   font-weight: 700;
   user-select: none;
-  opacity: 0.7;
 }
 
 /* Âncoras com margem de rolagem confortável */
@@ -1508,9 +1499,10 @@ body.is-dev .dev-only {
     display: contents;
   }
 
+  .hero-kicker-line,
   .hero-kicker-badge {
     order: 1;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.6rem;
     align-self: flex-start;
   }
 
@@ -1540,20 +1532,25 @@ body.is-dev .dev-only {
     margin: 0 auto;
   }
 
-  /* 2. Faixa do Septenário Hermético logo abaixo da capa */
+  /* 2. Tríade Hermética logo abaixo da capa (Sem Balão — Aberta e Fluida) */
+  .hero-triad-row,
   .trust-strip {
     order: 5;
     width: 100%;
     justify-content: center;
     text-align: center;
-    gap: 0.35rem 0.6rem;
-    padding: 0.65rem 0.75rem;
+    gap: 0.35rem 0.75rem;
+    padding: 0.25rem 0;
     margin-bottom: var(--space-md);
-    border-radius: 999px;
+    background: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
   }
 
+  .triad-item,
   .trust-item {
-    font-size: 0.78rem;
+    font-size: 0.8rem;
   }
 
   /* 3. CTAs entram abaixo do Septenário */
