@@ -627,6 +627,14 @@ document.addEventListener("DOMContentLoaded", function () {
       lookAtRandomPoint();
     }
   }
+
+  // Interatividade nos Cards Iniciáticos da Seção 2 (Suporte a Toque Mobile e Clique)
+  const symbolCards = document.querySelectorAll(".symbol-card");
+  symbolCards.forEach(function (card) {
+    card.addEventListener("click", function () {
+      card.classList.toggle("is-flipped");
+    });
+  });
 });
 
 
