@@ -247,4 +247,38 @@ document.addEventListener("DOMContentLoaded", function () {
       toast.style.display = "none";
     }, 4500);
   }
+
+  // 8. Scroll-Linked: Barra de Progresso Áurea (Fallback com requestAnimationFrame 60 FPS)
+  const progressBar = document.getElementById("scroll-progress-bar");
+  const supportsScrollTimeline =
+    window.CSS &&
+    window.CSS.supports &&
+    (CSS.supports("animation-timeline", "scroll()") || CSS.supports("animation-timeline: scroll()"));
+
+  if (progressBar && !supportsScrollTimeline) {
+    let ticking = false;
+
+    function updateProgressBar() {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop || 0;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? Math.min(Math.max(scrollTop / docHeight, 0), 1) : 0;
+      progressBar.style.transform = `scaleX(${progress})`;
+      ticking = false;
+    }
+
+    window.addEventListener(
+      "scroll",
+      function () {
+        if (!ticking) {
+          window.requestAnimationFrame(updateProgressBar);
+          ticking = true;
+        }
+      },
+      { passive: true }
+    );
+
+    window.addEventListener("resize", updateProgressBar, { passive: true });
+    updateProgressBar();
+  }
 });
+

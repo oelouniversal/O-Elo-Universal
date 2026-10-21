@@ -3,6 +3,52 @@
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
+   Scroll-Linked: Barra de Progresso Áurea do Leitor (60 FPS)
+   -------------------------------------------------------------------------- */
+.scroll-progress-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2.5px;
+  background: rgba(18, 19, 22, 0.4);
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.scroll-progress-bar {
+  height: 100%;
+  width: 100%;
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  background: linear-gradient(90deg, #9C7026 0%, #D49A32 45%, #F5D78E 85%, #FFFFFF 100%);
+  box-shadow: 0 0 10px rgba(217, 169, 75, 0.8), 0 0 3px #FFF9ED;
+  will-change: transform;
+}
+
+@supports (animation-timeline: scroll()) {
+  .scroll-progress-bar {
+    animation: scrollProgress linear auto;
+    animation-timeline: scroll();
+  }
+
+  @keyframes scrollProgress {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-progress-container {
+    display: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
    Header Mínimo
    -------------------------------------------------------------------------- */
 .site-header {
@@ -472,10 +518,33 @@
   transform: translate(-50%, -50%);
   width: 85%;
   height: 85%;
-  background: radial-gradient(circle, rgba(217, 169, 75, 0.15) 0%, rgba(27, 29, 33, 0) 70%);
+  background: radial-gradient(circle, rgba(217, 169, 75, 0.18) 0%, rgba(27, 29, 33, 0) 70%);
   filter: blur(35px);
   z-index: 0;
   pointer-events: none;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+@supports (animation-timeline: view()) {
+  .book-glow {
+    animation: bookGlowScroll linear auto;
+    animation-timeline: view();
+  }
+
+  @keyframes bookGlowScroll {
+    entry 0% {
+      opacity: 0.5;
+      transform: translate(-50%, -50%) scale(0.9);
+    }
+    entry 100% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1.15);
+    }
+    exit 100% {
+      opacity: 0.2;
+      transform: translate(-50%, -50%) scale(0.75);
+    }
+  }
 }
 
 /* --------------------------------------------------------------------------
