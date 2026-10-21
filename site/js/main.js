@@ -4,6 +4,9 @@
  */
 
 document.addEventListener("DOMContentLoaded", function () {
+  // Ativa a classe de controle de Scroll Trigger apenas quando o JS carregar com sucesso
+  document.documentElement.classList.add("reveal-ready");
+
   // 0. Controle estrito de Modo de Desenvolvimento (Fase 2 / Produção)
   if (window.CONFIG && window.CONFIG.DEV_MODE === true) {
     document.body.classList.add("is-dev");
@@ -11,6 +14,33 @@ document.addEventListener("DOMContentLoaded", function () {
     // Em produção: elimina do DOM qualquer bloco exclusivo de desenvolvimento
     document.querySelectorAll(".dev-only").forEach(function (el) {
       el.remove();
+    });
+  }
+
+  // Scroll Trigger — Revelações Iniciáticas Aceleradas por Hardware (60 FPS)
+  if ("IntersectionObserver" in window) {
+    const revealObserver = new IntersectionObserver(
+      function (entries, observer) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target); // Libera o observador após a revelação
+          }
+        });
+      },
+      {
+        root: null,
+        rootMargin: "0px 0px -6% 0px",
+        threshold: 0.08
+      }
+    );
+
+    document.querySelectorAll(".reveal-trigger").forEach(function (el) {
+      revealObserver.observe(el);
+    });
+  } else {
+    document.querySelectorAll(".reveal-trigger").forEach(function (el) {
+      el.classList.add("is-visible");
     });
   }
 
