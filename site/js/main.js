@@ -365,7 +365,89 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
 
-    // 9.2 Fallback de Parallax em Scroll para navegadores sem View Timeline nativa
+    // 9.3 Animações Sincronizadas dos Símbolos Iniciáticos e Porta da Seção 2 (Scroll-Linked 60 FPS)
+    const tensaoSectionEl = document.getElementById("tensao");
+    const olhoCardEl = document.getElementById("card-symbol-olho");
+    const compassoCardEl = document.getElementById("card-symbol-compasso");
+    const seloCardEl = document.getElementById("card-symbol-selo");
+    const doorLeafEl = document.querySelector(".door-leaf-wrapper");
+    const doorGlowEl = document.querySelector(".door-inner-glow");
+
+    let tickingTensao = false;
+
+    function updateSection2Symbols() {
+      if (!tensaoSectionEl) return;
+      const rect = tensaoSectionEl.getBoundingClientRect();
+      const vh = window.innerHeight;
+
+      if (rect.top < vh && rect.bottom > 0) {
+        // Progresso de descida da Seção 2 pela tela (0 a 1)
+        const progress = Math.min(Math.max((vh - rect.top) / (vh + rect.height * 0.7), 0), 1);
+
+        // 1. O Triângulo do Olho: cresce e acende dourado radiante
+        if (olhoCardEl) {
+          const eyeTri = olhoCardEl.querySelector(".olho-triangulo");
+          if (eyeTri) {
+            const eyeScale = 1.0 + progress * 0.22;
+            const eyeGlow = 4 + progress * 14;
+            eyeTri.style.transform = `scale(${eyeScale})`;
+            eyeTri.style.filter = `drop-shadow(0 0 ${eyeGlow}px rgba(217, 169, 75, ${0.45 + progress * 0.5})) drop-shadow(0 0 3px #FFF9ED)`;
+            if (progress > 0.15) {
+              eyeTri.style.stroke = "#F5D78E";
+              eyeTri.style.fill = `rgba(217, 169, 75, ${0.08 + progress * 0.18})`;
+            }
+          }
+        }
+
+        // 2. Compasso: acende dourado e se movimenta em oscilação de medição
+        if (compassoCardEl) {
+          const compassoTool = compassoCardEl.querySelector(".compasso-ferramenta");
+          if (compassoTool) {
+            const compassAngle = Math.sin(progress * Math.PI * 2.5) * 8.5;
+            const compassGlow = 4 + progress * 13;
+            compassoTool.style.transform = `rotate(${compassAngle}deg)`;
+            compassoTool.style.filter = `drop-shadow(0 0 ${compassGlow}px rgba(217, 169, 75, ${0.45 + progress * 0.5}))`;
+          }
+        }
+
+        // 3. Estrela de Salomão: gira e acende dourado radiante
+        if (seloCardEl) {
+          const star = seloCardEl.querySelector(".selo-estrela-giratoria");
+          if (star) {
+            const starAngle = progress * 360;
+            const starGlow = 6 + progress * 16;
+            star.style.transform = `rotate(${starAngle}deg)`;
+            star.style.filter = `drop-shadow(0 0 ${starGlow}px rgba(217, 169, 75, ${0.5 + progress * 0.5})) drop-shadow(0 0 4px #FFF5D6)`;
+          }
+        }
+
+        // 4. Porta do Manifesto: entreabre e intensifica o feixe de luz mística
+        if (doorLeafEl) {
+          const doorAngle = -Math.min(progress * 1.6, 1) * 38;
+          doorLeafEl.style.transform = `perspective(350px) rotateY(${doorAngle}deg)`;
+        }
+        if (doorGlowEl) {
+          doorGlowEl.style.opacity = `${0.35 + Math.min(progress * 1.4, 1) * 0.65}`;
+        }
+      }
+
+      tickingTensao = false;
+    }
+
+    window.addEventListener(
+      "scroll",
+      function () {
+        if (!tickingTensao) {
+          window.requestAnimationFrame(updateSection2Symbols);
+          tickingTensao = true;
+        }
+      },
+      { passive: true }
+    );
+
+    updateSection2Symbols();
+
+    // 9.4 Fallback de Parallax em Scroll para navegadores sem View Timeline nativa
     const supportsViewTimeline =
       window.CSS &&
       window.CSS.supports &&

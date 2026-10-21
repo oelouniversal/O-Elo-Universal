@@ -1055,68 +1055,300 @@ body.is-dev .dev-only {
 }
 
 .symbol-icon-wrapper {
-  width: 72px;
-  height: 72px;
+  width: 78px;
+  height: 78px;
   border-radius: 50%;
-  background: rgba(217, 169, 75, 0.12);
-  border: 1px solid rgba(142, 102, 32, 0.35);
+  background: radial-gradient(circle, rgba(217, 169, 75, 0.16) 0%, rgba(236, 229, 215, 0.4) 100%);
+  border: 1.5px solid rgba(142, 102, 32, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: var(--space-md);
-  box-shadow: inset 0 0 12px rgba(217, 169, 75, 0.2);
+  box-shadow: inset 0 0 15px rgba(217, 169, 75, 0.25), 0 4px 14px rgba(142, 102, 32, 0.12);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+  position: relative;
+}
+
+.symbol-card:hover .symbol-icon-wrapper {
+  transform: scale(1.06);
+  border-color: var(--color-ambar-500);
+  box-shadow: inset 0 0 20px rgba(217, 169, 75, 0.4), 0 6px 20px rgba(217, 169, 75, 0.3);
 }
 
 .symbol-svg {
-  width: 52px;
-  height: 52px;
+  width: 56px;
+  height: 56px;
   display: block;
+  overflow: visible;
 }
 
-.symbol-title {
-  font-family: var(--font-title);
-  font-size: 1.25rem;
-  line-height: 1.25;
-  color: var(--color-ambar-700);
-  margin-bottom: var(--space-xs);
+/* --------------------------------------------------------------------------
+   Símbolo 1: O Triângulo Radiante & O Olho Central (Mentalismo)
+   - O triângulo cresce e acende dourado com o scroll e hover
+   - O olho dentro dele pulsa e pisca como uma consciência viva
+   -------------------------------------------------------------------------- */
+.olho-triangulo {
+  transform-origin: 40px 42px;
+  transform: scale(var(--eye-scale, 1));
+  stroke: var(--eye-stroke, #8E6620);
+  fill: var(--eye-fill, rgba(217, 169, 75, 0.08));
+  filter: var(--eye-glow, drop-shadow(0 0 2px rgba(217, 169, 75, 0.3)));
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), stroke 0.4s ease, fill 0.4s ease, filter 0.4s ease;
 }
 
-.symbol-desc {
-  font-size: 0.92rem;
-  line-height: 1.55;
-  color: var(--color-tinta-suave);
-  margin: 0;
+.reveal-ready .symbol-card-olho.is-visible .olho-triangulo,
+.symbol-card-olho:hover .olho-triangulo {
+  transform: scale(1.14);
+  stroke: #F5D78E;
+  fill: rgba(217, 169, 75, 0.22);
+  filter: drop-shadow(0 0 12px rgba(217, 169, 75, 0.85)) drop-shadow(0 0 3px #FFF9ED);
 }
 
-/* O Grimório Manifesto do Despertar (Caixa de Poder) */
+.olho-raios line {
+  transition: stroke 0.4s ease, opacity 0.4s ease, transform 0.4s ease;
+  animation: eyeRaysPulse 3.5s ease-in-out infinite alternate;
+}
+
+.reveal-ready .symbol-card-olho.is-visible .olho-raios line,
+.symbol-card-olho:hover .olho-raios line {
+  stroke: #F5D78E;
+  filter: drop-shadow(0 0 6px rgba(245, 215, 142, 0.9));
+}
+
+@keyframes eyeRaysPulse {
+  0% { opacity: 0.4; }
+  50% { opacity: 0.9; }
+  100% { opacity: 0.5; }
+}
+
+.olho-pupila {
+  transform-origin: 40px 43px;
+  animation: pupilAwaken 4.5s ease-in-out infinite alternate;
+}
+
+.olho-palpebra {
+  transform-origin: 40px 43px;
+  animation: eyeBlinkBreath 6s ease-in-out infinite;
+}
+
+@keyframes pupilAwaken {
+  0% { transform: scale(0.9); }
+  50% { transform: scale(1.35); }
+  100% { transform: scale(1); }
+}
+
+@keyframes eyeBlinkBreath {
+  0%, 94%, 100% { transform: scaleY(1); }
+  97% { transform: scaleY(0.1); } /* Piscar sutil misterioso */
+}
+
+/* --------------------------------------------------------------------------
+   Símbolo 2: O Compasso e o Esquadro (Correspondência / Construtores)
+   - Compasso acende dourado e se movimenta em oscilação e precisão
+   - Fundo geométrico rotativo suave
+   -------------------------------------------------------------------------- */
+.compasso-ferramenta {
+  transform-origin: 40px 17px;
+  transform: rotate(var(--compass-rot, 0deg));
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+  animation: compassSwing 5.5s ease-in-out infinite alternate;
+}
+
+.compasso-ferramenta line,
+.compasso-ferramenta circle,
+.compasso-ferramenta path {
+  transition: stroke 0.4s ease, filter 0.4s ease;
+}
+
+.reveal-ready .symbol-card-compasso.is-visible .compasso-ferramenta,
+.symbol-card-compasso:hover .compasso-ferramenta {
+  filter: drop-shadow(0 0 12px rgba(217, 169, 75, 0.85));
+}
+
+.reveal-ready .symbol-card-compasso.is-visible .compasso-ferramenta line,
+.symbol-card-compasso:hover .compasso-ferramenta line {
+  stroke: #F5D78E;
+}
+
+.reveal-ready .symbol-card-compasso.is-visible .compasso-arco-graduado,
+.symbol-card-compasso:hover .compasso-arco-graduado {
+  stroke: #FFFFFF;
+}
+
+@keyframes compassSwing {
+  0% { transform: rotate(-6deg); }
+  50% { transform: rotate(7deg); }
+  100% { transform: rotate(-3deg); }
+}
+
+.compasso-circulo-fundo {
+  transform-origin: 40px 40px;
+  animation: spinBackgroundSlow 24s linear infinite;
+}
+
+@keyframes spinBackgroundSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.compasso-ponto-central {
+  animation: centerPulse 2.8s ease-in-out infinite alternate;
+}
+
+@keyframes centerPulse {
+  0% { transform: scale(0.85); opacity: 0.7; }
+  100% { transform: scale(1.35); opacity: 1; filter: drop-shadow(0 0 6px rgba(217, 169, 75, 0.9)); }
+}
+
+/* --------------------------------------------------------------------------
+   Símbolo 3: O Selo da Transmutação / Estrela Giratória Alquímica
+   - A estrela de seis pontas gira continuamente e intensifica com o scroll
+   - Acende em ouro cósmico radiante
+   -------------------------------------------------------------------------- */
+.selo-estrela-giratoria {
+  transform-origin: 40px 40px;
+  transform: rotate(var(--star-rot, 0deg));
+  transition: filter 0.4s ease;
+  animation: starRotateContinuous 14s linear infinite;
+}
+
+.reveal-ready .symbol-card-selo.is-visible .selo-estrela-giratoria,
+.symbol-card-selo:hover .selo-estrela-giratoria {
+  filter: drop-shadow(0 0 14px rgba(217, 169, 75, 0.95)) drop-shadow(0 0 4px #FFF5D6);
+}
+
+.reveal-ready .symbol-card-selo.is-visible .estrela-tri-fogo,
+.symbol-card-selo:hover .estrela-tri-fogo {
+  stroke: #F5D78E;
+  fill: rgba(217, 169, 75, 0.22);
+}
+
+.reveal-ready .symbol-card-selo.is-visible .estrela-tri-agua,
+.symbol-card-selo:hover .estrela-tri-agua {
+  stroke: #FFF1CD;
+  fill: rgba(245, 215, 142, 0.22);
+}
+
+@keyframes starRotateContinuous {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.selo-anel-interno {
+  transform-origin: 40px 40px;
+  animation: ringRotateReverse 20s linear infinite;
+}
+
+@keyframes ringRotateReverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+/* --------------------------------------------------------------------------
+   O Grimório Manifesto do Despertar & O Portal da Porta Iniciática
+   - Medalhão ampliado de 48px para 78px com aura e relevo
+   - Símbolo da porta aumentado de 24x30 para 48x60
+   - Porta entreaberta com feixe de luz que pulsa e convida o iniciado
+   -------------------------------------------------------------------------- */
 .tensao-manifesto-box {
   background: linear-gradient(145deg, #181A1F 0%, #232730 100%);
   border: 1px solid var(--color-ambar-300);
   border-radius: var(--radius-sm);
-  padding: var(--space-xl) var(--space-lg);
+  padding: calc(var(--space-2xl) * 1.05) var(--space-xl) var(--space-xl);
   margin: var(--space-2xl) auto var(--space-xl);
   text-align: center;
   position: relative;
-  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35), 0 0 25px rgba(217, 169, 75, 0.18);
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.45), 0 0 30px rgba(217, 169, 75, 0.22);
+  transition: box-shadow 0.4s ease, border-color 0.4s ease;
 }
 
+.tensao-manifesto-box:hover {
+  border-color: #F5D78E;
+  box-shadow: 0 20px 55px rgba(0, 0, 0, 0.55), 0 0 40px rgba(217, 169, 75, 0.35);
+}
+
+/* Medalhão da Porta Ampliado e Elevado */
 .manifesto-seal {
-  width: 48px;
-  height: 48px;
-  margin: -40px auto var(--space-xs);
-  background: #181A1F;
-  border: 1px solid var(--color-ambar-300);
+  width: 78px;
+  height: 78px;
+  margin: -62px auto var(--space-md);
+  background: radial-gradient(circle, #252833 0%, #121317 100%);
+  border: 2px solid var(--color-ambar-300);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.75), 0 0 25px rgba(217, 169, 75, 0.45);
+  position: relative;
+  z-index: 3;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  cursor: pointer;
 }
 
-.manifesto-door {
-  width: 24px;
-  height: 30px;
+.tensao-manifesto-box:hover .manifesto-seal,
+.manifesto-seal:hover {
+  transform: translateY(-4px) scale(1.06);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.85), 0 0 35px rgba(217, 169, 75, 0.7);
+}
+
+/* Ícone da Porta Ampliado (de 24px para 48px) */
+.manifesto-door-svg {
+  width: 48px;
+  height: 58px;
   display: block;
+  overflow: visible;
+}
+
+/* Animação da Folha da Porta Iniciática (Entreabrir com o scroll e no hover) */
+.door-leaf-wrapper {
+  transform-origin: 13px 45px;
+  transform-style: preserve-3d;
+  transform: perspective(350px) rotateY(var(--door-angle, -18deg));
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-ready .tensao-manifesto-box.is-visible .door-leaf-wrapper,
+.tensao-manifesto-box:hover .door-leaf-wrapper,
+.manifesto-seal:hover .door-leaf-wrapper {
+  transform: perspective(350px) rotateY(-38deg);
+}
+
+/* Feixe de Luz Mística Emanando da Câmara Interna */
+.door-inner-glow {
+  opacity: var(--door-glow-opacity, 0.8);
+  filter: drop-shadow(0 0 14px rgba(245, 215, 142, 0.85));
+  animation: doorBeamPulse 3.2s ease-in-out infinite alternate;
+}
+
+@keyframes doorBeamPulse {
+  0% {
+    opacity: 0.6;
+    filter: drop-shadow(0 0 8px rgba(217, 169, 75, 0.6));
+  }
+  100% {
+    opacity: 1;
+    filter: drop-shadow(0 0 18px rgba(245, 215, 142, 0.95)) drop-shadow(0 0 6px #FFFFFF);
+  }
+}
+
+.door-knob {
+  filter: drop-shadow(0 0 3px #F5D78E);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .olho-triangulo,
+  .olho-raios line,
+  .olho-pupila,
+  .olho-palpebra,
+  .compasso-ferramenta,
+  .compasso-circulo-fundo,
+  .selo-estrela-giratoria,
+  .selo-anel-interno,
+  .door-leaf-wrapper,
+  .door-inner-glow {
+    animation: none !important;
+    transform: none !important;
+  }
 }
 
 .manifesto-quote {

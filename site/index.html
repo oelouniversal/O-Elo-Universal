@@ -20,7 +20,7 @@
   <!-- Estilos -->
   <link rel="stylesheet" href="css/tokens.css?v=6">
   <link rel="stylesheet" href="css/base.css?v=6">
-  <link rel="stylesheet" href="css/components.css?v=7">
+  <link rel="stylesheet" href="css/components.css?v=8">
 </head>
 <body>
   <!-- Acessibilidade: Pular para o conteúdo principal -->
@@ -141,25 +141,81 @@
 
         <!-- Grade dos Símbolos Sagrados e Ordens Iniciáticas -->
         <div class="iniciatic-symbols-grid stagger-grid">
-          <div class="symbol-card reveal-trigger">
+          <!-- Card 1: O Olho que Tudo Vê e o Triângulo Radiante -->
+          <div class="symbol-card symbol-card-olho reveal-trigger" id="card-symbol-olho">
             <div class="symbol-icon-wrapper">
-              <img src="assets/svg/simbolo-olho.svg" alt="O Olho que Tudo Vê e a Geometria Sagrada" class="symbol-svg" width="52" height="52" loading="lazy">
+              <svg viewBox="0 0 80 80" class="symbol-svg symbol-svg-olho" xmlns="http://www.w3.org/2000/svg" aria-label="O Olho que Tudo Vê no Triângulo Sagrado" role="img" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <!-- Raios de Iluminação e Consciência -->
+                <g class="olho-raios">
+                  <line x1="40" y1="3" x2="40" y2="8" stroke="#D9A94B" stroke-width="2"/>
+                  <line x1="57" y1="11" x2="61" y2="8" stroke="#D9A94B" stroke-width="2"/>
+                  <line x1="23" y1="11" x2="19" y2="8" stroke="#D9A94B" stroke-width="2"/>
+                  <line x1="72" y1="35" x2="77" y2="34" stroke="#D9A94B" stroke-width="2"/>
+                  <line x1="8" y1="35" x2="3" y2="34" stroke="#D9A94B" stroke-width="2"/>
+                  <line x1="68" y1="58" x2="74" y2="61" stroke="#D9A94B" stroke-width="1.8"/>
+                  <line x1="12" y1="58" x2="6" y2="61" stroke="#D9A94B" stroke-width="1.8"/>
+                </g>
+                <!-- Triângulo Sagrado (cresce e acende dourado com o scroll) -->
+                <polygon class="olho-triangulo" points="40,11 68,65 12,65" stroke="#8E6620" stroke-width="2.2" fill="rgba(217,169,75,0.08)"/>
+                <!-- Estrutura do Olho Central (Mentalismo) -->
+                <g class="olho-corpo">
+                  <path class="olho-palpebra" d="M25 43 C32 32, 48 32, 55 43 C48 54, 32 54, 25 43 Z" stroke="#8E6620" stroke-width="2" fill="rgba(244,239,230,0.18)"/>
+                  <circle class="olho-iris" cx="40" cy="43" r="5.2" stroke="#D9A94B" stroke-width="1.8" fill="#8E6620"/>
+                  <circle class="olho-pupila" cx="40" cy="43" r="2.3" fill="#FFFFFF"/>
+                </g>
+              </svg>
             </div>
             <h3 class="symbol-title">O Olho e a Mente que Molda</h3>
             <p class="symbol-desc">Presente na arquitetura sagrada e nos centros de poder: a Primeira Lei ensina que a matéria nada mais é do que o reflexo da mente que a sustenta e observa.</p>
           </div>
 
-          <div class="symbol-card reveal-trigger">
+          <!-- Card 2: O Compasso e o Esquadro -->
+          <div class="symbol-card symbol-card-compasso reveal-trigger" id="card-symbol-compasso">
             <div class="symbol-icon-wrapper">
-              <img src="assets/svg/simbolo-esquadro.svg" alt="O Compasso e o Esquadro da Maçonaria" class="symbol-svg" width="52" height="52" loading="lazy">
+              <svg viewBox="0 0 80 80" class="symbol-svg symbol-svg-compasso" xmlns="http://www.w3.org/2000/svg" aria-label="O Compasso e o Esquadro da Maçonaria" role="img" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <!-- Círculo geométrico de fundo -->
+                <circle class="compasso-circulo-fundo" cx="40" cy="40" r="34" stroke="#8E6620" stroke-width="1.2" stroke-dasharray="3 3"/>
+                <!-- Esquadro da Matéria (Base de pedra) -->
+                <g class="esquadro-estrutura">
+                  <polyline class="esquadro-haste-grossa" points="18,34 40,64 62,34" stroke="#8E6620" stroke-width="3.2" stroke-linecap="square"/>
+                  <polyline class="esquadro-haste-fina" points="24,34 40,56 56,34" stroke="#D9A94B" stroke-width="1.4"/>
+                </g>
+                <!-- Compasso do Espírito (Acende dourado e se movimenta) -->
+                <g class="compasso-ferramenta">
+                  <circle class="compasso-articulacao" cx="40" cy="17" r="3.8" stroke="#8E6620" stroke-width="2" fill="#ECE5D7"/>
+                  <!-- Perna esquerda -->
+                  <line class="compasso-perna compasso-esq" x1="40" y1="17" x2="16" y2="62" stroke="#8E6620" stroke-width="2.5"/>
+                  <!-- Perna direita -->
+                  <line class="compasso-perna compasso-dir" x1="40" y1="17" x2="64" y2="62" stroke="#8E6620" stroke-width="2.5"/>
+                  <!-- Arco graduado móvel -->
+                  <path class="compasso-arco-graduado" d="M26 47 A22 22 0 0 0 54 47" stroke="#D9A94B" stroke-width="1.6" fill="none"/>
+                </g>
+                <!-- Ponto central de equilíbrio -->
+                <circle class="compasso-ponto-central" cx="40" cy="38" r="2.8" fill="#D9A94B"/>
+              </svg>
             </div>
             <h3 class="symbol-title">O Compasso e as Leis Invisíveis</h3>
             <p class="symbol-desc">O emblema dos construtores na Maçonaria: a arte secreta de medir, alinhar e operar as forças ocultas para erguer resultados tangíveis no mundo físico.</p>
           </div>
 
-          <div class="symbol-card reveal-trigger">
+          <!-- Card 3: O Selo Hermético / Estrela de Salomão Giratória -->
+          <div class="symbol-card symbol-card-selo reveal-trigger" id="card-symbol-selo">
             <div class="symbol-icon-wrapper">
-              <img src="assets/svg/simbolo-selo.svg" alt="O Selo Hermético da Tábua de Esmeralda" class="symbol-svg" width="52" height="52" loading="lazy">
+              <svg viewBox="0 0 80 80" class="symbol-svg symbol-svg-selo" xmlns="http://www.w3.org/2000/svg" aria-label="O Selo da Transmutação Hermética" role="img" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <!-- Anéis Externos Alquímicos -->
+                <circle class="selo-anel-externo" cx="40" cy="40" r="35" stroke="#8E6620" stroke-width="1.8"/>
+                <circle class="selo-anel-interno" cx="40" cy="40" r="31" stroke="#D9A94B" stroke-width="1.2" stroke-dasharray="4 2"/>
+                <!-- A Estrela Alquímica Giratória (Hexagrama de Transmutação) -->
+                <g class="selo-estrela-giratoria">
+                  <!-- Triângulo superior (Fogo / Céu) -->
+                  <polygon class="estrela-tri-fogo" points="40,12 66,56 14,56" stroke="#8E6620" stroke-width="2.2" fill="rgba(217,169,75,0.08)"/>
+                  <!-- Triângulo inferior (Água / Terra) -->
+                  <polygon class="estrela-tri-agua" points="40,68 66,24 14,24" stroke="#D9A94B" stroke-width="2.2" fill="rgba(142,102,32,0.08)"/>
+                  <!-- Ponto central de união hermética -->
+                  <circle class="selo-centro-circ" cx="40" cy="40" r="4.5" stroke="#8E6620" stroke-width="1.8" fill="#F4EFE6"/>
+                  <circle class="selo-centro-ponto" cx="40" cy="40" r="2" fill="#D9A94B"/>
+                </g>
+              </svg>
             </div>
             <h3 class="symbol-title">O Selo da Transmutação</h3>
             <p class="symbol-desc">Os triângulos entrelaçados da tradição alquímica: “O que está em cima é como o que está embaixo”. O código que altera a realidade externa a partir do padrão interior.</p>
@@ -174,9 +230,35 @@
 
           <p class="tensao-paragraph">Entregaram citações poéticas para manter a maioria entretida na contemplação passiva. A chave operacional, o método exato de testar, aplicar e transmutar essas leis no cotidiano, sempre foi guardada sob sete chaves.</p>
 
-          <div class="tensao-manifesto-box">
-            <div class="manifesto-seal">
-              <img src="assets/svg/glifo-porta_claro.svg" alt="Glifo da Porta Iniciática" class="manifesto-door" width="24" height="30" loading="lazy">
+          <div class="tensao-manifesto-box reveal-trigger">
+            <!-- Medalhão Superior Ampliado com a Porta Iniciática Animada -->
+            <div class="manifesto-seal" aria-label="Portal Iniciático">
+              <svg class="manifesto-door-svg" viewBox="0 0 64 76" xmlns="http://www.w3.org/2000/svg" aria-label="A Porta Iniciática Entreaberta" role="img" fill="none">
+                <defs>
+                  <radialGradient id="portalDoorLight" cx="45%" cy="50%" r="55%">
+                    <stop offset="0%" stop-color="#FFF5D6" stop-opacity="1"/>
+                    <stop offset="35%" stop-color="#F5D78E" stop-opacity="0.85"/>
+                    <stop offset="70%" stop-color="#D9A94B" stop-opacity="0.45"/>
+                    <stop offset="100%" stop-color="#8E6620" stop-opacity="0"/>
+                  </radialGradient>
+                </defs>
+                <!-- Feixe de luz emanando de dentro da câmara iniciática -->
+                <path class="door-inner-glow" d="M12 66 L12 26 A20 20 0 0 1 52 26 L52 66 Z" fill="url(#portalDoorLight)"/>
+                
+                <!-- Batente de pedra esculpida e arco românico exterior -->
+                <path class="door-frame" d="M10 66 L10 24 A22 22 0 0 1 54 24 L54 66" stroke="#D9A94B" stroke-width="2.8" stroke-linecap="round"/>
+                <!-- Soleira de pedra sagrada -->
+                <line class="door-threshold" x1="4" y1="66" x2="60" y2="66" stroke="#D9A94B" stroke-width="2.8" stroke-linecap="round"/>
+                
+                <!-- A Folha da Porta Animada (Entreabre com o scroll e no hover) -->
+                <g class="door-leaf-wrapper">
+                  <path class="door-leaf-wood" d="M13 65 L13 25 A19 19 0 0 1 51 25 L51 65 Z" stroke="#8E6620" stroke-width="2" fill="#14161B"/>
+                  <path class="door-inner-panel" d="M19 60 L19 29 A13 13 0 0 1 45 29 L45 60 Z" stroke="#D9A94B" stroke-width="1.2" stroke-dasharray="3 2" fill="none"/>
+                  <!-- Puxador e fechadura áurea -->
+                  <circle class="door-knob" cx="44" cy="46" r="2.4" fill="#F5D78E" stroke="#8E6620" stroke-width="1"/>
+                  <path class="door-keyhole-accent" d="M44 50 L43 54 L45 54 Z" fill="#D9A94B"/>
+                </g>
+              </svg>
             </div>
             <blockquote class="manifesto-quote">
               “Toda a verdade já está diante dos seus olhos, porém oculta sob séculos de teoria estéril. O Elo Universal não foi escrito para convencer quem duvida. Ele foi forjado para despertar aqueles que já estão no caminho.”
@@ -903,6 +985,6 @@
   <!-- Scripts -->
   <script src="js/config.js"></script>
   <script src="js/tracking.js"></script>
-  <script src="js/main.js?v=7"></script>
+  <script src="js/main.js?v=8"></script>
 </body>
 </html>
