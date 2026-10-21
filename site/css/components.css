@@ -1757,208 +1757,193 @@ body.is-dev .dev-only {
 .symbol-card {
   background: #ECE5D7;
   border: 1.5px solid rgba(142, 102, 32, 0.28);
-  border-radius: 14px;
+  border-radius: 16px;
   padding: 0;
   text-align: center;
-  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.85s cubic-bezier(0.2, 0.8, 0.2, 1),
+              background 0.85s cubic-bezier(0.2, 0.8, 0.2, 1),
+              border-color 0.85s cubic-bezier(0.2, 0.8, 0.2, 1),
+              box-shadow 0.85s cubic-bezier(0.2, 0.8, 0.2, 1);
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 390px;
+  min-height: 440px;
   overflow: hidden;
+  box-shadow: 0 6px 20px rgba(142, 102, 32, 0.1);
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent;
   cursor: pointer;
-  box-shadow: 0 4px 16px rgba(142, 102, 32, 0.08);
 }
 
-/* Uiverse suleymanlaarabidev: Transição entre primeiro e segundo conteúdo */
+/* Conteúdo Primário: O Símbolo Sagrado e sua Força Arquetípica */
+/* SEMPRE VISÍVEL por padrão no scroll - o leitor contempla as animações livremente */
 .symbol-card .first-content {
   height: 100%;
   width: 100%;
-  padding: 1.8rem 1.4rem;
+  padding: 2.2rem 1.6rem 2rem;
   box-sizing: border-box;
-  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.85s cubic-bezier(0.2, 0.8, 0.2, 1),
+              transform 0.85s cubic-bezier(0.2, 0.8, 0.2, 1);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   opacity: 1;
-  border-radius: 14px;
-  transform: rotate(0deg) scale(1);
+  border-radius: 16px;
+  transform: scale(1);
 }
 
+/* Conteúdo Secundário: O Segredo Oculto da Lei e O Caibalion */
+/* Revelado de maneira suave e cerimonial apenas com clique ou intenção deliberada */
 .symbol-card .second-content {
-  height: 0%;
+  position: absolute;
+  inset: 0;
   width: 100%;
-  padding: 0 1.4rem;
+  height: 100%;
+  padding: 2rem 1.6rem;
   box-sizing: border-box;
   opacity: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-radius: 14px;
-  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-  font-size: 0px;
-  transform: rotate(90deg) scale(-1);
+  border-radius: 16px;
+  transition: opacity 0.85s cubic-bezier(0.2, 0.8, 0.2, 1),
+              transform 0.85s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform: scale(0.92);
   pointer-events: none;
   overflow: hidden;
+  background: linear-gradient(155deg, #181B20 0%, #0E1013 100%);
+  border: 1.5px solid #D9A94B;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(217, 169, 75, 0.35);
 }
 
-/* --------------------------------------------------------------------------
-   DESKTOP: Revelação por Hover com Mouse
-   -------------------------------------------------------------------------- */
+/* Estado Revelado: Ativado apenas quando o leitor clica no botão ou no card */
+.symbol-card.is-revealed {
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.55), 0 0 36px rgba(217, 169, 75, 0.45);
+  border-color: #D9A94B;
+  transform: translateY(-2px);
+}
+
+.symbol-card.is-revealed .first-content {
+  opacity: 0;
+  transform: scale(0.9) rotate(-3deg);
+  pointer-events: none;
+}
+
+.symbol-card.is-revealed .second-content {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+  pointer-events: auto;
+}
+
+/* Desktop Hover: Ilumina o card sem ocultar abruptamente */
 @media (min-width: 768px) {
   .symbol-card:hover {
-    border-radius: 18px;
-    cursor: pointer;
-    transform: translateY(-4px) scale(1.03);
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45), 0 0 30px rgba(217, 169, 75, 0.35);
-    background: linear-gradient(155deg, #181B20 0%, #0E1013 100%);
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 14px 36px rgba(142, 102, 32, 0.18), 0 0 25px rgba(217, 169, 75, 0.25);
     border-color: #D9A94B;
-    z-index: 5;
-  }
-
-  .symbol-card:hover .first-content {
-    height: 0px;
-    padding-top: 0;
-    padding-bottom: 0;
-    opacity: 0;
-    transform: rotate(-10deg) scale(0.85);
-    pointer-events: none;
-    overflow: hidden;
-  }
-
-  .symbol-card:hover .second-content {
-    opacity: 1;
-    height: 100%;
-    min-height: 390px;
-    padding: 2rem 1.4rem;
-    font-size: 1rem;
-    transform: rotate(0deg) scale(1);
-    pointer-events: auto;
   }
 }
 
-/* --------------------------------------------------------------------------
-   MOBILE: Otimizado para Scroll (Sem travas de toque, revelação central)
-   -------------------------------------------------------------------------- */
-@media (max-width: 767px) {
-  .symbol-card {
-    min-height: 380px;
-    height: 380px;
-    touch-action: pan-y;
-    -webkit-tap-highlight-color: transparent;
-    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-                background 0.5s ease,
-                border-color 0.5s ease,
-                box-shadow 0.5s ease;
-  }
-
-  /* Desativa hover de toque para não travar o scroll do usuário */
-  .symbol-card:hover {
-    transform: none;
-    box-shadow: 0 4px 16px rgba(142, 102, 32, 0.08);
-    background: #ECE5D7;
-    border-color: rgba(142, 102, 32, 0.28);
-  }
-
-  .symbol-card:hover .first-content {
-    height: 100%;
-    opacity: 1;
-    transform: rotate(0deg) scale(1);
-    padding: 1.8rem 1.4rem;
-  }
-
-  .symbol-card:hover .second-content {
-    height: 0%;
-    opacity: 0;
-    transform: rotate(90deg) scale(-1);
-  }
-
-  /* Revelação Automática Conforme o Scroll Atinge o Centro */
-  .symbol-card.is-scroll-revealed {
-    transform: scale(1.02);
-    background: linear-gradient(155deg, #181B20 0%, #0E1013 100%);
-    border-color: #D9A94B;
-    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.5), 0 0 28px rgba(217, 169, 75, 0.4);
-    border-radius: 18px;
-    z-index: 2;
-  }
-
-  .symbol-card.is-scroll-revealed .first-content {
-    height: 0px;
-    padding: 0 1.2rem;
-    opacity: 0;
-    transform: rotate(-8deg) scale(0.88);
-    pointer-events: none;
-    overflow: hidden;
-  }
-
-  .symbol-card.is-scroll-revealed .second-content {
-    opacity: 1;
-    height: 100%;
-    min-height: 380px;
-    padding: 1.8rem 1.2rem;
-    font-size: 1rem;
-    transform: rotate(0deg) scale(1);
-    pointer-events: auto;
-  }
-
-  .symbol-card.is-scroll-revealed .second-title {
-    font-size: 1.15rem;
-  }
-
-  .symbol-card.is-scroll-revealed .second-desc {
-    font-size: 0.85rem;
-    line-height: 1.5;
-  }
-}
-
-.desktop-hint {
-  display: inline;
-}
-
-.mobile-hint {
-  display: none;
-}
-
-@media (max-width: 767px) {
-  .desktop-hint {
-    display: none;
-  }
-  .mobile-hint {
-    display: inline;
-  }
-}
-
-.card-hint {
+/* Botão Deliberado de Revelação (Frente) */
+.btn-card-revelar {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
-  margin-top: 1rem;
-  font-family: var(--font-ui);
-  font-size: 0.68rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-ambar-700);
-  background: rgba(217, 169, 75, 0.12);
-  border: 1px dashed rgba(142, 102, 32, 0.35);
-  padding: 0.28rem 0.65rem;
+  justify-content: center;
+  gap: 0.45rem;
+  margin-top: 1.25rem;
+  padding: 0.55rem 1.2rem;
   border-radius: 999px;
-  transition: all 0.3s ease;
+  background: linear-gradient(135deg, rgba(217, 169, 75, 0.16) 0%, rgba(142, 102, 32, 0.24) 100%);
+  border: 1.2px solid rgba(142, 102, 32, 0.45);
+  color: #5D4310;
+  font-family: var(--font-ui);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.35s ease;
+  box-shadow: 0 2px 8px rgba(142, 102, 32, 0.12);
 }
 
-.card-hint-icon {
-  font-size: 0.75rem;
+.btn-card-revelar:hover {
+  background: linear-gradient(135deg, rgba(217, 169, 75, 0.32) 0%, rgba(142, 102, 32, 0.38) 100%);
+  border-color: #D9A94B;
+  color: #2F1E02;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(217, 169, 75, 0.3);
+}
+
+.btn-rev-spark {
   color: var(--color-ambar-600);
-  animation: pulseHint 2s infinite ease-in-out;
+  font-size: 0.8rem;
 }
 
-@keyframes pulseHint {
-  0%, 100% { opacity: 0.6; transform: scale(0.9); }
-  50% { opacity: 1; transform: scale(1.15); }
+.btn-rev-arrow {
+  color: var(--color-ambar-700);
+  font-size: 0.85rem;
+  transition: transform 0.3s ease;
+}
+
+.btn-card-revelar:hover .btn-rev-arrow {
+  transform: translateX(3px);
+}
+
+/* Botão de Retorno ao Símbolo (Verso) */
+.btn-card-retornar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: 1.1rem;
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  background: rgba(245, 215, 142, 0.12);
+  border: 1px solid rgba(245, 215, 142, 0.35);
+  color: #F5D78E;
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.35s ease;
+}
+
+.btn-card-retornar:hover {
+  background: rgba(245, 215, 142, 0.25);
+  border-color: #F5D78E;
+  color: #FFFFFF;
+  transform: translateY(-1px);
+}
+
+/* Mini-Brasão Sagrado Radiante no Verso */
+.second-symbol-crest {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(217, 169, 75, 0.25) 0%, rgba(20, 22, 27, 0.8) 100%);
+  border: 1.5px solid rgba(245, 215, 142, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.75rem;
+  box-shadow: 0 0 16px rgba(217, 169, 75, 0.45);
+}
+
+.mini-crest-svg {
+  width: 42px;
+  height: 42px;
+  display: block;
+}
+
+.mini-seal-spin {
+  transform-origin: 40px 40px;
+  animation: starRotateContinuous 20s linear infinite;
 }
 
 .second-badge {
@@ -1974,7 +1959,7 @@ body.is-dev .dev-only {
   border: 1px solid rgba(245, 215, 142, 0.35);
   padding: 0.32rem 0.8rem;
   border-radius: 999px;
-  margin-bottom: 0.85rem;
+  margin-bottom: 0.75rem;
 }
 
 .second-title {
@@ -1982,7 +1967,7 @@ body.is-dev .dev-only {
   font-size: 1.25rem;
   font-weight: 700;
   color: #FFFDF8;
-  margin: 0 0 0.6rem 0;
+  margin: 0 0 0.55rem 0;
   line-height: 1.3;
   letter-spacing: -0.01em;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
@@ -1993,13 +1978,13 @@ body.is-dev .dev-only {
   font-size: 0.88rem;
   line-height: 1.6;
   color: #EDE3CF;
-  margin: 0 0 1rem 0;
+  margin: 0 0 0.55rem 0;
   font-style: italic;
   max-width: 290px;
 }
 
 .second-footer {
-  margin-top: 0.4rem;
+  margin-top: 0.5rem;
 }
 
 .second-link {
@@ -2016,30 +2001,31 @@ body.is-dev .dev-only {
   padding-bottom: 2px;
 }
 
+/* Moldura e Ícone do Símbolo na Frente (Ampliado para 92px) */
 .symbol-icon-wrapper {
-  width: 78px;
-  height: 78px;
+  width: 92px;
+  height: 92px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(217, 169, 75, 0.16) 0%, rgba(236, 229, 215, 0.4) 100%);
-  border: 1.5px solid rgba(142, 102, 32, 0.4);
+  background: radial-gradient(circle, rgba(217, 169, 75, 0.22) 0%, rgba(236, 229, 215, 0.5) 100%);
+  border: 1.8px solid rgba(142, 102, 32, 0.45);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: var(--space-md);
-  box-shadow: inset 0 0 15px rgba(217, 169, 75, 0.25), 0 4px 14px rgba(142, 102, 32, 0.12);
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+  margin-bottom: 1.2rem;
+  box-shadow: inset 0 0 18px rgba(217, 169, 75, 0.3), 0 6px 18px rgba(142, 102, 32, 0.14);
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.6s ease, box-shadow 0.6s ease;
   position: relative;
 }
 
 .symbol-card:hover .symbol-icon-wrapper {
-  transform: scale(1.06);
+  transform: scale(1.08);
   border-color: var(--color-ambar-500);
-  box-shadow: inset 0 0 20px rgba(217, 169, 75, 0.4), 0 6px 20px rgba(217, 169, 75, 0.3);
+  box-shadow: inset 0 0 24px rgba(217, 169, 75, 0.45), 0 8px 24px rgba(217, 169, 75, 0.35);
 }
 
 .symbol-svg {
-  width: 56px;
-  height: 56px;
+  width: 66px;
+  height: 66px;
   display: block;
   overflow: visible;
 }
@@ -2059,93 +2045,98 @@ body.is-dev .dev-only {
 }
 
 .reveal-ready .symbol-card-olho.is-visible .olho-triangulo,
-.symbol-card-olho:hover .olho-triangulo {
-  transform: scale(1.14);
+.symbol-card-olho:hover .olho-triangulo,
+.symbol-card-olho.is-revealed .olho-triangulo {
+  transform: scale(1.15);
   stroke: #F5D78E;
-  fill: rgba(217, 169, 75, 0.22);
-  filter: drop-shadow(0 0 12px rgba(217, 169, 75, 0.85)) drop-shadow(0 0 3px #FFF9ED);
+  fill: rgba(217, 169, 75, 0.24);
+  filter: drop-shadow(0 0 14px rgba(217, 169, 75, 0.9)) drop-shadow(0 0 4px #FFF9ED);
 }
 
 .olho-raios line {
-  transition: stroke 0.4s ease, opacity 0.4s ease, transform 0.4s ease;
-  animation: eyeRaysPulse 3.5s ease-in-out infinite alternate;
+  transition: stroke 0.8s ease, opacity 0.8s ease, transform 0.8s ease;
+  animation: eyeRaysPulse 4.5s ease-in-out infinite alternate;
 }
 
 .reveal-ready .symbol-card-olho.is-visible .olho-raios line,
-.symbol-card-olho:hover .olho-raios line {
+.symbol-card-olho:hover .olho-raios line,
+.symbol-card-olho.is-revealed .olho-raios line {
   stroke: #F5D78E;
-  filter: drop-shadow(0 0 6px rgba(245, 215, 142, 0.9));
+  filter: drop-shadow(0 0 7px rgba(245, 215, 142, 0.95));
 }
 
 @keyframes eyeRaysPulse {
-  0% { opacity: 0.4; }
-  50% { opacity: 0.9; }
-  100% { opacity: 0.5; }
+  0% { opacity: 0.35; transform: scale(0.96); }
+  50% { opacity: 0.95; transform: scale(1.05); }
+  100% { opacity: 0.45; transform: scale(0.98); }
 }
 
 .olho-pupila {
   transform-origin: 40px 43px;
-  animation: pupilAwaken 4.5s ease-in-out infinite alternate;
+  animation: pupilAwaken 5.5s ease-in-out infinite alternate;
 }
 
 .olho-palpebra {
   transform-origin: 40px 43px;
-  animation: eyeBlinkBreath 6s ease-in-out infinite;
+  animation: eyeBlinkBreath 7s ease-in-out infinite;
 }
 
 @keyframes pupilAwaken {
-  0% { transform: scale(0.9); }
-  50% { transform: scale(1.35); }
-  100% { transform: scale(1); }
+  0% { transform: scale(0.92); }
+  50% { transform: scale(1.35) translate(0.5px, -0.5px); }
+  100% { transform: scale(1.02); }
 }
 
 @keyframes eyeBlinkBreath {
-  0%, 94%, 100% { transform: scaleY(1); }
-  97% { transform: scaleY(0.1); } /* Piscar sutil misterioso */
+  0%, 93%, 100% { transform: scaleY(1); }
+  96.5% { transform: scaleY(0.08); } /* Piscar calmo e sutil */
 }
 
 /* --------------------------------------------------------------------------
    Símbolo 2: O Compasso e o Esquadro (Correspondência / Construtores)
    - Compasso acende dourado e se movimenta em oscilação e precisão
-   - Fundo geométrico rotativo suave
+   - Fundo geométrico rotativo suave e solene
    -------------------------------------------------------------------------- */
 .compasso-ferramenta {
   transform-origin: 40px 17px;
   transform: rotate(var(--compass-rot, 0deg));
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
-  animation: compassSwing 5.5s ease-in-out infinite alternate;
+  transition: transform 0.85s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.8s ease;
+  animation: compassSwing 6.5s ease-in-out infinite alternate;
 }
 
 .compasso-ferramenta line,
 .compasso-ferramenta circle,
 .compasso-ferramenta path {
-  transition: stroke 0.4s ease, filter 0.4s ease;
+  transition: stroke 0.8s ease, filter 0.8s ease;
 }
 
 .reveal-ready .symbol-card-compasso.is-visible .compasso-ferramenta,
-.symbol-card-compasso:hover .compasso-ferramenta {
-  filter: drop-shadow(0 0 12px rgba(217, 169, 75, 0.85));
+.symbol-card-compasso:hover .compasso-ferramenta,
+.symbol-card-compasso.is-revealed .compasso-ferramenta {
+  filter: drop-shadow(0 0 14px rgba(217, 169, 75, 0.9));
 }
 
 .reveal-ready .symbol-card-compasso.is-visible .compasso-ferramenta line,
-.symbol-card-compasso:hover .compasso-ferramenta line {
+.symbol-card-compasso:hover .compasso-ferramenta line,
+.symbol-card-compasso.is-revealed .compasso-ferramenta line {
   stroke: #F5D78E;
 }
 
 .reveal-ready .symbol-card-compasso.is-visible .compasso-arco-graduado,
-.symbol-card-compasso:hover .compasso-arco-graduado {
+.symbol-card-compasso:hover .compasso-arco-graduado,
+.symbol-card-compasso.is-revealed .compasso-arco-graduado {
   stroke: #FFFFFF;
 }
 
 @keyframes compassSwing {
-  0% { transform: rotate(-6deg); }
-  50% { transform: rotate(7deg); }
-  100% { transform: rotate(-3deg); }
+  0% { transform: rotate(-7deg); }
+  50% { transform: rotate(8deg); }
+  100% { transform: rotate(-4deg); }
 }
 
 .compasso-circulo-fundo {
   transform-origin: 40px 40px;
-  animation: spinBackgroundSlow 24s linear infinite;
+  animation: spinBackgroundSlow 32s linear infinite;
 }
 
 @keyframes spinBackgroundSlow {
@@ -2154,41 +2145,44 @@ body.is-dev .dev-only {
 }
 
 .compasso-ponto-central {
-  animation: centerPulse 2.8s ease-in-out infinite alternate;
+  animation: centerPulse 3.5s ease-in-out infinite alternate;
 }
 
 @keyframes centerPulse {
-  0% { transform: scale(0.85); opacity: 0.7; }
-  100% { transform: scale(1.35); opacity: 1; filter: drop-shadow(0 0 6px rgba(217, 169, 75, 0.9)); }
+  0% { transform: scale(0.85); opacity: 0.65; }
+  100% { transform: scale(1.4); opacity: 1; filter: drop-shadow(0 0 8px rgba(217, 169, 75, 0.95)); }
 }
 
 /* --------------------------------------------------------------------------
    Símbolo 3: O Selo da Transmutação / Estrela Giratória Alquímica
-   - A estrela de seis pontas gira continuamente e intensifica com o scroll
+   - A estrela de seis pontas gira majestosamente e intensifica seu brilho
    - Acende em ouro cósmico radiante
    -------------------------------------------------------------------------- */
 .selo-estrela-giratoria {
   transform-origin: 40px 40px;
   transform: rotate(var(--star-rot, 0deg));
-  transition: filter 0.4s ease;
-  animation: starRotateContinuous 14s linear infinite;
+  transition: filter 0.8s ease;
+  animation: starRotateContinuous 20s linear infinite;
 }
 
 .reveal-ready .symbol-card-selo.is-visible .selo-estrela-giratoria,
-.symbol-card-selo:hover .selo-estrela-giratoria {
-  filter: drop-shadow(0 0 14px rgba(217, 169, 75, 0.95)) drop-shadow(0 0 4px #FFF5D6);
+.symbol-card-selo:hover .selo-estrela-giratoria,
+.symbol-card-selo.is-revealed .selo-estrela-giratoria {
+  filter: drop-shadow(0 0 16px rgba(217, 169, 75, 0.95)) drop-shadow(0 0 4px #FFF5D6);
 }
 
 .reveal-ready .symbol-card-selo.is-visible .estrela-tri-fogo,
-.symbol-card-selo:hover .estrela-tri-fogo {
+.symbol-card-selo:hover .estrela-tri-fogo,
+.symbol-card-selo.is-revealed .estrela-tri-fogo {
   stroke: #F5D78E;
-  fill: rgba(217, 169, 75, 0.22);
+  fill: rgba(217, 169, 75, 0.24);
 }
 
 .reveal-ready .symbol-card-selo.is-visible .estrela-tri-agua,
-.symbol-card-selo:hover .estrela-tri-agua {
+.symbol-card-selo:hover .estrela-tri-agua,
+.symbol-card-selo.is-revealed .estrela-tri-agua {
   stroke: #FFF1CD;
-  fill: rgba(245, 215, 142, 0.22);
+  fill: rgba(245, 215, 142, 0.24);
 }
 
 @keyframes starRotateContinuous {
@@ -2198,7 +2192,7 @@ body.is-dev .dev-only {
 
 .selo-anel-interno {
   transform-origin: 40px 40px;
-  animation: ringRotateReverse 20s linear infinite;
+  animation: ringRotateReverse 24s linear infinite;
 }
 
 @keyframes ringRotateReverse {
@@ -2208,20 +2202,20 @@ body.is-dev .dev-only {
 
 /* --------------------------------------------------------------------------
    O Grimório Manifesto do Despertar & O Portal da Porta Iniciática
-   - Medalhão ampliado de 48px para 78px com aura e relevo
-   - Símbolo da porta aumentado de 24x30 para 48x60
-   - Porta entreaberta com feixe de luz que pulsa e convida o iniciado
+   - Medalhão ampliado com aura mística e relevo
+   - Símbolo da porta aumentado para 56x68 com alta definição
+   - Porta entreaberta com feixe de luz dourada que convida o iniciado
    -------------------------------------------------------------------------- */
 .tensao-manifesto-box {
   background: linear-gradient(145deg, #181A1F 0%, #232730 100%);
-  border: 1px solid var(--color-ambar-300);
+  border: 1.5px solid var(--color-ambar-300);
   border-radius: var(--radius-sm);
-  padding: calc(var(--space-2xl) * 1.05) var(--space-xl) var(--space-xl);
+  padding: calc(var(--space-2xl) * 1.1) var(--space-xl) var(--space-xl);
   margin: var(--space-2xl) auto var(--space-xl);
   text-align: center;
   position: relative;
   box-shadow: 0 16px 45px rgba(0, 0, 0, 0.45), 0 0 30px rgba(217, 169, 75, 0.22);
-  transition: box-shadow 0.4s ease, border-color 0.4s ease;
+  transition: box-shadow 0.6s ease, border-color 0.6s ease;
 }
 
 .tensao-manifesto-box:hover {
@@ -2231,70 +2225,70 @@ body.is-dev .dev-only {
 
 /* Medalhão da Porta Ampliado e Elevado */
 .manifesto-seal {
-  width: 78px;
-  height: 78px;
-  margin: -62px auto var(--space-md);
+  width: 82px;
+  height: 82px;
+  margin: -66px auto var(--space-md);
   background: radial-gradient(circle, #252833 0%, #121317 100%);
   border: 2px solid var(--color-ambar-300);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.75), 0 0 25px rgba(217, 169, 75, 0.45);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.75), 0 0 28px rgba(217, 169, 75, 0.5);
   position: relative;
   z-index: 3;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.6s ease;
   cursor: pointer;
 }
 
 .tensao-manifesto-box:hover .manifesto-seal,
 .manifesto-seal:hover {
   transform: translateY(-4px) scale(1.06);
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.85), 0 0 35px rgba(217, 169, 75, 0.7);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.85), 0 0 38px rgba(217, 169, 75, 0.75);
 }
 
-/* Ícone da Porta Ampliado (de 24px para 48px) */
+/* Ícone da Porta Ampliado (de 24px para 56px) */
 .manifesto-door-svg {
-  width: 48px;
-  height: 58px;
+  width: 56px;
+  height: 68px;
   display: block;
   overflow: visible;
 }
 
-/* Animação da Folha da Porta Iniciática (Entreabrir com o scroll e no hover) */
+/* Animação da Folha da Porta Iniciática (Entreabrir de forma suave e majestosa) */
 .door-leaf-wrapper {
   transform-origin: 13px 45px;
   transform-style: preserve-3d;
-  transform: perspective(350px) rotateY(var(--door-angle, -18deg));
-  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: perspective(350px) rotateY(var(--door-angle, -22deg));
+  transition: transform 0.85s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .reveal-ready .tensao-manifesto-box.is-visible .door-leaf-wrapper,
 .tensao-manifesto-box:hover .door-leaf-wrapper,
 .manifesto-seal:hover .door-leaf-wrapper {
-  transform: perspective(350px) rotateY(-38deg);
+  transform: perspective(350px) rotateY(-40deg);
 }
 
 /* Feixe de Luz Mística Emanando da Câmara Interna */
 .door-inner-glow {
-  opacity: var(--door-glow-opacity, 0.8);
-  filter: drop-shadow(0 0 14px rgba(245, 215, 142, 0.85));
-  animation: doorBeamPulse 3.2s ease-in-out infinite alternate;
+  opacity: var(--door-glow-opacity, 0.85);
+  filter: drop-shadow(0 0 16px rgba(245, 215, 142, 0.95)) drop-shadow(0 0 5px #FFF5D6);
+  animation: doorBeamPulse 3.8s ease-in-out infinite alternate;
 }
 
 @keyframes doorBeamPulse {
   0% {
     opacity: 0.6;
-    filter: drop-shadow(0 0 8px rgba(217, 169, 75, 0.6));
+    filter: drop-shadow(0 0 10px rgba(217, 169, 75, 0.65));
   }
   100% {
     opacity: 1;
-    filter: drop-shadow(0 0 18px rgba(245, 215, 142, 0.95)) drop-shadow(0 0 6px #FFFFFF);
+    filter: drop-shadow(0 0 20px rgba(245, 215, 142, 1)) drop-shadow(0 0 8px #FFFFFF);
   }
 }
 
 .door-knob {
-  filter: drop-shadow(0 0 3px #F5D78E);
+  filter: drop-shadow(0 0 4px #F5D78E);
 }
 
 @media (prefers-reduced-motion: reduce) {

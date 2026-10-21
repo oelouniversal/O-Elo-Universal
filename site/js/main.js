@@ -628,44 +628,35 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Revelação Automática dos Cards por Scroll (Otimizado para Mobile)
+  // Controle Interativo dos Cards de Símbolos Sagrados (Seção 2)
+  // Os símbolos permanecem SEMPRE VISÍVEIS durante o scroll, permitindo que suas
+  // ricas animações (olho vivo, compasso áureo, selo alquímico) sejam contempladas sem pressa.
   const symbolCards = document.querySelectorAll(".symbol-card");
-  if (symbolCards.length > 0 && "IntersectionObserver" in window) {
-    const scrollRevealObserver = new IntersectionObserver(
-      function (entries) {
-        if (window.innerWidth < 768) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("is-scroll-revealed");
-            } else {
-              entry.target.classList.remove("is-scroll-revealed");
-            }
-          });
-        }
-      },
-      {
-        root: null,
-        rootMargin: "-20% 0px -20% 0px", // Área de leitura focal central
-        threshold: 0.35
-      }
-    );
-
+  if (symbolCards.length > 0) {
     symbolCards.forEach(function (card) {
-      scrollRevealObserver.observe(card);
-      // Toque opcional no mobile caso o leitor deseje alternar manualmente
-      card.addEventListener("click", function () {
-        if (window.innerWidth < 768) {
-          card.classList.toggle("is-scroll-revealed");
-        }
-      });
-    });
+      const btnRevelar = card.querySelector(".btn-card-revelar");
+      const btnRetornar = card.querySelector(".btn-card-retornar");
 
-    window.addEventListener("resize", function () {
-      if (window.innerWidth >= 768) {
-        symbolCards.forEach(function (card) {
-          card.classList.remove("is-scroll-revealed");
+      if (btnRevelar) {
+        btnRevelar.addEventListener("click", function (e) {
+          e.stopPropagation();
+          card.classList.add("is-revealed");
         });
       }
+
+      if (btnRetornar) {
+        btnRetornar.addEventListener("click", function (e) {
+          e.stopPropagation();
+          card.classList.remove("is-revealed");
+        });
+      }
+
+      // Toque/clique opcional no corpo do card para alternar caso o usuário deseje
+      card.addEventListener("click", function (e) {
+        // Ignora se clicou especificamente em links ou botões internos
+        if (e.target.closest(".btn-card-revelar") || e.target.closest(".btn-card-retornar") || e.target.closest("a")) return;
+        card.classList.toggle("is-revealed");
+      });
     });
   }
 });
