@@ -512,6 +512,89 @@ document.addEventListener("DOMContentLoaded", function () {
       updateParallaxElements();
     }
   }
+
+  // 10. O Olho Vivo do Capítulo 1 (Mentalismo — Olhar Aleatório Contínuo 60 FPS)
+  const livingPupilEl = document.querySelector(".living-pupil");
+  const livingGlowEl = document.querySelector(".living-eye-glow");
+  const sampleFrameEl = document.querySelector(".notebook-sample-frame");
+
+  if (livingPupilEl && sampleFrameEl && !prefersReduced) {
+    let eyeTimer = null;
+
+    // Pontos orgânicos de observação cósmica (em pixels relativos ao centro da íris)
+    const gazeTargets = [
+      { x: 0, y: 0, wait: 2800 },        // Centro: Fixo no leitor com aura máxima
+      { x: -6.5, y: -2, wait: 2300 },    // Olha para a esquerda
+      { x: 6, y: -2.5, wait: 2500 },     // Olha para a direita
+      { x: -4, y: 4.5, wait: 2200 },     // Olha para baixo/esquerda (texto)
+      { x: 5, y: 4, wait: 2400 },        // Olha para baixo/direita (número 1)
+      { x: 0, y: -5.5, wait: 2000 },     // Olha para o alto
+      { x: 7.5, y: 1, wait: 2600 },      // Direita distante
+      { x: -7.5, y: 1.5, wait: 2700 },   // Esquerda distante
+      { x: 0, y: 0, wait: 3400 },        // Retorna ao centro
+      { x: -3, y: -4, wait: 1900 },      // Canto superior esquerdo
+      { x: 3.5, y: -3.5, wait: 2100 }    // Canto superior direito
+    ];
+
+    let currentGazeIndex = 0;
+
+    function lookAtRandomPoint() {
+      let nextIndex;
+      do {
+        nextIndex = Math.floor(Math.random() * gazeTargets.length);
+      } while (nextIndex === currentGazeIndex && gazeTargets.length > 1);
+
+      currentGazeIndex = nextIndex;
+      const target = gazeTargets[currentGazeIndex];
+
+      // Micromovimento humano/orgânico sutil
+      const jitterX = (Math.random() - 0.5) * 1.5;
+      const jitterY = (Math.random() - 0.5) * 1.2;
+      const finalX = target.x + jitterX;
+      const finalY = target.y + jitterY;
+
+      // Movimento sacádico do olho (rápido e depois estabilizado)
+      livingPupilEl.style.transition = "transform 0.42s cubic-bezier(0.25, 1, 0.4, 1), filter 0.35s ease";
+      livingPupilEl.style.transform = `translate(${finalX}px, ${finalY}px)`;
+
+      // Quando o olho olha direto para o leitor (centro), a aura dourada atinge o clímax
+      const isCentered = Math.abs(finalX) < 2.5 && Math.abs(finalY) < 2.5;
+      if (isCentered) {
+        if (livingGlowEl) livingGlowEl.style.opacity = "0.95";
+        livingPupilEl.style.filter = "drop-shadow(0 0 12px rgba(245, 215, 142, 0.95)) drop-shadow(0 0 4px #FFFFFF)";
+      } else {
+        if (livingGlowEl) livingGlowEl.style.opacity = "0.65";
+        livingPupilEl.style.filter = "drop-shadow(0 0 7px rgba(217, 169, 75, 0.8))";
+      }
+
+      // Intervalo variável entre olhares para parecer uma consciência viva e imprevisível
+      const delay = target.wait + (Math.random() * 800 - 400);
+      eyeTimer = setTimeout(lookAtRandomPoint, delay);
+    }
+
+    // Gerenciamento de desempenho: Ativa apenas quando a moldura do livro estiver visível
+    if ("IntersectionObserver" in window) {
+      const eyeObserver = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              if (!eyeTimer) {
+                lookAtRandomPoint();
+              }
+            } else {
+              clearTimeout(eyeTimer);
+              eyeTimer = null;
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+
+      eyeObserver.observe(sampleFrameEl);
+    } else {
+      lookAtRandomPoint();
+    }
+  }
 });
 
 

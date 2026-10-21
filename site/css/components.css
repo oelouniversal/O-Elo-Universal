@@ -1516,6 +1516,62 @@ body.is-dev .dev-only {
   margin-bottom: 0;
 }
 
+/* Botão de Ação do Capítulo (Corrigido para alto contraste e brilho áureo) */
+.capitulo-cta-wrapper {
+  margin-top: var(--space-md);
+}
+
+.btn-capitulo-iniciacao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  background: linear-gradient(135deg, #1C1E26 0%, #121318 100%);
+  color: #F5D78E !important;
+  border: 1.5px solid var(--color-ambar-400);
+  border-radius: 999px;
+  padding: 0.85rem 1.75rem;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35), 0 0 14px rgba(217, 169, 75, 0.25);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-capitulo-iniciacao:hover {
+  background: linear-gradient(135deg, #2A2C38 0%, #181A22 100%);
+  color: #FFFFFF !important;
+  border-color: #F5D78E;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5), 0 0 25px rgba(217, 169, 75, 0.45);
+}
+
+.btn-capitulo-icon {
+  color: var(--color-ambar-400);
+  font-size: 0.95rem;
+  transition: transform 0.35s ease;
+}
+
+.btn-capitulo-iniciacao:hover .btn-capitulo-icon {
+  transform: rotate(45deg);
+  color: #FFFFFF;
+}
+
+.btn-capitulo-arrow {
+  color: var(--color-ambar-300);
+  font-weight: 700;
+  transition: transform 0.35s ease;
+}
+
+.btn-capitulo-iniciacao:hover .btn-capitulo-arrow {
+  transform: translateX(4px);
+  color: #FFFFFF;
+}
+
 .capitulo-amostra-wrapper {
   position: relative;
   display: flex;
@@ -1530,19 +1586,38 @@ body.is-dev .dev-only {
   max-width: 440px;
 }
 
-.sample-tag {
-  display: inline-block;
+/* Badge Destaque da Abertura Oficial (Nítido, Iluminado e Imponente) */
+.sample-tag-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  background: linear-gradient(135deg, #1A1C22 0%, #111216 100%);
+  border: 1.5px solid var(--color-ambar-400);
+  border-radius: 999px;
+  padding: 0.55rem 1.35rem;
+  margin-bottom: var(--space-md);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35), 0 0 16px rgba(217, 169, 75, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sample-tag-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45), 0 0 24px rgba(217, 169, 75, 0.5);
+}
+
+.sample-tag-text {
   font-family: var(--font-ui);
-  font-size: 0.72rem;
-  font-weight: 600;
+  font-size: 0.88rem;
+  font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #fff;
-  background-color: var(--color-ambar-700);
-  padding: 0.3rem 0.85rem;
-  border-radius: 999px;
-  margin-bottom: var(--space-sm);
-  box-shadow: 0 2px 8px rgba(184, 134, 11, 0.25);
+  color: #F5D78E;
+  text-shadow: 0 0 8px rgba(217, 169, 75, 0.4);
+}
+
+.sample-tag-icon {
+  color: var(--color-ambar-400);
+  font-size: 0.85rem;
 }
 
 .sample-page-binder {
@@ -1567,6 +1642,96 @@ body.is-dev .dev-only {
 .sample-page-binder.dark-page:hover {
   transform: translateY(-5px) scale(1.01);
   box-shadow: 0 32px 60px -10px rgba(0, 0, 0, 0.55), 0 10px 25px rgba(0, 0, 0, 0.3), 0 0 0 1px var(--color-ambar-300), 0 0 25px rgba(217, 169, 75, 0.2);
+}
+
+/* --------------------------------------------------------------------------
+   O Olho Vivo de Mentalismo na Capa do Capítulo 1
+   - Pupila que se move de forma sacádica e orgânica olhando para direções aleatórias
+   - Aura cósmica dourada pulsante
+   -------------------------------------------------------------------------- */
+.living-eye-portal {
+  position: absolute;
+  top: 36.52%;
+  left: 50.0%;
+  transform: translate(-50%, -50%);
+  width: 13.5%;
+  aspect-ratio: 1;
+  pointer-events: none;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.living-eye-glow {
+  position: absolute;
+  width: 240%;
+  height: 240%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(217, 169, 75, 0.35) 0%, rgba(217, 169, 75, 0.1) 45%, transparent 75%);
+  filter: blur(8px);
+  opacity: 0.75;
+  transition: opacity 0.5s ease;
+  animation: eyeAtmospherePulse 4.5s ease-in-out infinite alternate;
+}
+
+@keyframes eyeAtmospherePulse {
+  0% { transform: scale(0.92); opacity: 0.55; }
+  50% { transform: scale(1.12); opacity: 0.85; }
+  100% { transform: scale(0.98); opacity: 0.65; }
+}
+
+.living-pupil-socket {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.living-pupil {
+  position: relative;
+  width: 28%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #FFF2C6 0%, #F5D78E 30%, #D9A94B 70%, #9B7023 100%);
+  box-shadow: 0 0 10px rgba(217, 169, 75, 0.95), 0 0 3px #FFF9ED;
+  will-change: transform;
+  transition: transform 0.42s cubic-bezier(0.25, 1, 0.4, 1), filter 0.35s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pupil-core {
+  width: 44%;
+  height: 44%;
+  border-radius: 50%;
+  background: #5B4012;
+  display: block;
+}
+
+.pupil-glint {
+  position: absolute;
+  top: 15%;
+  left: 20%;
+  width: 26%;
+  height: 26%;
+  border-radius: 50%;
+  background: #FFFFFF;
+  box-shadow: 0 0 2px #FFFFFF;
+  display: block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .living-eye-glow {
+    animation: none !important;
+  }
+  .living-pupil {
+    transition: none !important;
+    transform: none !important;
+  }
 }
 
 .sample-page-crease {
