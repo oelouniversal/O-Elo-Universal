@@ -1,0 +1,19 @@
+# Pastas internas e de desenvolvimento (não necessárias para a página web)
+_trabalho/
+Produto/
+Briefing/
+.agents/
+Skills/
+
+# Documentos locais e scripts
+*.md
+*.py
+*.zip
+*.pdf
+skills-lock.json
+
+# Sistema Operacional e IDEs
+Thumbs.db
+Desktop.ini
+.vscode/
+.idea/
