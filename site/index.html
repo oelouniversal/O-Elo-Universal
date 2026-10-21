@@ -20,7 +20,7 @@
   <!-- Estilos -->
   <link rel="stylesheet" href="css/tokens.css?v=6">
   <link rel="stylesheet" href="css/base.css?v=6">
-  <link rel="stylesheet" href="css/components.css?v=9">
+  <link rel="stylesheet" href="css/components.css?v=10">
 </head>
 <body>
   <!-- Acessibilidade: Pular para o conteúdo principal -->
@@ -39,18 +39,28 @@
     </div>
   </div>
 
-  <!-- Cabeçalho Mínimo (Seção 2 e 5 da Estratégia) -->
-  <header class="site-header">
-    <div class="container">
+  <!-- Cabeçalho Flutuante com Efeito Glassmórfico (Inspiração Overworld & Nocturne) -->
+  <header class="site-header" id="site-header">
+    <div class="container header-container">
       <a href="#hero" class="brand-link" aria-label="O Elo Universal — Início">
-        <img src="assets/svg/marca-elo_claro.svg" alt="Marca do Elo" class="brand-logo" width="32" height="32">
-        <span class="brand-text">O Elo Universal</span>
+        <span class="brand-seal" aria-hidden="true">
+          <img src="assets/svg/marca-elo_claro.svg" alt="" class="brand-logo" width="30" height="30">
+        </span>
+        <div class="brand-text-block">
+          <span class="brand-text">O Elo Universal</span>
+          <span class="brand-edition">Caderno Hermético</span>
+        </div>
       </a>
       <div class="header-center-info">
-        <span class="header-product-badge">Caderno das 7 Leis Herméticas</span>
+        <span class="header-product-badge">
+          <span class="badge-pulsing-dot" aria-hidden="true"></span>
+          <span class="badge-text">Caderno das 7 Leis Herméticas</span>
+          <span class="badge-edition-pill">Edição de Campo</span>
+        </span>
       </div>
       <a href="#preco" class="header-cta cta-checkout" data-track="clique_cta_primario" data-track-local="header">
-        Iniciar Observação
+        <span class="header-cta-label">Iniciar Observação</span>
+        <span class="header-cta-glyph" aria-hidden="true">→</span>
       </a>
     </div>
   </header>
@@ -58,46 +68,137 @@
   <main id="main-content">
     <!-- Seção 1: Hero (Metade do Esforço — Seção 6.1 do Briefing / Seção 5 da Estratégia) -->
     <section id="hero" class="hero-section" data-track="view_secao">
+      <!-- Película de Granulação Alquímica (Film Grain Overlay — Inspiração Overworld) -->
+      <div class="hero-grain-overlay" aria-hidden="true"></div>
+
+      <!-- Iluminação Volumétrica Sagrada e Feixe Central -->
       <div class="hero-ambient-glow" aria-hidden="true"></div>
-      <div class="container">
+      <div class="hero-beam-light" aria-hidden="true"></div>
+
+      <!-- Grande Astrolábio Hermético Celeste (Sigilo Geométrico Sagrado — Inspiração Overworld) -->
+      <div class="hero-celestial-sigil" aria-hidden="true">
+        <svg viewBox="0 0 800 800" class="sigil-svg" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <!-- Círculos Concêntricos de Calibração -->
+          <circle cx="400" cy="400" r="380" stroke="#8E6620" stroke-width="1.2" stroke-dasharray="3, 7" opacity="0.6"/>
+          <circle cx="400" cy="400" r="350" stroke="#D9A94B" stroke-width="1.4" opacity="0.75"/>
+          <circle cx="400" cy="400" r="315" stroke="#8E6620" stroke-width="0.9" opacity="0.5"/>
+          <circle cx="400" cy="400" r="280" stroke="#D9A94B" stroke-width="1.2" stroke-dasharray="2, 5" opacity="0.65"/>
+          <circle cx="400" cy="400" r="210" stroke="#D9A94B" stroke-width="1.5" opacity="0.8"/>
+          <circle cx="400" cy="400" r="140" stroke="#8E6620" stroke-width="1.1" stroke-dasharray="4, 6" opacity="0.55"/>
+          <circle cx="400" cy="400" r="75" stroke="#D9A94B" stroke-width="1.6" opacity="0.85"/>
+          <circle cx="400" cy="400" r="24" stroke="#8E6620" stroke-width="2" fill="rgba(217, 169, 75, 0.08)"/>
+          <circle cx="400" cy="400" r="5" fill="#D9A94B"/>
+
+          <!-- Graduações / Ticks Cósmicos dos 28 Ciclos da Obra -->
+          <g class="sigil-ticks" stroke="#D9A94B" stroke-width="1" opacity="0.5">
+            <line x1="400" y1="20" x2="400" y2="40"/>
+            <line x1="400" y1="760" x2="400" y2="780"/>
+            <line x1="20" y1="400" x2="40" y2="400"/>
+            <line x1="760" y1="400" x2="780" y2="400"/>
+            <line x1="131" y1="131" x2="145" y2="145"/>
+            <line x1="669" y1="669" x2="655" y2="655"/>
+            <line x1="669" y1="131" x2="655" y2="145"/>
+            <line x1="131" y1="669" x2="145" y2="655"/>
+            <line x1="497" y1="26" x2="492" y2="45"/>
+            <line x1="588" y1="71" x2="578" y2="88"/>
+            <line x1="663" y1="141" x2="648" y2="154"/>
+            <line x1="714" y1="228" x2="696" y2="237"/>
+            <line x1="738" y1="324" x2="719" y2="328"/>
+            <line x1="303" y1="26" x2="308" y2="45"/>
+            <line x1="212" y1="71" x2="222" y2="88"/>
+            <line x1="137" y1="141" x2="152" y2="154"/>
+            <line x1="86" y1="228" x2="104" y2="237"/>
+            <line x1="62" y1="324" x2="81" y2="328"/>
+            <line x1="497" y1="774" x2="492" y2="755"/>
+            <line x1="588" y1="729" x2="578" y2="712"/>
+            <line x1="663" y1="659" x2="648" y2="646"/>
+            <line x1="714" y1="572" x2="696" y2="563"/>
+            <line x1="738" y1="476" x2="719" y2="472"/>
+            <line x1="303" y1="774" x2="308" y2="755"/>
+            <line x1="212" y1="729" x2="222" y2="712"/>
+            <line x1="137" y1="659" x2="152" y2="646"/>
+            <line x1="86" y1="572" x2="104" y2="563"/>
+            <line x1="62" y1="476" x2="81" y2="472"/>
+          </g>
+
+          <!-- 7 Raios Herméticos Cardinais com Nós Alquímicos -->
+          <g class="sigil-rays" stroke="#8E6620" stroke-width="1.2" opacity="0.65">
+            <line x1="400" y1="400" x2="400" y2="50"/>
+            <circle cx="400" cy="50" r="5" fill="#D9A94B" stroke="#8E6620" stroke-width="1.2"/>
+            <line x1="400" y1="400" x2="673" y2="127"/>
+            <circle cx="673" cy="127" r="5" fill="#D9A94B" stroke="#8E6620" stroke-width="1.2"/>
+            <line x1="400" y1="400" x2="741" y2="478"/>
+            <circle cx="741" cy="478" r="5" fill="#D9A94B" stroke="#8E6620" stroke-width="1.2"/>
+            <line x1="400" y1="400" x2="552" y2="715"/>
+            <circle cx="552" cy="715" r="5" fill="#D9A94B" stroke="#8E6620" stroke-width="1.2"/>
+            <line x1="400" y1="400" x2="248" y2="715"/>
+            <circle cx="248" cy="715" r="5" fill="#D9A94B" stroke="#8E6620" stroke-width="1.2"/>
+            <line x1="400" y1="400" x2="59" y2="478"/>
+            <circle cx="59" cy="478" r="5" fill="#D9A94B" stroke="#8E6620" stroke-width="1.2"/>
+            <line x1="400" y1="400" x2="127" y2="127"/>
+            <circle cx="127" cy="127" r="5" fill="#D9A94B" stroke="#8E6620" stroke-width="1.2"/>
+          </g>
+
+          <!-- Triângulo Superior Sagrado (Mentalismo & Fogo) -->
+          <polygon points="400,90 668,555 132,555" stroke="#D9A94B" stroke-width="1.8" fill="rgba(217, 169, 75, 0.035)"/>
+          <!-- Triângulo Inferior Sagrado (Polaridade & Água) -->
+          <polygon points="400,710 668,245 132,245" stroke="#8E6620" stroke-width="1.8" fill="rgba(142, 102, 32, 0.035)"/>
+
+          <!-- Heptagrama Interior (Estrela das 7 Leis) -->
+          <polygon points="400,190 588,280 610,488 450,600 350,600 190,488 212,280" stroke="#D9A94B" stroke-width="1" stroke-dasharray="4, 4" opacity="0.45"/>
+        </svg>
+      </div>
+
+      <div class="container hero-container">
         <div class="hero-grid">
           <!-- Coluna Textual / Proposta de Valor -->
           <div class="hero-content">
+            <!-- Nocturne-Style Pill Badge -->
             <div class="hero-kicker-badge">
+              <span class="kicker-pulse-beacon" aria-hidden="true"></span>
               <span class="hero-kicker-glyph">❖</span>
               <span class="hero-kicker">Tradição Iniciática &amp; Investigação Prática</span>
+              <span class="hero-kicker-glyph">❖</span>
             </div>
+
             <h1 class="hero-title">
-              A maioria das pessoas decora as 7 leis.
+              <span class="hero-title-lead">A maioria das pessoas decora as 7 leis.</span>
               <span class="hero-title-highlight">Poucas sabem como observá-las na própria vida.</span>
             </h1>
+
             <p class="hero-subtitle">
               O caderno prático para investigar as sete leis ancestrais através de experimentos diários.
               <span class="hero-subtitle-highlight">Você não precisa acreditar em nada: precisa observar.</span>
             </p>
 
-            <!-- Faixa do Septenário Hermético (Tríade de Substância — Sem 'Caderno de Registros') -->
+            <!-- Faixa do Septenário Hermético (Tríade de Substância) -->
             <div class="trust-strip" role="list" aria-label="Estrutura do método hermético">
               <span class="trust-item" role="listitem">
-                <span class="trust-glyph">❖</span> 7 Leis Ancestrais
+                <span class="trust-glyph">❖</span>
+                <span class="trust-text">7 Leis Ancestrais</span>
               </span>
               <span class="trust-separator" aria-hidden="true">·</span>
               <span class="trust-item" role="listitem">
-                <span class="trust-glyph">❖</span> 7 Pistas da Ciência
+                <span class="trust-glyph">❖</span>
+                <span class="trust-text">7 Pistas da Ciência</span>
               </span>
               <span class="trust-separator" aria-hidden="true">·</span>
               <span class="trust-item" role="listitem">
-                <span class="trust-glyph">❖</span> 7 Experimentos de Campo
+                <span class="trust-glyph">❖</span>
+                <span class="trust-text">7 Experimentos de Campo</span>
               </span>
             </div>
 
-            <!-- Ações Principais -->
+            <!-- Ações Principais / CTAs -->
             <div class="hero-actions">
               <a href="#preco" class="btn-primary cta-checkout" data-track="clique_cta_primario" data-track-local="hero">
-                INICIAR A OBSERVAÇÃO PRÁTICA
+                <span class="btn-primary-glow" aria-hidden="true"></span>
+                <span class="btn-primary-text">INICIAR A OBSERVAÇÃO PRÁTICA</span>
+                <span class="btn-primary-arrow" aria-hidden="true">→</span>
               </a>
               <a href="#capitulo-gratis" class="btn-secondary anchor-scroll-link" data-track="clique_cta_secundario" data-track-local="hero">
-                Aplique a 1ª Lei (Mentalismo) no seu dia →
+                <span class="btn-secondary-text">Aplique a 1ª Lei (Mentalismo) no seu dia</span>
+                <span class="btn-secondary-arrow" aria-hidden="true">→</span>
               </a>
             </div>
 
@@ -108,14 +209,24 @@
           <!-- Coluna Visual / Mockup Editorial do Livro com Capa Real -->
           <div class="hero-visual parallax-layer" data-parallax-speed="0.08">
             <div class="book-glow" aria-hidden="true"></div>
+            <!-- Partículas de Poeira Estelar Alquímica (Floating Stardust Sparks) -->
+            <div class="book-stardust-field" aria-hidden="true">
+              <span class="stardust-spark s1"></span>
+              <span class="stardust-spark s2"></span>
+              <span class="stardust-spark s3"></span>
+              <span class="stardust-spark s4"></span>
+              <span class="stardust-spark s5"></span>
+            </div>
             <div class="book-mockup-wrapper">
               <div class="book-mockup">
+                <div class="book-rim-light" aria-hidden="true"></div>
                 <div class="book-spine-effect" aria-hidden="true"></div>
                 <picture>
                   <source media="(max-width: 600px)" srcset="assets/img/capa-com-titulo-mobile.webp" type="image/webp">
                   <source media="(min-width: 601px)" srcset="assets/img/capa-com-titulo.webp" type="image/webp">
                   <img src="assets/img/capa-com-titulo.webp" alt="Capa real de O Elo Universal: Caderno das Leis Herméticas com os sete elos de ouro e título" class="book-image" width="900" height="1164" fetchpriority="high">
                 </picture>
+                <div class="book-shimmer-sweep" aria-hidden="true"></div>
               </div>
               <div class="book-ground-shadow" aria-hidden="true"></div>
             </div>
@@ -1007,6 +1118,6 @@
   <!-- Scripts -->
   <script src="js/config.js"></script>
   <script src="js/tracking.js"></script>
-  <script src="js/main.js?v=9"></script>
+  <script src="js/main.js?v=10"></script>
 </body>
 </html>

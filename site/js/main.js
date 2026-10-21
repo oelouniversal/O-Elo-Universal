@@ -224,6 +224,34 @@ document.addEventListener("DOMContentLoaded", function () {
     if (ctaFinalSection) visibilityObserver.observe(ctaFinalSection);
   }
 
+  // 5.1 Elevação do Cabeçalho Flutuante com Scroll (Glassmorphic Backdrop Blur)
+  const siteHeaderEl = document.getElementById("site-header");
+  if (siteHeaderEl) {
+    let headerTicking = false;
+    function updateHeaderScrolled() {
+      const scrollY = window.scrollY || document.documentElement.scrollTop || 0;
+      if (scrollY > 35) {
+        siteHeaderEl.classList.add("is-scrolled");
+      } else {
+        siteHeaderEl.classList.remove("is-scrolled");
+      }
+      headerTicking = false;
+    }
+
+    window.addEventListener(
+      "scroll",
+      function () {
+        if (!headerTicking) {
+          window.requestAnimationFrame(updateHeaderScrolled);
+          headerTicking = true;
+        }
+      },
+      { passive: true }
+    );
+
+    updateHeaderScrolled();
+  }
+
   // 6. Rastreamento de Abertura do FAQ (Seção 11 da Estratégia)
   const faqItems = document.querySelectorAll(".faq-item");
   faqItems.forEach(function (faq) {
@@ -467,13 +495,17 @@ document.addEventListener("DOMContentLoaded", function () {
         const scrollY = window.scrollY || document.documentElement.scrollTop || 0;
         const vh = window.innerHeight;
 
-        // Hero Book & Glow Parallax
+        // Hero Book, Glow & Celestial Sigil Parallax
         if (scrollY < vh * 1.5) {
           if (heroVisual) {
             heroVisual.style.transform = `translate3d(0, ${-scrollY * 0.08}px, 0)`;
           }
           if (heroGlow) {
             heroGlow.style.transform = `translateX(-50%) translate3d(0, ${scrollY * 0.1}px, 0)`;
+          }
+          const heroSigil = document.querySelector(".hero-celestial-sigil");
+          if (heroSigil) {
+            heroSigil.style.transform = `translate3d(0, ${scrollY * 0.04}px, 0)`;
           }
         }
 
