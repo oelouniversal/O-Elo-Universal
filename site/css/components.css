@@ -3660,6 +3660,22 @@ body.is-dev .dev-only {
   color: var(--color-ambar-300);
 }
 
+.form-status.status-success {
+  display: block;
+  background-color: rgba(46, 125, 50, 0.18);
+  border: 1px solid #81C784;
+  color: #C8E6C9;
+  line-height: 1.5;
+}
+
+.form-status.status-error {
+  display: block;
+  background-color: rgba(211, 47, 47, 0.18);
+  border: 1px solid #E57373;
+  color: #FFCDD2;
+  line-height: 1.5;
+}
+
 /* --------------------------------------------------------------------------
    Seção 9: Preço (Fechamento)
    -------------------------------------------------------------------------- */

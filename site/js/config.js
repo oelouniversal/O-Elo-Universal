@@ -15,9 +15,9 @@ const CONFIG = {
   PAGAMENTO_TEXTO: "pagamento único",
   CONTATO_EMAIL: "oelouniversal@proton.me",
 
-  // Checkout (Fonte: DADOS-COMERCIAIS.md -> [A CONFIRMAR])
+  // Checkout (Fonte: DADOS-COMERCIAIS.md -> Confirmado na Wiven)
   // Se vazio/null: o CTA rola suavemente para #preco e exibe aviso em DEV_MODE
-  CHECKOUT_URL: "",
+  CHECKOUT_URL: "https://checkout.wiven.com.br/checkout/cmwgi7hp1004901pwfzy4sq1q?offer=3V9KZ68",
 
   // Garantia, Entrega e Meios de Pagamento (Fonte: DADOS-COMERCIAIS.md -> [A CONFIRMAR])
   // Mantidos como null para NUNCA serem exibidos em produção até confirmação
@@ -30,9 +30,9 @@ const CONFIG = {
   TERMOS_URL: "termos.html",
   REEMBOLSO_URL: "reembolso.html",
 
-  // Isca / Captação do Capítulo 1 (Fonte: Briefing/DADOS-COMERCIAIS.md -> [A DEFINIR])
+  // Isca / Captação do Capítulo 1 (Integrado via FormSubmit AJAX para oelouniversal@proton.me)
   // Se vazio/null: o formulário fica desativado em produção
-  FORM_ACTION: "",
+  FORM_ACTION: "https://formsubmit.co/ajax/oelouniversal@proton.me",
 
   // Transparência sobre a Elara (Seção 8 da Estratégia de Conversão)
   ELARA_AVISO_IA: true,

@@ -72,31 +72,69 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // 2. Comportamento do CTA Primário (Hero e CTA Final)
+  // 2. Comportamento do CTA Primário (Hero, Preço, Oferta, CTA Final e Barra Fixa)
+  function getResolvedCheckoutUrl() {
+    if (!CONFIG.CHECKOUT_URL || typeof CONFIG.CHECKOUT_URL !== "string" || CONFIG.CHECKOUT_URL.trim() === "") {
+      return null;
+    }
+    try {
+      const checkoutUrl = new URL(CONFIG.CHECKOUT_URL, window.location.origin);
+      // Repassa parâmetros de tráfego (UTMs e identificadores de campanha)
+      const trackingParams = [
+        "utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term",
+        "src", "sck"
+      ];
+      trackingParams.forEach(function (param) {
+        const val = urlParams.get(param);
+        if (val) {
+          checkoutUrl.searchParams.set(param, val);
+        }
+      });
+      return checkoutUrl.toString();
+    } catch (err) {
+      console.error("[Checkout] Erro ao construir URL de checkout:", err);
+      return CONFIG.CHECKOUT_URL;
+    }
+  }
+
+  const resolvedCheckoutUrl = getResolvedCheckoutUrl();
   const ctaCheckoutElements = document.querySelectorAll(".cta-checkout");
+
   ctaCheckoutElements.forEach(function (cta) {
+    const local = cta.getAttribute("data-track-local") || "";
+    // Suporte ao teste A/B T2 (se VARIANTE_CTA === "B", o CTA do hero rola para #preco)
+    const isHeroWithVariantB = (local === "hero" && CONFIG.VARIANTE_CTA === "B");
+
+    if (resolvedCheckoutUrl && !isHeroWithVariantB) {
+      cta.href = resolvedCheckoutUrl;
+      // Checkout abre na mesma aba conforme estratégia de conversão (essencial em WebViews móveis)
+      cta.setAttribute("target", "_self");
+      cta.setAttribute("rel", "noopener noreferrer");
+    } else {
+      cta.href = "#preco";
+    }
+
     cta.addEventListener("click", function (e) {
-      if (!CONFIG.CHECKOUT_URL || CONFIG.CHECKOUT_URL.trim() === "") {
-        // Fallback: rola até a seção de preço
+      if (isHeroWithVariantB || !resolvedCheckoutUrl) {
+        // Fallback ou variante B: rola até a seção de preço
         e.preventDefault();
         const precoSecao = document.getElementById("preco");
         if (precoSecao) {
           precoSecao.scrollIntoView({ behavior: "smooth" });
         }
-
-        // Exibe aviso explicativo em modo desenvolvimento
-        if (CONFIG.DEV_MODE) {
+        if (!resolvedCheckoutUrl && CONFIG.DEV_MODE) {
           showDevToast("CHECKOUT_URL pendente: o CTA rolou para a seção #preco.");
         }
       } else {
-        // Repassa parâmetros UTM se houver
-        const checkoutUrl = new URL(CONFIG.CHECKOUT_URL, window.location.origin);
-        ["utm_source", "utm_medium", "utm_campaign", "utm_content"].forEach(function (param) {
-          if (urlParams.get(param)) {
-            checkoutUrl.searchParams.set(param, urlParams.get(param));
-          }
-        });
-        cta.href = checkoutUrl.toString();
+        // Dispara evento de telemetria se ativo
+        if (window.Tracking && typeof window.Tracking.track === "function") {
+          window.Tracking.track("redireciona_checkout", { local: local });
+        }
+        // Assegura URL sempre atualizada
+        const freshUrl = getResolvedCheckoutUrl();
+        if (freshUrl) {
+          cta.href = freshUrl;
+        }
       }
     });
   });
@@ -185,10 +223,74 @@ document.addEventListener("DOMContentLoaded", function () {
           formFeedback.textContent = "O sistema de entrega automática do Capítulo 1 está em configuração. Por favor, tente novamente em breve.";
         }
       } else {
-        // Envio real quando configurado
+        // Envio real quando CONFIG.FORM_ACTION estiver configurado
+        const submitBtn = formCapitulo.querySelector('button[type="submit"]');
+        const btnLabel = submitBtn ? submitBtn.querySelector(".btn-label span") : null;
+        const originalBtnText = btnLabel ? btnLabel.textContent : "DESVELAR A 1ª LEI HERMÉTICA AGORA";
+
+        if (submitBtn) submitBtn.disabled = true;
+        if (btnLabel) btnLabel.textContent = "TRANSMITINDO O 1º SEGREDO...";
         formFeedback.className = "form-status status-info";
-        formFeedback.textContent = "Enviando...";
-        // Implementação de POST com repasse de UTM
+        formFeedback.textContent = "Transmitindo seus dados para envio confidencial...";
+
+        const newsletterEl = document.getElementById("lead-newsletter");
+
+        const payload = {
+          email: emailInput.value.trim(),
+          consentimento: consentInput.checked ? "Sim (autorizou envio confidencial)" : "Não",
+          newsletter: newsletterEl && newsletterEl.checked ? "Sim (deseja cartas práticas)" : "Não",
+          _subject: "Novo Lead — 1ª Lei Hermética (O Elo Universal)",
+          _template: "table",
+          _captcha: "false",
+          origem: "Landing Page O Elo Universal (Seção 8 - Isca Iniciática)",
+          utm_source: urlParams.get("utm_source") || "(direto)",
+          utm_medium: urlParams.get("utm_medium") || "(nenhum)",
+          utm_campaign: urlParams.get("utm_campaign") || "(nenhuma)",
+          utm_content: urlParams.get("utm_content") || "",
+          utm_term: urlParams.get("utm_term") || "",
+          src: urlParams.get("src") || "",
+          sck: urlParams.get("sck") || "",
+          data_hora: new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })
+        };
+
+        fetch(CONFIG.FORM_ACTION, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          body: JSON.stringify(payload)
+        })
+          .then(function (response) {
+            if (response.ok) {
+              return response.json().catch(function () { return { success: true }; });
+            } else {
+              throw new Error("Erro na resposta do servidor: " + response.status);
+            }
+          })
+          .then(function (data) {
+            if (data && (data.success === "true" || data.success === true || !("success" in data))) {
+              formFeedback.className = "form-status status-success";
+              formFeedback.innerHTML = "<strong>Tudo certo!</strong> O acesso à <strong>1ª Lei Hermética (O Princípio do Mentalismo)</strong> e ao <strong>Experimento de Campo</strong> será enviado para o seu e-mail. Verifique sua caixa de entrada e a pasta de spam nos próximos minutos.";
+              if (btnLabel) btnLabel.textContent = "CHAVE TRANSMITIDA COM SUCESSO ✓";
+              emailInput.value = "";
+              emailInput.disabled = true;
+              consentInput.disabled = true;
+              if (newsletterEl) newsletterEl.disabled = true;
+              if (window.Tracking) {
+                window.Tracking.track("form_sucesso", { local: "capitulo-gratis" });
+              }
+            } else {
+              throw new Error(data && data.message ? data.message : "Falha no envio");
+            }
+          })
+          .catch(function (error) {
+            console.error("[Form Isca] Erro no envio:", error);
+            formFeedback.className = "form-status status-error";
+            formFeedback.innerHTML = "Ocorreu um erro temporário na transmissão. Por favor, tente novamente ou entre em contato diretamente pelo e-mail: <a href='mailto:oelouniversal@proton.me' style='color:#F5D78E;text-decoration:underline;'>oelouniversal@proton.me</a>.";
+            if (submitBtn) submitBtn.disabled = false;
+            if (btnLabel) btnLabel.textContent = originalBtnText;
+          });
       }
     });
   }

@@ -12,10 +12,10 @@
 | **Página de Vendas (`index.html`)** | **100% pronta e funcional** (13 seções, responsiva, zero erros) | Nenhuma alteração de código necessária; apenas atualizar `config.js` quando dados forem preenchidos. |
 | **Preço e Moeda** | Preenchido: **R$ 37, pagamento único** | Confirmado. |
 | **E-mail de Contato** | Preenchido: **`oelouniversal@proton.me`** | Confirmado. |
-| **URL do Checkout** | `null` em `config.js` (botão rola para `#preco` e avisa em dev) | Cadastrar produto na Hotmart/Kiwify/Eduzz e inserir URL em `CONFIG.CHECKOUT_URL`. |
+| **URL do Checkout** | **Integrado** (`https://checkout.wiven.com.br/checkout/cmwgi7hp1004901pwfzy4sq1q?offer=3V9KZ68`) | Confirmado e funcional em todos os CTAs com repasse de UTMs. |
 | **Garantia / CDC** | `null` em `config.js` (oculto na página pública) | Definir prazo real (mínimo 7 dias pelo art. 49 do CDC) e preencher `CONFIG.GARANTIA_TEXTO`. |
 | **Meio de Pagamento & Entrega** | `null` em `config.js` (ocultos na página pública) | Preencher em `CONFIG.PAGAMENTO_TEXTO` e `CONFIG.ENTREGA_TEXTO` conforme plataforma. |
-| **Isca Digital (Capítulo 1)** | Formulário estático com consentimento LGPD ativo; `FORM_ACTION: null` | Integrar com endpoint da ferramenta de e-mail (ActiveCampaign, Mailchimp, ConvertKit, etc.). |
+| **Isca Digital (Capítulo 1)** | **Integrado via FormSubmit** (`FORM_ACTION` ativo) | Notificações chegam diretamente no `oelouniversal@proton.me` com confirmação na tela para o usuário. |
 | **PDF do Capítulo 1** | Amostra visual p. 5 incluída no site; arquivo PDF isolado pendente | Gerar arquivo PDF apenas com o Capítulo 1 para o entregável da isca de e-mail. |
 | **Páginas Legais** | Estruturas prontas com marcadores `[PREENCHER]` | Redigir termos formais com assessoria jurídica em `privacidade.html`, `termos.html` e `reembolso.html`. |
 | **Telemetria / Pixels** | Estrutura nativa completa, porém `TRACKING_ATIVO: false` | Configurar pixels/GTM apenas quando houver tráfego pago e banner de cookies LGPD aprovado. |
@@ -27,9 +27,9 @@
 Conforme fonte da verdade em `Briefing/DADOS-COMERCIAIS.md`:
 
 1. **`CHECKOUT_URL` (URL de Checkout):**
-   - **Status Atual:** Vazio (`null` em `site/js/config.js`).
-   - **Comportamento Atual:** O CTA do hero rola suavemente até a seção de preço (`#preco`). Em modo de desenvolvimento (`DEV_MODE: true`), ao clicar no botão da seção de preço, surge um aviso informativo. Em produção, nenhum link fictício é disparado.
-   - **Ação:** Criar o produto na plataforma de pagamento escolhida e preencher o link em `CONFIG.CHECKOUT_URL`. Os parâmetros UTM serão repassados automaticamente.
+   - **Status Atual:** **Integrado e Ativo** (`https://checkout.wiven.com.br/checkout/cmwgi7hp1004901pwfzy4sq1q?offer=3V9KZ68` na Wiven).
+   - **Comportamento Atual:** Todos os CTAs primários de compra (header, hero, preco, oferta, cta_final e barra fixa mobile) direcionam para a plataforma Wiven na mesma aba, preservando o parâmetro da oferta (`offer=3V9KZ68`) e repassando automaticamente os parâmetros de tráfego (`utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, `utm_term`, `src`, `sck`). Suporte nativo à variante B (`VARIANTE_CTA: "B"` no teste A/B T2 para rolar até `#preco`).
+   - **Ação:** Nenhuma pendência quanto ao checkout; link operacional.
 
 2. **Garantia e Reembolso:**
    - **Status Atual:** Vazio (`null`). O elemento não é renderizado na página para evitar afirmações não confirmadas.
@@ -68,9 +68,9 @@ Conforme fonte da verdade em `Briefing/DADOS-COMERCIAIS.md`:
 ## 3. Isca Digital (Capítulo 1 Grátis) e Captura de E-mails
 
 1. **Ferramenta de E-mail (`FORM_ACTION`):**
-   - **Status Atual:** `null` em `CONFIG.FORM_ACTION`.
-   - **Comportamento:** O formulário valida campos e conformidade LGPD no cliente. Ao tentar submeter, informa amigavelmente que o serviço de envio automatizado está em implantação, sem simular falso envio.
-   - **Ação:** Escolher e configurar o serviço de e-mail marketing (ex.: ActiveCampaign, ConvertKit, Mailchimp, Brevo ou webhook n8n) e apontar o `CONFIG.FORM_ACTION` para o endpoint.
+   - **Status Atual:** **Integrado via FormSubmit AJAX** (`https://formsubmit.co/ajax/oelouniversal@proton.me`).
+   - **Comportamento:** O formulário valida e-mail e consentimento LGPD, envia os dados via AJAX com repasse de UTMs e exibe confirmação imediata na tela informando que a 1ª Lei será enviada no e-mail. A notificação com os dados do lead é entregue em `oelouniversal@proton.me`.
+   - **Ação:** No primeiro envio de teste, clicar no link de ativação enviado pelo FormSubmit para o `oelouniversal@proton.me`.
 
 2. **Geração do PDF do Capítulo 1 Isolado:**
    - **Ação:** Gerar um arquivo PDF contendo exclusivamente a capa, introdução e o Capítulo 1 com o experimento do pensamento repetido para ser anexado ao primeiro e-mail de nutrição da sequência automática.

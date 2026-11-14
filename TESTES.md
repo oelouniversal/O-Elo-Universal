@@ -55,7 +55,7 @@
 - **Variante B:** Hero redireciona diretamente para `CHECKOUT_URL` da plataforma de pagamento.
 - **Métrica Principal:** Taxa de compras concluídas e taxa de saída para o checkout.
 - **Prioridade:** Alta.
-- **Status:** Planejado (Aguardando configuração de `CHECKOUT_URL`).
+- **Status:** Pronto para execução (`CHECKOUT_URL` integrado na Wiven).
 - **Período:** —
 - **Resultados:** —
 - **Decisão:** —
