@@ -269,7 +269,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
           })
           .then(function (data) {
-            if (data && (data.success === "true" || data.success === true || !("success" in data))) {
+            if (data && (data.success === "true" || data.success === true || (data.message && data.message.toLowerCase().includes("success")))) {
               formFeedback.className = "form-status status-success";
               formFeedback.innerHTML = "<strong>Tudo certo!</strong> O acesso à <strong>1ª Lei Hermética (O Princípio do Mentalismo)</strong> e ao <strong>Experimento de Campo</strong> será enviado para o seu e-mail. Verifique sua caixa de entrada e a pasta de spam nos próximos minutos.";
               if (btnLabel) btnLabel.textContent = "CHAVE TRANSMITIDA COM SUCESSO ✓";
@@ -280,6 +280,11 @@ document.addEventListener("DOMContentLoaded", function () {
               if (window.Tracking) {
                 window.Tracking.track("form_sucesso", { local: "capitulo-gratis" });
               }
+            } else if (data && data.message && (data.message.toLowerCase().includes("activation") || data.message.toLowerCase().includes("activate"))) {
+              formFeedback.className = "form-status status-info";
+              formFeedback.innerHTML = "<strong>Quase lá!</strong> O FormSubmit enviou um e-mail de confirmação para <strong>oelouniversal@proton.me</strong>. Por favor, abra a sua caixa de entrada do ProtonMail e clique no botão <em>'Activate Form'</em> para liberar o recebimento de leads.";
+              if (submitBtn) submitBtn.disabled = false;
+              if (btnLabel) btnLabel.textContent = originalBtnText;
             } else {
               throw new Error(data && data.message ? data.message : "Falha no envio");
             }
@@ -287,7 +292,11 @@ document.addEventListener("DOMContentLoaded", function () {
           .catch(function (error) {
             console.error("[Form Isca] Erro no envio:", error);
             formFeedback.className = "form-status status-error";
-            formFeedback.innerHTML = "Ocorreu um erro temporário na transmissão. Por favor, tente novamente ou entre em contato diretamente pelo e-mail: <a href='mailto:oelouniversal@proton.me' style='color:#F5D78E;text-decoration:underline;'>oelouniversal@proton.me</a>.";
+            if (window.location.protocol === "file:") {
+              formFeedback.innerHTML = "<strong>Aviso de Teste Local:</strong> O envio via FormSubmit não funciona abrindo o arquivo direto pelo computador (<code>file://</code>). Teste através do link publicado na Vercel (ex.: <code>https://...vercel.app</code>) ou rodando um servidor local (<code>http://localhost</code>).";
+            } else {
+              formFeedback.innerHTML = "Ocorreu um erro temporário na transmissão. Por favor, tente novamente ou entre em contato diretamente pelo e-mail: <a href='mailto:oelouniversal@proton.me' style='color:#F5D78E;text-decoration:underline;'>oelouniversal@proton.me</a>.";
+            }
             if (submitBtn) submitBtn.disabled = false;
             if (btnLabel) btnLabel.textContent = originalBtnText;
           });
