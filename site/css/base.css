@@ -122,16 +122,18 @@ button {
   }
 }
 
-/* Respeito a Movimento Reduzido */
+/* Movimento reduzido (WCAG 2.3.3): corta MOVIMENTO, não a vida da página.
+   Parallax, rotação de elementos grandes, efeitos ligados à rolagem, entradas
+   deslizando e inclinação 3D ficam desligados nos próprios componentes.
+   Brilhos, cintilações e pulsos pequenos continuam. Antes, uma regra global
+   zerava toda animação e a página parecia congelada em quem tem
+   "Efeitos de animação" desligado no Windows/macOS. */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
 
   *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
 }

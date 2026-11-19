@@ -42,10 +42,6 @@ const CONFIG = {
   // Se vazio/null: o formulário fica desativado em produção
   FORM_ACTION: "https://formsubmit.co/ajax/oelouniversal@proton.me",
 
-  // Transparência sobre a Elara (Seção 8 da Estratégia de Conversão)
-  ELARA_AVISO_IA: true,
-  ELARA_TEXTO_IA: "Elara é uma personagem criada com inteligência artificial.",
-
   // Depoimentos Reais (Vazio até haver depoimentos com autorização por escrito)
   DEPOIMENTOS: [],
 

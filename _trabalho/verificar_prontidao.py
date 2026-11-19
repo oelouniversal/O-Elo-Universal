@@ -30,7 +30,7 @@ def auditoria():
     ancoras_obrigatorias = [
         "hero", "tensao", "ideia", "capitulo", "experimentos", 
         "pista", "oferta", "preco",
-        "quem-fala", "faq", "cta-final", "rodape"
+        "faq", "cta-final", "rodape"
     ]
     # A isca (Capítulo 1 grátis) saiu da página de vendas em 19/11/2026:
     # agora é capitulo-1.html (captura) -> obrigado.html (confirmação + oferta).
@@ -134,7 +134,6 @@ def auditoria():
     print(f"  - FORM_ACTION:        {get_val('FORM_ACTION')}")
     print(f"  - CONTATO_EMAIL:      {get_val('CONTATO_EMAIL')}")
     print(f"  - PRECO_TEXTO:        {get_val('PRECO_TEXTO')}")
-    print(f"  - ELARA_AVISO_IA:     {get_val('ELARA_AVISO_IA')}")
 
     print("\n" + "=" * 60)
     print("RELATÓRIO DE PRONTIDÃO: PÁGINA 100% ESTRUTURADA")

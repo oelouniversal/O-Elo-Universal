@@ -535,6 +535,11 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
+  }
+
+  // 9.2 e 9.3 rodam sempre: brilho que segue o dedo/mouse e aura dos símbolos não são
+  // movimento de tela (Movimento reduzido só desliga parallax e inclinação 3D).
+  {
     // 9.2 Spotlight Glow Místico nos Cards de Experimentos (Desktop e Touch)
     const expCards = document.querySelectorAll(".card-experimento");
     if (expCards.length > 0) {
@@ -579,6 +584,9 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
 
+  }
+
+  if (!prefersReduced) {
     // 9.4 Fallback de Parallax em Scroll para navegadores sem View Timeline nativa
     const supportsViewTimeline =
       window.CSS &&
@@ -654,7 +662,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const livingGlowEl = document.querySelector(".living-eye-glow");
   const sampleFrameEl = document.querySelector(".notebook-sample-frame");
 
-  if (livingPupilEl && sampleFrameEl && !prefersReduced) {
+  // Roda mesmo com movimento reduzido: o olhar é pequeno e contido na página da amostra
+  if (livingPupilEl && sampleFrameEl) {
     let eyeTimer = null;
 
     // Pontos orgânicos de observação cósmica (em pixels relativos ao centro da íris)

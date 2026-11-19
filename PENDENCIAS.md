@@ -93,7 +93,7 @@ As páginas `site/privacidade.html`, `site/termos.html` e `site/reembolso.html` 
 ## 5. Identidade da Marca e Personagem Elara
 
 1. **Transparência sobre Inteligência Artificial:**
-   - **Status Atual:** Aprovada e ativada em `CONFIG.ELARA_AVISO_IA = true`.
+   - **Status Atual (19/11/2026):** a Elara saiu da página (seção "Quem fala", aviso do rodapé e chaves `ELARA_*` do `config.js`). Se ela continuar nos vídeos, a rotulagem de conteúdo gerado por IA fica nas próprias redes (Meta e TikTok têm regras para isso).
    - **Onde aparece:** Na Seção 10 (`#quem-fala`) e no rodapé da página: *"Elara é uma personagem criada com inteligência artificial."*
 2. **Foto/Arte Oficial da Elara:**
    - **Status Atual:** Utiliza o selo geométrico oficial da Marca do Elo em relevo âmbar.
@@ -143,3 +143,12 @@ As páginas `site/privacidade.html`, `site/termos.html` e `site/reembolso.html` 
 - As UTMs passam de uma página para a outra e chegam ao checkout e ao lead do FormSubmit.
 - **Link da bio:** as duas páginas já funcionam sozinhas. Sugestão: começar com `/` na bio e usar `/capitulo-1` em vídeos de topo de funil; comparar depois (T3 em `TESTES.md`).
 - O formulário no sucesso redireciona para `/obrigado`, que entrega o PDF na hora (o FormSubmit continua só notificando o dono).
+
+---
+
+## 9. Revisão visual e de movimento (19/11/2026)
+
+- **Página de vendas com 9 seções:** hero, tensão, ideia, capítulo, experimentos, pista, oferta (com o preço dentro), FAQ e CTA final. `#preco` continua existindo como âncora, agora dentro de `#oferta`.
+- **"Pista, não prova" redesenhada:** duas lentes ("acima": rede de galáxias; "abaixo": rede de neurônios) geradas por `_trabalho/gerar_redes.py` e leitura com o código de cores do caderno (âmbar = tradição, azul-aço = ciência, grafite = limite). A página avisa que as redes são ilustração, não imagens do estudo.
+- **"O que você recebe" redesenhada:** capas reais do caderno e dos dois bônus (`bonus-mapa.webp`, `bonus-fontes.webp`, renderizadas dos PDFs de `Produto/` sem a margem branca) + inventário com números dos PDFs (caderno: 41 páginas; Fontes e Limites: 11 páginas) + preço e botão no mesmo bloco.
+- **Animações "congeladas" no desktop:** não era defeito de código. Com "Efeitos de animação" desligado no Windows (Configurações > Acessibilidade > Efeitos visuais), o navegador avisa "movimento reduzido" e uma regra global zerava toda animação. Agora, nesse modo, só param parallax, o sigilo grande girando no hero, o brilho ligado à rolagem, a inclinação 3D do livro e as entradas deslizando; brilhos, estrelas dos botões, símbolos, olho vivo, partículas e as lentes continuam. Para ver tudo, inclusive o parallax, ligue "Efeitos de animação" no Windows.
