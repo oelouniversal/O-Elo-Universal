@@ -10,6 +10,8 @@ Skills/
 *.py
 *.zip
 *.pdf
+# Exceção: amostra do Capítulo 1 entregue na página de obrigado
+!site/downloads/*.pdf
 skills-lock.json
 
 # Sistema Operacional e IDEs

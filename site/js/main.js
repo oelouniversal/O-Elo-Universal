@@ -314,7 +314,7 @@ document.addEventListener("DOMContentLoaded", function () {
           .then(function (data) {
             if (data && (data.success === "true" || data.success === true || (data.message && data.message.toLowerCase().includes("success")))) {
               formFeedback.className = "form-status status-success";
-              formFeedback.innerHTML = "<strong>Recebido.</strong> Vamos enviar o Capítulo 1 para o seu e-mail. Se não encontrar, confira a pasta de spam.";
+              formFeedback.innerHTML = "<strong>Recebido.</strong> Abrindo o Capítulo 1…";
               if (btnLabel) btnLabel.textContent = "Enviado ✓";
               emailInput.value = "";
               emailInput.disabled = true;

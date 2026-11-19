@@ -15,8 +15,8 @@
 | **URL do Checkout** | **Integrado** (`https://checkout.wiven.com.br/checkout/cmwgi7hp1004901pwfzy4sq1q?offer=3V9KZ68`) | Confirmado e funcional em todos os CTAs com repasse de UTMs. |
 | **Garantia / CDC** | `null` em `config.js`. A garantia que estava escrita direto no HTML ("Garantia Inviolável", "Garantia Legal 7 Dias") foi removida em 19/11/2026; agora a página só mostra o que estiver em `CONFIG.GARANTIA_TEXTO` | Definir prazo real (mínimo 7 dias pelo art. 49 do CDC) e preencher `CONFIG.GARANTIA_TEXTO`. |
 | **Meio de Pagamento & Entrega** | `null` em `config.js` (ocultos na página pública) | Preencher em `CONFIG.PAGAMENTO_TEXTO` e `CONFIG.ENTREGA_TEXTO` conforme plataforma. |
-| **Isca Digital (Capítulo 1)** | FormSubmit ativo, **mas só avisa o dono**: o capítulo **não** é entregue automaticamente | Até existir ferramenta de e-mail com automação, enviar o PDF manualmente a cada lead (a tela diz "Vamos enviar o Capítulo 1 para o seu e-mail"). |
-| **PDF do Capítulo 1** | Amostra visual p. 5 incluída no site; arquivo PDF isolado pendente | Gerar arquivo PDF apenas com o Capítulo 1 para o entregável da isca de e-mail. |
+| **Isca Digital (Capítulo 1)** | **Entregue na hora** na página `/obrigado` (botão "Abrir o Capítulo 1"). FormSubmit continua só avisando o dono de cada lead | Os leads chegam como e-mails no `oelouniversal@proton.me`: guardar numa planilha até existir ferramenta de e-mail. |
+| **PDF do Capítulo 1** | **Gerado** em `site/downloads/` (versão celular e versão para imprimir) por `_trabalho/gerar_capitulo1.py` | Se o caderno mudar, rodar o script de novo. |
 | **Páginas Legais** | Estruturas prontas com marcadores `[PREENCHER]` | Redigir termos formais com assessoria jurídica em `privacidade.html`, `termos.html` e `reembolso.html`. |
 | **Telemetria / Pixels** | Estrutura nativa completa, porém `TRACKING_ATIVO: false` | Configurar pixels/GTM apenas quando houver tráfego pago e banner de cookies LGPD aprovado. |
 
@@ -73,7 +73,7 @@ Conforme fonte da verdade em `Briefing/DADOS-COMERCIAIS.md`:
    - **Ação:** No primeiro envio de teste, clicar no link de ativação enviado pelo FormSubmit para o `oelouniversal@proton.me`.
 
 2. **Geração do PDF do Capítulo 1 Isolado:**
-   - **Ação:** Gerar um arquivo PDF contendo exclusivamente a capa, introdução e o Capítulo 1 com o experimento do pensamento repetido para ser anexado ao primeiro e-mail de nutrição da sequência automática.
+   - **Feito (19/11/2026):** `python _trabalho/gerar_capitulo1.py` gera capa, como usar, sumário, Capítulo 1 completo, uma página "o caderno continua" (R$ 37 + botão para o checkout com `utm_source=capitulo1-pdf`) e a contracapa. Links do sumário e da Porta para capítulos ausentes levam a essa página. O `.vercelignore` tem exceção para `site/downloads/*.pdf`.
 
 ---
 
@@ -127,7 +127,7 @@ As páginas `site/privacidade.html`, `site/termos.html` e `site/reembolso.html` 
 **Decisões que continuam com o dono do projeto**
 1. `GARANTIA_TEXTO`, `PAGAMENTO_FORMAS_TEXTO`, `ENTREGA_TEXTO` (conforme a Wiven).
 2. Formato de entrega do caderno: a página diz "Em PDF, para ler na tela ou imprimir". Confirmar se vão os dois PDFs (Carta e Mobile).
-3. Entrega do Capítulo 1: escolher ferramenta de e-mail (ex.: MailerLite ou Brevo) e gerar o PDF só com o Capítulo 1.
+3. Ferramenta de e-mail (ex.: MailerLite ou Brevo) para a sequência de nutrição da Estratégia §13. A entrega do Capítulo 1 já não depende dela.
 4. `og:image` usa caminho relativo; redes sociais exigem URL absoluta. Trocar quando o domínio final estiver definido.
 
 ---
@@ -141,5 +141,5 @@ As páginas `site/privacidade.html`, `site/termos.html` e `site/reembolso.html` 
 | `obrigado.html` (`/obrigado`) | Apresentar o caderno a quem já pediu o capítulo | Confirmação sem prazo prometido + cartão de preço com "Quero o caderno". `noindex`. |
 
 - As UTMs passam de uma página para a outra e chegam ao checkout e ao lead do FormSubmit.
-- **Link da bio:** enquanto o Capítulo 1 não for entregue automaticamente, apontar a bio para `/`. Com a automação pronta, dá para usar `/capitulo-1` nos vídeos de topo de funil (e testar contra `/`, ver T3 em `TESTES.md`).
-- O formulário no sucesso redireciona para `/obrigado` (o FormSubmit continua só notificando o dono).
+- **Link da bio:** as duas páginas já funcionam sozinhas. Sugestão: começar com `/` na bio e usar `/capitulo-1` em vídeos de topo de funil; comparar depois (T3 em `TESTES.md`).
+- O formulário no sucesso redireciona para `/obrigado`, que entrega o PDF na hora (o FormSubmit continua só notificando o dono).

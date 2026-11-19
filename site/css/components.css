@@ -4615,3 +4615,17 @@ mark.todo {
 .obrigado-ver-mais {
   margin-top: var(--space-sm);
 }
+
+/* Obrigado: entrega imediata do Capítulo 1 */
+.obrigado-download {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  margin: var(--space-lg) auto var(--space-md);
+  max-width: 420px;
+}
+
+.obrigado-download-btn {
+  width: 100%;
+}
