@@ -128,7 +128,7 @@ As páginas `site/privacidade.html`, `site/termos.html` e `site/reembolso.html` 
 1. `GARANTIA_TEXTO`, `PAGAMENTO_FORMAS_TEXTO`, `ENTREGA_TEXTO` (conforme a Wiven).
 2. Formato de entrega do caderno: a página diz "Em PDF, para ler na tela ou imprimir". Confirmar se vão os dois PDFs (Carta e Mobile).
 3. Ferramenta de e-mail (ex.: MailerLite ou Brevo) para a sequência de nutrição da Estratégia §13. A entrega do Capítulo 1 já não depende dela.
-4. `og:image` usa caminho relativo; redes sociais exigem URL absoluta. Trocar quando o domínio final estiver definido.
+4. **Imagens de compartilhamento (resolvido em 19/11/2026):** `og-vendas.jpg` e `og-capitulo-1.jpg` (1200×630, geradas por `_trabalho/gerar_og.py`) com URL completa nas meta tags. O domínio `https://o-elo-universal.vercel.app` está escrito em `og:url`, `og:image` e `canonical` de `index.html` e `capitulo-1.html`: se o site ganhar domínio próprio, trocar nesses dois arquivos. O WhatsApp guarda a prévia antiga de cada link por um tempo; para testar, envie o link com `?v=2` no fim.
 
 ---
 
