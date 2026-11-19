@@ -3,5 +3,37 @@
   "framework": null,
   "buildCommand": null,
   "outputDirectory": "site",
-  "cleanUrls": true
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/capitulo-1.html",
+      "destination": "/capitulo-1",
+      "permanent": true
+    },
+    {
+      "source": "/obrigado.html",
+      "destination": "/obrigado",
+      "permanent": true
+    },
+    {
+      "source": "/privacidade.html",
+      "destination": "/privacidade",
+      "permanent": true
+    },
+    {
+      "source": "/termos.html",
+      "destination": "/termos",
+      "permanent": true
+    },
+    {
+      "source": "/reembolso.html",
+      "destination": "/reembolso",
+      "permanent": true
+    }
+  ]
 }

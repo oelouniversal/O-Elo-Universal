@@ -324,7 +324,7 @@ document.addEventListener("DOMContentLoaded", function () {
               }
               // Página de obrigado (confirmação + apresentação do caderno), com as UTMs
               setTimeout(function () {
-                window.location.href = withTrafficParams("obrigado.html");
+                window.location.href = withTrafficParams("/obrigado");
               }, 900);
             } else if (data && data.message && (data.message.toLowerCase().includes("activation") || data.message.toLowerCase().includes("activate"))) {
               formFeedback.className = "form-status status-info";
