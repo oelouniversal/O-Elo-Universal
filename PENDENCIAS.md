@@ -13,9 +13,9 @@
 | **Preço e Moeda** | Preenchido: **R$ 37, pagamento único** | Confirmado. |
 | **E-mail de Contato** | Preenchido: **`oelouniversal@proton.me`** | Confirmado. |
 | **URL do Checkout** | **Integrado** (`https://checkout.wiven.com.br/checkout/cmwgi7hp1004901pwfzy4sq1q?offer=3V9KZ68`) | Confirmado e funcional em todos os CTAs com repasse de UTMs. |
-| **Garantia / CDC** | `null` em `config.js` (oculto na página pública) | Definir prazo real (mínimo 7 dias pelo art. 49 do CDC) e preencher `CONFIG.GARANTIA_TEXTO`. |
+| **Garantia / CDC** | `null` em `config.js`. A garantia que estava escrita direto no HTML ("Garantia Inviolável", "Garantia Legal 7 Dias") foi removida em 19/11/2026; agora a página só mostra o que estiver em `CONFIG.GARANTIA_TEXTO` | Definir prazo real (mínimo 7 dias pelo art. 49 do CDC) e preencher `CONFIG.GARANTIA_TEXTO`. |
 | **Meio de Pagamento & Entrega** | `null` em `config.js` (ocultos na página pública) | Preencher em `CONFIG.PAGAMENTO_TEXTO` e `CONFIG.ENTREGA_TEXTO` conforme plataforma. |
-| **Isca Digital (Capítulo 1)** | **Integrado via FormSubmit** (`FORM_ACTION` ativo) | Notificações chegam diretamente no `oelouniversal@proton.me` com confirmação na tela para o usuário. |
+| **Isca Digital (Capítulo 1)** | FormSubmit ativo, **mas só avisa o dono**: o capítulo **não** é entregue automaticamente | Até existir ferramenta de e-mail com automação, enviar o PDF manualmente a cada lead (a tela diz "Vamos enviar o Capítulo 1 para o seu e-mail"). |
 | **PDF do Capítulo 1** | Amostra visual p. 5 incluída no site; arquivo PDF isolado pendente | Gerar arquivo PDF apenas com o Capítulo 1 para o entregável da isca de e-mail. |
 | **Páginas Legais** | Estruturas prontas com marcadores `[PREENCHER]` | Redigir termos formais com assessoria jurídica em `privacidade.html`, `termos.html` e `reembolso.html`. |
 | **Telemetria / Pixels** | Estrutura nativa completa, porém `TRACKING_ATIVO: false` | Configurar pixels/GTM apenas quando houver tráfego pago e banner de cookies LGPD aprovado. |
@@ -110,3 +110,36 @@ As páginas `site/privacidade.html`, `site/termos.html` e `site/reembolso.html` 
   - Ausência de rolagem horizontal: `scrollWidth === innerWidth` em 100% das resoluções.
 - **Pendente de Teste Físico em Campo:**
   - Realizar teste prático em celulares reais (iOS e Android) dentro dos **navegadores embutidos (WebViews)** do Instagram, TikTok e Facebook via link na bio antes de alocar verba de tráfego pago.
+
+---
+
+## 7. Revisão de copy e conformidade (19/11/2026)
+
+**O que mudou na página**
+- Texto reescrito com o vocabulário do próprio caderno (`content.json`). Saíram promessas que o produto contradiz ("se materializa", "atrai evidências e sincronias", "comprova as leis"), a narrativa de conhecimento ocultado, "iniciados no antigo Egito", "Maçonaria" e o card que juntava Vibração e Polaridade como "3ª Lei".
+- Rótulos de CTA unificados (Estratégia §6): "Quero o caderno", "Ler o Capítulo 1 grátis", "Quero ler o Capítulo 1".
+- Hero no celular: botões e preço antes da capa (CTA na primeira tela em 390 px).
+- Formulário: um único consentimento, **desmarcado** por padrão; o texto exibido é gravado junto com o lead (`consentimento_texto`).
+- Garantia, formas de pagamento, entrega e a FAQ "Como recebo?" agora dependem de `config.js` (`data-config`). Sem valor: somem em produção; em dev aparecem marcados em amarelo.
+- `DEV_MODE` passou a ser automático (ligado só em localhost/127.0.0.1/arquivo local, ou com `?dev=1`). `config.js` agora expõe `window.CONFIG` (antes o `const` não era visível para `main.js`/`tracking.js`).
+- Corrigido um `</div>` sobrando que tirava o texto da seção 2 de dentro do container (sem margem lateral no celular).
+
+**Decisões que continuam com o dono do projeto**
+1. `GARANTIA_TEXTO`, `PAGAMENTO_FORMAS_TEXTO`, `ENTREGA_TEXTO` (conforme a Wiven).
+2. Formato de entrega do caderno: a página diz "Em PDF, para ler na tela ou imprimir". Confirmar se vão os dois PDFs (Carta e Mobile).
+3. Entrega do Capítulo 1: escolher ferramenta de e-mail (ex.: MailerLite ou Brevo) e gerar o PDF só com o Capítulo 1.
+4. `og:image` usa caminho relativo; redes sociais exigem URL absoluta. Trocar quando o domínio final estiver definido.
+
+---
+
+## 8. Funil em três páginas (19/11/2026)
+
+| Página | Objetivo único | O que tem |
+|---|---|---|
+| `index.html` (`/`) | Comprar | Hero → Tensão → Ideia → Capítulo → 7 experimentos → Pista, não prova → Oferta → Preço → Quem fala → FAQ → CTA final. A isca aparece só como link de texto no hero e embaixo do CTA final. |
+| `capitulo-1.html` (`/capitulo-1`) | E-mail | Sem menu e sem botão de compra. Promessa + formulário na primeira tela; abaixo, o que tem no capítulo e a página real. |
+| `obrigado.html` (`/obrigado`) | Apresentar o caderno a quem já pediu o capítulo | Confirmação sem prazo prometido + cartão de preço com "Quero o caderno". `noindex`. |
+
+- As UTMs passam de uma página para a outra e chegam ao checkout e ao lead do FormSubmit.
+- **Link da bio:** enquanto o Capítulo 1 não for entregue automaticamente, apontar a bio para `/`. Com a automação pronta, dá para usar `/capitulo-1` nos vídeos de topo de funil (e testar contra `/`, ver T3 em `TESTES.md`).
+- O formulário no sucesso redireciona para `/obrigado` (o FormSubmit continua só notificando o dono).

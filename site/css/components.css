@@ -4381,3 +4381,237 @@ body.is-dev .dev-only {
 
 
 
+
+/* --------------------------------------------------------------------------
+   Revisão de copy e conformidade (nov/2026)
+   -------------------------------------------------------------------------- */
+
+/* Componentes condicionais (data-config) e qualquer [hidden] vencem regras de display */
+[hidden] {
+  display: none !important;
+}
+
+/* Marcador de pendência visível só em DEV_MODE */
+mark.todo {
+  background: #FFE9A8;
+  color: #3A2A00;
+  padding: 0.1em 0.35em;
+  border-radius: 3px;
+  font-family: var(--font-ui);
+  font-size: 0.85em;
+}
+
+/* Preço logo abaixo dos CTAs do hero: evita surpresa no checkout */
+.hero-price-note {
+  font-family: var(--font-ui);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  color: var(--color-osso-mute);
+  margin: calc(var(--space-md) * -0.5) 0 var(--space-md);
+}
+
+/* Linhas de garantia, pagamento e entrega (só com valor em config.js) */
+.preco-config-lines {
+  list-style: none;
+  margin: 0.9rem 0 0;
+  padding: 0;
+  font-family: var(--font-ui);
+  font-size: 0.82rem;
+  color: var(--color-osso-mute);
+  display: grid;
+  gap: 0.35rem;
+}
+
+.preco-config-lines:not(:has(li)) {
+  display: none;
+}
+
+/* Saída de baixo risco no CTA final: link, não segundo botão */
+.link-discreto {
+  font-family: var(--font-ui);
+  font-size: 0.9rem;
+  color: var(--color-osso-mute);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(217, 169, 75, 0.45);
+  padding: 0.6rem 0.25rem;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.link-discreto:hover,
+.link-discreto:focus-visible {
+  color: var(--color-ambar-300);
+  text-decoration-color: currentColor;
+}
+
+/* Celular: CTA primário na primeira tela (Estratégia §5: "o visual não pode empurrar
+   o CTA para fora da primeira tela"). A capa entra depois dos botões e do preço. */
+@media (max-width: 767px) {
+  .hero-triad-row,
+  .trust-strip {
+    order: 4;
+    justify-content: flex-start;
+    text-align: left;
+    margin-bottom: var(--space-sm);
+  }
+
+  .hero-actions {
+    order: 5;
+  }
+
+  .hero-price-note {
+    order: 6;
+    text-align: center;
+    width: 100%;
+  }
+
+  .hero-isca-link {
+    order: 7;
+    align-self: center;
+  }
+
+  .echo-line {
+    order: 8;
+  }
+
+  .hero-visual {
+    order: 9;
+    margin-top: var(--space-sm);
+  }
+}
+
+/* Link da isca no hero (todas as larguras) */
+.hero-isca-link {
+  margin-top: calc(var(--space-sm) * -0.5);
+  margin-bottom: var(--space-sm);
+}
+
+/* Botão secundário em seções claras: contorno em vez de pílula escura acinzentada */
+.section-light .btn-secondary {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  color: var(--color-tinta);
+  border-color: rgba(142, 102, 32, 0.5);
+}
+
+.section-light .btn-secondary:hover,
+.section-light .btn-secondary:focus-visible {
+  border-color: var(--color-ambar-300);
+  background: rgba(217, 169, 75, 0.1);
+}
+
+/* --------------------------------------------------------------------------
+   Página de captura (capitulo-1.html) e de obrigado (obrigado.html)
+   -------------------------------------------------------------------------- */
+
+/* Primeira seção abaixo do cabeçalho fixo */
+.lead-hero,
+.obrigado-section {
+  border-top: none;
+  padding-top: calc(76px + var(--space-xl));
+}
+
+@media (max-width: 767px) {
+  .lead-hero,
+  .obrigado-section {
+    padding-top: calc(68px + var(--space-lg));
+    padding-bottom: var(--space-2xl);
+  }
+
+  /* No celular o formulário aparece logo depois da promessa */
+  .lead-hero .isca-grid {
+    gap: var(--space-lg);
+  }
+}
+
+.lead-title {
+  font-size: clamp(1.9rem, 6vw, 2.9rem);
+  line-height: 1.12;
+}
+
+.lead-meta {
+  font-family: var(--font-ui);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  color: var(--color-ambar-300);
+  margin-top: var(--space-sm);
+}
+
+.lead-detalhe-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-2xl);
+  align-items: start;
+}
+
+@media (min-width: 900px) {
+  .lead-detalhe-grid {
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: var(--space-3xl);
+  }
+}
+
+.lead-amostra {
+  margin: 0 auto;
+}
+
+.lead-amostra .amostra-caption,
+.obrigado-section .amostra-caption {
+  color: var(--color-osso-mute);
+}
+
+.lead-repeat-cta {
+  text-align: center;
+  margin-top: var(--space-2xl);
+}
+
+/* Obrigado */
+.obrigado-container {
+  max-width: var(--max-width-text);
+  text-align: center;
+}
+
+.obrigado-icon {
+  margin: 0 auto var(--space-md);
+}
+
+.obrigado-contato {
+  font-family: var(--font-ui);
+  font-size: 0.9rem;
+  color: var(--color-osso-mute);
+  margin-top: var(--space-sm);
+}
+
+.obrigado-contato a {
+  color: var(--color-ambar-300);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.obrigado-quote {
+  text-align: left;
+  margin-top: var(--space-xl);
+}
+
+.obrigado-oferta {
+  background-color: var(--color-grafite-950);
+  border-top: 1px solid var(--color-rule-dark);
+}
+
+.obrigado-oferta-title {
+  font-size: clamp(1.5rem, 4.5vw, 2rem);
+  color: var(--color-osso);
+  margin: 0.4rem 0 0.6rem;
+}
+
+.obrigado-oferta-lead {
+  color: var(--color-osso-mute);
+  margin-bottom: var(--space-lg);
+}
+
+.obrigado-ver-mais {
+  margin-top: var(--space-sm);
+}

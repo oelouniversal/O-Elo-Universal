@@ -29,9 +29,11 @@ def auditoria():
     # 1. Âncoras obrigatórias
     ancoras_obrigatorias = [
         "hero", "tensao", "ideia", "capitulo", "experimentos", 
-        "pista", "oferta", "capitulo-gratis", "preco", 
+        "pista", "oferta", "preco",
         "quem-fala", "faq", "cta-final", "rodape"
     ]
+    # A isca (Capítulo 1 grátis) saiu da página de vendas em 19/11/2026:
+    # agora é capitulo-1.html (captura) -> obrigado.html (confirmação + oferta).
     index_path = os.path.join(SITE_DIR, "index.html")
     with open(index_path, "r", encoding="utf-8") as f:
         index_content = f.read()
@@ -45,8 +47,27 @@ def auditoria():
             print(f"  [FALTA] #{anc}")
             faltando.append(anc)
     
+    funil = {
+        "capitulo-1.html": ['id="form-capitulo"', 'id="lead-consent"'],
+        "obrigado.html": ['cta-checkout', 'noindex'],
+    }
+    for pagina, marcas in funil.items():
+        caminho = os.path.join(SITE_DIR, pagina)
+        if not os.path.exists(caminho):
+            print(f"  [FALTA] {pagina}")
+            faltando.append(pagina)
+            continue
+        conteudo = open(caminho, encoding="utf-8").read()
+        ok = all(m in conteudo for m in marcas)
+        print(f"  [{'OK' if ok else 'INCOMPLETA'}] {pagina}")
+        if not ok:
+            faltando.append(pagina)
+        if pagina == "capitulo-1.html" and 'id="lead-consent" name="consentimento" class="toggle-input" required checked' in conteudo:
+            print("  [ERRO] consentimento pré-marcado em capitulo-1.html")
+            faltando.append("consentimento")
+
     if not faltando:
-        print("  -> Todas as 13 âncoras estão presentes na ordem correta.")
+        print("  -> Página de vendas e páginas do funil (captura e obrigado) completas.")
     else:
         print(f"  -> ATENÇÃO: {len(faltando)} âncoras ausentes: {faltando}")
 
@@ -104,7 +125,10 @@ def auditoria():
         m = re.search(rf"{key}\s*:\s*([^,\n]+)", cfg)
         return m.group(1).strip() if m else "N/A"
 
-    print(f"  - DEV_MODE:           {get_val('DEV_MODE')}")
+    dev_val = get_val('DEV_MODE')
+    if dev_val.startswith("(function"):
+        dev_val = "automático (ligado só em localhost/127.0.0.1/file ou com ?dev=1)"
+    print(f"  - DEV_MODE:           {dev_val}")
     print(f"  - TRACKING_ATIVO:     {get_val('TRACKING_ATIVO')}")
     print(f"  - CHECKOUT_URL:       {get_val('CHECKOUT_URL')}")
     print(f"  - FORM_ACTION:        {get_val('FORM_ACTION')}")

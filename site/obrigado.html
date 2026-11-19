@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recebido · O Elo Universal</title>
+  <meta name="robots" content="noindex, follow">
+
+  <link rel="preload" href="assets/fonts/Inter-SemiBold.woff" as="font" type="font/woff" crossorigin>
+  <link rel="preload" href="assets/fonts/Pagella-Regular.woff" as="font" type="font/woff" crossorigin>
+  <link rel="preload" href="assets/fonts/Lora-Regular.woff" as="font" type="font/woff" crossorigin>
+
+  <link rel="stylesheet" href="css/tokens.css?v=6">
+  <link rel="stylesheet" href="css/base.css?v=6">
+  <link rel="stylesheet" href="css/components.css?v=24">
+</head>
+<body class="page-obrigado">
+  <!--
+    Página de obrigado da captura (não da compra).
+    Confirma o pedido sem prometer prazo de entrega e, só então, apresenta o caderno.
+  -->
+  <a href="#obrigado" class="skip-link">Pular para o conteúdo principal</a>
+
+  <div class="dev-banner dev-only" id="dev-banner">
+    <div>
+      <span class="dev-banner-badge">Dev</span>
+      <span>Página de obrigado da captura. Pendências de config.js aparecem marcadas em amarelo.</span>
+    </div>
+  </div>
+
+  <header class="site-header" id="site-header">
+    <div class="container header-container">
+      <a href="index.html" class="brand-link" aria-label="O Elo Universal — página do caderno">
+        <span class="brand-seal" aria-hidden="true">
+          <img src="assets/svg/marca-elo_claro.svg" alt="" class="brand-logo" width="30" height="30">
+        </span>
+        <div class="brand-text-block">
+          <span class="brand-text">O Elo Universal</span>
+          <span class="brand-edition">Caderno Hermético</span>
+        </div>
+      </a>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- 1. Confirmação -->
+    <section id="obrigado" class="section section-dark isca-iniciatica-section obrigado-section" data-track="view_secao">
+      <div class="container obrigado-container">
+        <div class="altar-door-icon obrigado-icon" aria-hidden="true">
+          <img src="assets/svg/glifo-porta_claro.svg" alt="" width="22" height="28">
+        </div>
+        <span class="section-kicker">Capítulo 1</span>
+        <h1 class="section-title">Recebido.</h1>
+        <p class="section-lead">
+          Vamos enviar o Capítulo 1 para o seu e-mail. Se ele não aparecer na caixa de entrada, confira o spam e a aba de promoções.
+        </p>
+        <p class="obrigado-contato">
+          Não chegou? Escreva para <a href="mailto:oelouniversal@proton.me">oelouniversal@proton.me</a>.
+        </p>
+
+        <div class="isca-quote-box obrigado-quote">
+          <p>“Antes de qualquer lei, uma pergunta: o que você deixou de ver hoje?”</p>
+          <span>Para ir pensando enquanto o capítulo chega</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. O caderno completo (oferta, depois da entrega confirmada) -->
+    <section id="preco" class="section section-dark obrigado-oferta" data-track="view_secao">
+      <div class="container">
+        <div class="preco-card">
+          <span class="section-kicker">Se quiser os sete</span>
+          <h2 class="obrigado-oferta-title">O Capítulo 1 é um de sete.</h2>
+          <p class="obrigado-oferta-lead">O caderno completo traz as sete leis no mesmo formato, cada uma com o seu experimento, de 1 a 7 dias.</p>
+
+          <div class="preco-valor">R$ 37</div>
+          <div class="preco-tipo">Pagamento único</div>
+
+          <ul class="preco-recap">
+            <li>O Caderno das Leis Herméticas (7 leis e 7 experimentos)</li>
+            <li>Bônus A: Mapa das 7 Leis (visão panorâmica e durações)</li>
+            <li>Bônus B: Fontes e Limites (estudos com DOI e método)</li>
+          </ul>
+
+          <a href="https://checkout.wiven.com.br/checkout/cmwgi7hp1004901pwfzy4sq1q?offer=3V9KZ68" class="btn-primary btn-cosmic-stars cta-checkout" style="width: 100%; font-size: 1.05rem;" data-track="clique_cta_primario" data-track-local="obrigado" rel="noopener noreferrer">
+            <div class="stars-container" aria-hidden="true">
+              <div class="stars-field"></div>
+            </div>
+            <div class="glow-aura" aria-hidden="true">
+              <div class="glow-circle"></div>
+              <div class="glow-circle"></div>
+            </div>
+            <strong class="btn-label">
+              <span>Quero o caderno</span>
+              <span class="btn-arrow" aria-hidden="true">→</span>
+            </strong>
+          </a>
+          <p class="preco-microcopy">Pagamento único · sem mensalidade</p>
+
+          <ul class="preco-config-lines">
+            <li data-config="GARANTIA_TEXTO" hidden></li>
+            <li data-config="PAGAMENTO_FORMAS_TEXTO" hidden></li>
+            <li data-config="ENTREGA_TEXTO" hidden></li>
+          </ul>
+
+          <a href="index.html#oferta" class="link-discreto obrigado-ver-mais">Ver tudo o que vem no caderno →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="rodape" class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="assets/svg/marca-elo_claro.svg" alt="" width="28" height="28" loading="lazy">
+          <div>
+            <span class="footer-brand-text">O Elo Universal</span>
+            <p class="footer-tagline">As leis que conectam tudo — do universo à sua mente.</p>
+          </div>
+        </div>
+        <nav class="footer-nav" aria-label="Links legais">
+          <a href="privacidade.html">Privacidade</a>
+          <a href="termos.html">Termos de Uso</a>
+          <a href="reembolso.html">Política de Reembolso</a>
+          <a href="mailto:oelouniversal@proton.me">Contato</a>
+        </nav>
+      </div>
+
+      <div class="footer-disclaimer">
+        <p>
+          <strong>Aviso de conteúdo educativo:</strong> Este material é educativo e de reflexão pessoal. Não promete resultados e não substitui orientação médica, psicológica ou financeira. As referências científicas são apresentadas como pistas e analogias, não como prova das leis herméticas.
+        </p>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 O Elo Universal. Todos os direitos reservados.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/config.js?v=24"></script>
+  <script src="js/tracking.js?v=24"></script>
+  <script src="js/main.js?v=24"></script>
+</body>
+</html>

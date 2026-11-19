@@ -6,8 +6,16 @@
  */
 
 const CONFIG = {
-  // Modo de desenvolvimento: exibe marcadores [A CONFIRMAR] e toasts de aviso
-  DEV_MODE: true,
+  // Modo de desenvolvimento: exibe marcadores [A CONFIRMAR] e toasts de aviso.
+  // Liga sozinho só em ambiente local (localhost, 127.0.0.1 ou arquivo aberto direto);
+  // no site publicado fica sempre desligado. Para revisar pendências online, use ?dev=1.
+  DEV_MODE: (function () {
+    if (typeof window === "undefined" || !window.location) return false;
+    var host = window.location.hostname;
+    var local = host === "localhost" || host === "127.0.0.1" || host === "" || window.location.protocol === "file:";
+    var forcado = /[?&]dev=1(&|$)/.test(window.location.search);
+    return local || forcado;
+  })(),
 
   // Dados Comerciais (Fonte: Briefing/DADOS-COMERCIAIS.md)
   NOME_PRODUTO: "O Elo Universal: Caderno das Leis Herméticas",
@@ -52,6 +60,11 @@ const CONFIG = {
   VARIANTE_CTA: "A",  // "A": Hero -> CHECKOUT_URL (ou #preco se vazio) | "B": Hero -> #preco
   VARIANTE_BARRA_FIXA: true
 };
+
+// `const` no escopo global não vira propriedade de window; os outros scripts leem window.CONFIG.
+if (typeof window !== "undefined") {
+  window.CONFIG = CONFIG;
+}
 
 if (typeof module !== "undefined" && module.exports) {
   module.exports = CONFIG;

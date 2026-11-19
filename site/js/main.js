@@ -17,6 +17,26 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // 0.1 Componentes condicionais (Briefing §2): [data-config="CHAVE"]
+  // Com valor em CONFIG: preenche o texto e exibe. Sem valor: some em produção;
+  // em DEV_MODE aparece como pendência visível. Nunca exibe texto inventado.
+  document.querySelectorAll("[data-config]").forEach(function (el) {
+    const key = el.getAttribute("data-config");
+    const value = window.CONFIG ? window.CONFIG[key] : null;
+    const targetSelector = el.getAttribute("data-config-target");
+    const target = (targetSelector && el.querySelector(targetSelector)) || el;
+
+    if (typeof value === "string" && value.trim() !== "") {
+      target.textContent = value;
+      el.hidden = false;
+    } else if (window.CONFIG && window.CONFIG.DEV_MODE === true) {
+      target.innerHTML = '<mark class="todo">[A CONFIRMAR: CONFIG.' + key + "]</mark>";
+      el.hidden = false;
+    } else {
+      el.remove();
+    }
+  });
+
   // Scroll Trigger — Revelações Iniciáticas Aceleradas por Hardware (60 FPS)
   if ("IntersectionObserver" in window) {
     const revealObserver = new IntersectionObserver(
@@ -51,20 +71,20 @@ document.addEventListener("DOMContentLoaded", function () {
   const utmCampaign = rawUtmCampaign ? rawUtmCampaign.toLowerCase().trim() : null;
 
   const LEIS_MAP = {
-    lei1: { n: 1, nome: "Mentalismo", id: "experimentos" },
-    lei2: { n: 2, nome: "Correspondência", id: "experimentos" },
-    lei3: { n: 3, nome: "Vibração", id: "experimentos" },
-    lei4: { n: 4, nome: "Polaridade", id: "experimentos" },
-    lei5: { n: 5, nome: "Ritmo", id: "experimentos" },
-    lei6: { n: 6, nome: "Causa e Efeito", id: "experimentos" },
-    lei7: { n: 7, nome: "Gênero", id: "experimentos" }
+    lei1: { n: 1, nome: "Lei do Mentalismo" },
+    lei2: { n: 2, nome: "Lei da Correspondência" },
+    lei3: { n: 3, nome: "Lei da Vibração" },
+    lei4: { n: 4, nome: "Lei da Polaridade" },
+    lei5: { n: 5, nome: "Lei do Ritmo" },
+    lei6: { n: 6, nome: "Lei de Causa e Efeito" },
+    lei7: { n: 7, nome: "Lei do Gênero" }
   };
 
   const echoContainer = document.getElementById("echo-line");
   if (echoContainer) {
     if (utmCampaign && LEIS_MAP[utmCampaign]) {
       const lei = LEIS_MAP[utmCampaign];
-      echoContainer.innerHTML = `Veio do vídeo sobre a <strong>Lei do ${lei.nome}</strong>? Ela é o capítulo ${lei.n} do caderno. <a href="#${lei.id}">Ver experimento</a>`;
+      echoContainer.innerHTML = `Veio do vídeo sobre a <strong>${lei.nome}</strong>? Ela é o capítulo ${lei.n} do caderno. <a href="#exp-${lei.n}">Ver o experimento</a>`;
       echoContainer.style.display = "block";
     } else {
       echoContainer.style.display = "none";
@@ -96,6 +116,27 @@ document.addEventListener("DOMContentLoaded", function () {
       return CONFIG.CHECKOUT_URL;
     }
   }
+
+  // Parâmetros de tráfego repassados entre as páginas do funil (vendas → captura → obrigado)
+  const TRAFFIC_PARAMS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "src", "sck"];
+
+  function withTrafficParams(href) {
+    try {
+      const url = new URL(href, window.location.href);
+      TRAFFIC_PARAMS.forEach(function (param) {
+        const val = urlParams.get(param);
+        if (val && !url.searchParams.has(param)) url.searchParams.set(param, val);
+      });
+      return url.toString();
+    } catch (err) {
+      return href;
+    }
+  }
+
+  // Links para a página de captura (Capítulo 1) levam as UTMs junto
+  document.querySelectorAll("a.link-isca").forEach(function (link) {
+    link.href = withTrafficParams(link.getAttribute("href"));
+  });
 
   const resolvedCheckoutUrl = getResolvedCheckoutUrl();
   const ctaCheckoutElements = document.querySelectorAll(".cta-checkout");
@@ -175,7 +216,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!formIniciado) {
         formIniciado = true;
         if (window.Tracking) {
-          window.Tracking.track("form_inicio", { local: "capitulo-gratis" });
+          window.Tracking.track("form_inicio", { local: "capitulo-1" });
         }
       }
     });
@@ -196,7 +237,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (!consentimentoValido) {
         formFeedback.className = "form-status status-info";
-        formFeedback.textContent = "É necessário ativar a autorização de envio confidencial para receber o capítulo.";
+        formFeedback.textContent = "Para receber o Capítulo 1, marque a autorização de envio.";
         consentInput.focus();
         const toggleParent = consentInput.closest(".toggle-control-label");
         if (toggleParent) {
@@ -226,23 +267,25 @@ document.addEventListener("DOMContentLoaded", function () {
         // Envio real quando CONFIG.FORM_ACTION estiver configurado
         const submitBtn = formCapitulo.querySelector('button[type="submit"]');
         const btnLabel = submitBtn ? submitBtn.querySelector(".btn-label span") : null;
-        const originalBtnText = btnLabel ? btnLabel.textContent : "DESVELAR A 1ª LEI HERMÉTICA AGORA";
+        const originalBtnText = btnLabel ? btnLabel.textContent : "Quero ler o Capítulo 1";
 
         if (submitBtn) submitBtn.disabled = true;
-        if (btnLabel) btnLabel.textContent = "TRANSMITINDO O 1º SEGREDO...";
+        if (btnLabel) btnLabel.textContent = "Enviando...";
         formFeedback.className = "form-status status-info";
-        formFeedback.textContent = "Transmitindo seus dados para envio confidencial...";
+        formFeedback.textContent = "Enviando...";
 
-        const newsletterEl = document.getElementById("lead-newsletter");
+        // Registro do aceite (Estratégia §13): grava o texto exatamente como foi exibido
+        const consentTextoEl = document.getElementById("lead-consent-texto");
+        const consentTexto = consentTextoEl ? consentTextoEl.textContent.replace(/\s*\*\s*$/, "").trim() : "";
 
         const payload = {
           email: emailInput.value.trim(),
-          consentimento: consentInput.checked ? "Sim (autorizou envio confidencial)" : "Não",
-          newsletter: newsletterEl && newsletterEl.checked ? "Sim (deseja cartas práticas)" : "Não",
-          _subject: "Novo Lead — 1ª Lei Hermética (O Elo Universal)",
+          consentimento: consentInput.checked ? "Sim" : "Não",
+          consentimento_texto: consentTexto,
+          _subject: "Novo lead — Capítulo 1 (O Elo Universal)",
           _template: "table",
           _captcha: "false",
-          origem: "Landing Page O Elo Universal (Seção 8 - Isca Iniciática)",
+          origem: "capitulo1",
           utm_source: urlParams.get("utm_source") || "(direto)",
           utm_medium: urlParams.get("utm_medium") || "(nenhum)",
           utm_campaign: urlParams.get("utm_campaign") || "(nenhuma)",
@@ -271,15 +314,18 @@ document.addEventListener("DOMContentLoaded", function () {
           .then(function (data) {
             if (data && (data.success === "true" || data.success === true || (data.message && data.message.toLowerCase().includes("success")))) {
               formFeedback.className = "form-status status-success";
-              formFeedback.innerHTML = "<strong>Tudo certo!</strong> O acesso à <strong>1ª Lei Hermética (O Princípio do Mentalismo)</strong> e ao <strong>Experimento de Campo</strong> será enviado para o seu e-mail. Verifique sua caixa de entrada e a pasta de spam nos próximos minutos.";
-              if (btnLabel) btnLabel.textContent = "CHAVE TRANSMITIDA COM SUCESSO ✓";
+              formFeedback.innerHTML = "<strong>Recebido.</strong> Vamos enviar o Capítulo 1 para o seu e-mail. Se não encontrar, confira a pasta de spam.";
+              if (btnLabel) btnLabel.textContent = "Enviado ✓";
               emailInput.value = "";
               emailInput.disabled = true;
               consentInput.disabled = true;
-              if (newsletterEl) newsletterEl.disabled = true;
               if (window.Tracking) {
-                window.Tracking.track("form_sucesso", { local: "capitulo-gratis" });
+                window.Tracking.track("form_sucesso", { local: "capitulo-1" });
               }
+              // Página de obrigado (confirmação + apresentação do caderno), com as UTMs
+              setTimeout(function () {
+                window.location.href = withTrafficParams("obrigado.html");
+              }, 900);
             } else if (data && data.message && (data.message.toLowerCase().includes("activation") || data.message.toLowerCase().includes("activate"))) {
               formFeedback.className = "form-status status-info";
               formFeedback.innerHTML = "<strong>Quase lá!</strong> O FormSubmit enviou um e-mail de confirmação para <strong>oelouniversal@proton.me</strong>. Por favor, abra a sua caixa de entrada do ProtonMail e clique no botão <em>'Activate Form'</em> para liberar o recebimento de leads.";
@@ -295,7 +341,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (window.location.protocol === "file:") {
               formFeedback.innerHTML = "<strong>Aviso de Teste Local:</strong> O envio via FormSubmit não funciona abrindo o arquivo direto pelo computador (<code>file://</code>). Teste através do link publicado na Vercel (ex.: <code>https://...vercel.app</code>) ou rodando um servidor local (<code>http://localhost</code>).";
             } else {
-              formFeedback.innerHTML = "Ocorreu um erro temporário na transmissão. Por favor, tente novamente ou entre em contato diretamente pelo e-mail: <a href='mailto:oelouniversal@proton.me' style='color:#F5D78E;text-decoration:underline;'>oelouniversal@proton.me</a>.";
+              formFeedback.innerHTML = "Não foi possível enviar agora. Tente de novo em instantes ou escreva para <a href='mailto:oelouniversal@proton.me' style='color:#F5D78E;text-decoration:underline;'>oelouniversal@proton.me</a>.";
             }
             if (submitBtn) submitBtn.disabled = false;
             if (btnLabel) btnLabel.textContent = originalBtnText;

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Capítulo 1 grátis · O Elo Universal</title>
+  <meta name="description" content="Leia o Capítulo 1 do Caderno das Leis Herméticas antes de decidir: a Lei do Mentalismo, a pista do gorila invisível e um experimento de um dia.">
+
+  <!-- Open Graph / Compartilhamento -->
+  <meta property="og:title" content="Capítulo 1 grátis · Caderno das Leis Herméticas">
+  <meta property="og:description" content="A Lei do Mentalismo, completa: o que a tradição afirma, a pista do gorila invisível e um experimento de um dia.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/img/og-image.jpg">
+
+  <link rel="preload" href="assets/fonts/Inter-SemiBold.woff" as="font" type="font/woff" crossorigin>
+  <link rel="preload" href="assets/fonts/Pagella-Regular.woff" as="font" type="font/woff" crossorigin>
+  <link rel="preload" href="assets/fonts/Lora-Regular.woff" as="font" type="font/woff" crossorigin>
+
+  <link rel="stylesheet" href="css/tokens.css?v=6">
+  <link rel="stylesheet" href="css/base.css?v=6">
+  <link rel="stylesheet" href="css/components.css?v=24">
+</head>
+<body class="page-captura">
+  <!--
+    Página de captura (um único objetivo: o e-mail).
+    Sem botão de compra, sem menu. O formulário usa o mesmo tratamento de main.js
+    (formulário #form-capitulo) e, no sucesso, leva para obrigado.html.
+  -->
+  <a href="#captura" class="skip-link">Pular para o conteúdo principal</a>
+
+  <div class="dev-banner dev-only" id="dev-banner">
+    <div>
+      <span class="dev-banner-badge">Dev</span>
+      <span>Página de captura do Capítulo 1. Pendências de config.js aparecem marcadas em amarelo.</span>
+    </div>
+  </div>
+
+  <header class="site-header" id="site-header">
+    <div class="container header-container">
+      <div class="brand-link" aria-label="O Elo Universal">
+        <span class="brand-seal" aria-hidden="true">
+          <img src="assets/svg/marca-elo_claro.svg" alt="" class="brand-logo" width="30" height="30">
+        </span>
+        <div class="brand-text-block">
+          <span class="brand-text">O Elo Universal</span>
+          <span class="brand-edition">Caderno Hermético</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- 1. Promessa + formulário (no celular, o formulário entra logo após o título) -->
+    <section id="captura" class="section section-dark isca-iniciatica-section lead-hero" data-track="view_secao">
+      <div class="container">
+        <div class="isca-grid">
+          <div class="isca-grimorio-col">
+            <div class="isca-seal-badge">
+              <img src="assets/svg/simbolo-olho.svg" alt="" class="isca-eye-svg" width="32" height="32">
+              <span class="isca-badge-text">Capítulo 1 · grátis</span>
+            </div>
+
+            <span class="section-kicker">A Lei do Mentalismo</span>
+            <h1 class="section-title lead-title">Leia o Capítulo 1 antes de decidir</h1>
+
+            <p class="section-lead">
+              Num experimento famoso, voluntários contavam passes de basquete num vídeo. Muitos não viram uma pessoa fantasiada de gorila atravessar a cena. O Capítulo 1 começa aí: no que a atenção deixa passar.
+            </p>
+
+            <p class="lead-meta">Capítulo completo · em PDF · no seu e-mail</p>
+          </div>
+
+          <div class="isca-form-col">
+            <div class="altar-form-card">
+              <form id="form-capitulo" class="altar-form" aria-label="Receber o Capítulo 1 por e-mail" novalidate>
+                <div class="form__group">
+                  <input type="email" id="lead-email" name="email" class="form__field" placeholder=" " required autocomplete="email">
+                  <label for="lead-email" class="form__label">Seu e-mail *</label>
+                </div>
+
+                <!-- Consentimento LGPD: único, desmarcado por padrão (Briefing 6.8) -->
+                <div class="form-toggles-wrapper">
+                  <label class="toggle-control-label" for="lead-consent">
+                    <span class="toggle-text">
+                      <span class="toggle-title" id="lead-consent-texto">Concordo em receber o Capítulo 1 e e-mails do O Elo Universal. Posso cancelar quando quiser. *</span>
+                      <small class="toggle-subtext"><a href="privacidade.html" target="_blank" rel="noopener" class="toggle-link">Política de privacidade</a></small>
+                    </span>
+                    <div class="toggle-switch-wrapper">
+                      <input type="checkbox" id="lead-consent" name="consentimento" class="toggle-input" required>
+                      <span class="toggle-slider" aria-hidden="true"></span>
+                    </div>
+                  </label>
+                </div>
+
+                <button type="submit" class="btn-primary btn-cosmic-stars altar-submit-btn" data-track="form_tentativa">
+                  <div class="stars-container" aria-hidden="true">
+                    <div class="stars-field"></div>
+                  </div>
+                  <div class="glow-aura" aria-hidden="true">
+                    <div class="glow-circle"></div>
+                    <div class="glow-circle"></div>
+                  </div>
+                  <strong class="btn-label">
+                    <span>Quero ler o Capítulo 1</span>
+                    <span class="btn-arrow" aria-hidden="true">→</span>
+                  </strong>
+                </button>
+
+                <div id="form-feedback" class="form-status" role="alert" aria-live="polite"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. O que tem dentro (texto do content.json, Capítulo 1) -->
+    <section id="dentro" class="section section-dark isca-iniciatica-section lead-detalhe" data-track="view_secao">
+      <div class="container">
+        <div class="lead-detalhe-grid">
+          <div>
+            <span class="section-kicker">O que tem no Capítulo 1</span>
+            <h2 class="section-title">Um capítulo inteiro, no formato dos outros seis</h2>
+
+            <div class="isca-pilares-lista">
+              <div class="isca-pilar-item">
+                <span class="isca-pilar-icone" aria-hidden="true">❖</span>
+                <div>
+                  <strong>O que a tradição afirma</strong>
+                  <p>O primeiro princípio, “o Todo é mente”, com a origem dita com clareza: o Kybalion, de 1908. É filosofia e tradição, não física.</p>
+                </div>
+              </div>
+              <div class="isca-pilar-item">
+                <span class="isca-pilar-icone" aria-hidden="true">❖</span>
+                <div>
+                  <strong>A pista da ciência</strong>
+                  <p>O experimento do gorila invisível (Simons e Chabris, 1999) e a pesquisa sobre viés de confirmação (Nickerson, 1998): o que sugerem sobre a atenção e o que não mostram.</p>
+                </div>
+              </div>
+              <div class="isca-pilar-item">
+                <span class="isca-pilar-icone" aria-hidden="true">❖</span>
+                <div>
+                  <strong>O experimento “O pensamento repetido” · 1 dia</strong>
+                  <p>De manhã, você escreve um pensamento que repete. Durante o dia, marca cada vez que ele aparece. À noite, procura o que não se encaixou nele.</p>
+                </div>
+              </div>
+              <div class="isca-pilar-item">
+                <span class="isca-pilar-icone" aria-hidden="true">❖</span>
+                <div>
+                  <strong>O registro</strong>
+                  <p>O espaço para escrever o que você observou, fechando com uma linha sobre o que percebeu.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="isca-quote-box">
+              <p>“Antes de qualquer lei, uma pergunta: o que você deixou de ver hoje?”</p>
+              <span>Caderno das Leis Herméticas · Capítulo 1</span>
+            </div>
+          </div>
+
+          <div class="notebook-sample-frame lead-amostra">
+            <div class="sample-page-binder dark-page">
+              <img src="assets/img/amostra_p4.webp" alt="Página de abertura do Capítulo 1 (Lei do Mentalismo) do Caderno das Leis Herméticas, com o ornamento da lei e os quatro passos do capítulo" class="amostra-img" width="800" height="1035" loading="lazy">
+            </div>
+            <p class="amostra-caption">Página real de abertura do Capítulo 1</p>
+          </div>
+        </div>
+
+        <div class="lead-repeat-cta">
+          <a href="#captura" class="btn-secondary" data-track="clique_cta_secundario" data-track-local="captura_rodape">Quero ler o Capítulo 1 ↑</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="rodape" class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="assets/svg/marca-elo_claro.svg" alt="" width="28" height="28" loading="lazy">
+          <div>
+            <span class="footer-brand-text">O Elo Universal</span>
+            <p class="footer-tagline">As leis que conectam tudo — do universo à sua mente.</p>
+          </div>
+        </div>
+        <nav class="footer-nav" aria-label="Links legais">
+          <a href="privacidade.html">Privacidade</a>
+          <a href="termos.html">Termos de Uso</a>
+          <a href="mailto:oelouniversal@proton.me">Contato</a>
+        </nav>
+      </div>
+
+      <div class="footer-disclaimer">
+        <p>
+          <strong>Aviso de conteúdo educativo:</strong> Este material é educativo e de reflexão pessoal. Não promete resultados e não substitui orientação médica, psicológica ou financeira. As referências científicas são apresentadas como pistas e analogias, não como prova das leis herméticas.
+        </p>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 O Elo Universal. Todos os direitos reservados.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/config.js?v=24"></script>
+  <script src="js/tracking.js?v=24"></script>
+  <script src="js/main.js?v=24"></script>
+</body>
+</html>
