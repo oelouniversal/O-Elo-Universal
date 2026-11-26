@@ -15,10 +15,18 @@ import build as B
 SIZES = {"letter": (8.5, 11.0), "mobile": (4.2, 7.5)}
 CHROME = "/opt/pw-browsers/chromium"
 
+WIN_BROWSERS = [r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
+                r"C:\Program Files\Google\Chrome\Application\chrome.exe"]
+
 def chrome_path():
+    if os.environ.get("CHROME_PATH") and os.path.exists(os.environ["CHROME_PATH"]):
+        return os.environ["CHROME_PATH"]
     for root, dirs, files in os.walk(CHROME):
         if "chrome" in files and os.access(os.path.join(root, "chrome"), os.X_OK):
             return os.path.join(root, "chrome")
+    for exe in WIN_BROWSERS:  # Windows: usa o Edge/Chrome já instalado (26/11/2026)
+        if os.path.exists(exe):
+            return exe
     return None
 
 def to_pdf(html_path, pdf_path, profile):
@@ -27,7 +35,8 @@ def to_pdf(html_path, pdf_path, profile):
     with sync_playwright() as p:
         br = p.chromium.launch(executable_path=exe) if exe else p.chromium.launch()
         pg = br.new_page()
-        pg.goto("file://" + os.path.abspath(html_path), wait_until="load")
+        import pathlib
+        pg.goto(pathlib.Path(os.path.abspath(html_path)).as_uri(), wait_until="load")
         pg.evaluate("document.fonts.ready")
         pg.wait_for_timeout(400)
         pg.pdf(path=pdf_path, width=f"{w}in", height=f"{h}in", prefer_css_page_size=True,
@@ -89,6 +98,7 @@ def add_outline(pdf, pages, nchap):
                     item(ch["porta"]["label"] + " · Fontes", reg + 1)]
             ol.root.append(item(f"Capítulo {n} — {ch['name']}" + (" (bônus)" if ch["bonus"] else ""), pages[f"cap-{n}"], kids))
         ol.root.append(item("Fechamento: o que se repetiu?", pages["fechamento"]))
+        ol.root.append(item("Créditos", total - 1))
         ol.root.append(item("Contracapa", total))
 
 def set_meta(pdf_path, title, subtitle, author, keywords, pages=None):

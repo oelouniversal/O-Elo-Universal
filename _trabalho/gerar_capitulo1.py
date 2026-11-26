@@ -43,7 +43,7 @@ VERSOES = [
         "nome": "celular",
         "origem": "Caderno-das-Leis-Hermeticas_Mobile.pdf",
         "paginas": list(range(0, 10)),  # p1–p10: capa, como usar, sumário, Capítulo 1
-        "contracapa": 60,               # p61
+        "contracapa": -1,               # última página (era p61 até 26/11/2026)
         "fonte_base_pt": 9.6,
         "saida": "capitulo-1-o-elo-universal.pdf",
     },
@@ -51,7 +51,7 @@ VERSOES = [
         "nome": "impressao",
         "origem": "Caderno-das-Leis-Hermeticas.pdf",
         "paginas": list(range(0, 8)),   # p1–p8
-        "contracapa": 40,               # p41
+        "contracapa": -1,               # última página (era p41 até 26/11/2026)
         "fonte_base_pt": 15.5,
         "saida": "capitulo-1-o-elo-universal-impressao.pdf",
     },
@@ -188,11 +188,16 @@ def montar(versao, navegador):
 
         # Coleta os links internos antes de copiar as páginas (sem levar referências a páginas fora da amostra)
         links = []
+        externos = []  # links para fora (DOIs das fontes): mantidos como estão (26/11/2026)
         for orig in incluidas:
             pagina = leitor.pages[orig]
             for ref in pagina.get("/Annots", []) or []:
                 a = ref.get_object()
                 if a.get("/Subtype") != "/Link":
+                    continue
+                acao = a.get("/A")
+                if acao is not None and acao.get("/S") == "/URI":
+                    externos.append((novo_indice[orig], [float(x) for x in a["/Rect"]], str(acao.get("/URI"))))
                     continue
                 alvo = destino_da_anotacao(leitor, a)
                 if alvo is None:
@@ -213,6 +218,8 @@ def montar(versao, navegador):
                 del pg[NameObject("/Annots")]
         for pagina, retangulo, alvo in links:
             escritor.add_annotation(pagina, Link(rect=retangulo, target_page_index=alvo))
+        for pagina, retangulo, url in externos:
+            escritor.add_annotation(pagina, Link(rect=retangulo, url=url))
 
         escritor.add_metadata({
             "/Title": "O Elo Universal — Capítulo 1: Mentalismo (amostra)",

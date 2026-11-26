@@ -1,5 +1,24 @@
 # Caderno das Leis Herméticas — Notas editoriais e pendências
 
+## Atualização de 26/11/2026 (nova edição)
+
+| O que mudou | Detalhe |
+|---|---|
+| **Fechamento escrito** | "O que se repetiu?" ganhou o experimento **A releitura** (1 sessão, 5 passos, com contraprova), o aviso sobre o filtro (Nickerson, 1998) e um registro próprio. Texto aprovado pelo dono; rascunho em `_trabalho/rascunhos/fechamento-e-creditos-2026-11-26.md`. Saiu a frase provisória "Volte aos sete registros e leia-os juntos." |
+| **Página de créditos** | Nova, antes da contracapa: direitos, uso pessoal, aviso educativo, contato, fontes de letra e capa. Assinatura: "O Elo Universal". |
+| **Capítulo 1** | Fontes com DOI (conferidos em doi.org em 26/11/2026): 10.1068/p281059 e 10.1037/1089-2680.2.2.175. |
+| **Capítulo 5** | Fonte do Nobel com link: https://www.nobelprize.org/prizes/medicine/2017/summary/ |
+| **Bônus A e B** | Refeitos do zero (os originais tinham texto cortado e viraram imagem). Gerador: `_trabalho/bonus/gerar_bonus.py`. |
+| **Páginas** | Carta 41 → 43 · Celular 61 → 65. Links externos 6 → 10; links internos 59 (0 quebrados). |
+| **Conferência** | Comparação palavra por palavra com a edição anterior: saiu só a frase provisória do fechamento. |
+| **Arquivos antigos** | Em `Produto/antigos/`. |
+
+Ainda pendentes da lista abaixo: a fonte formal das "pistas de física básica" (capítulos 3 e 4).
+
+Para gerar de novo: `_trabalho/.venv-caderno/Scripts/python.exe src/render.py letter|mobile` dentro de `_trabalho/Codigo-Fonte-Editavel/Codigo-Fonte-Editavel/` (usa o Edge instalado).
+
+---
+
 Este documento separa três coisas: **o que foi acrescentado ao seu conteúdo** (para você aprovar ou trocar), **o que o conteúdo ainda não tem** (pendências suas) e **o que foi verificado no arquivo final**.
 
 ## 1. Acréscimos editoriais (não vieram do manuscrito)

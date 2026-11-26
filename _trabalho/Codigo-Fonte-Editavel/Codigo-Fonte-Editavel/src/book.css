@@ -244,6 +244,17 @@ svg{display:block}
 .reg7 .n{font:400 1.5em/1 var(--f-display);color:var(--ambar-600)}
 .reg7 .t{font:400 1.06em/1.1 var(--f-display)}
 .reg7 .p{font:italic .98em/1 var(--f-display);color:var(--graf-500)}
+/* fechamento v2 + créditos (26/11/2026) */
+.fim-body .nline .pfx{font:400 1em/1 var(--f-display);font-style:normal;color:var(--ink);min-width:8.5em}
+.fim-body .nline .pg-ref{font:italic .8em/1 var(--f-display);color:var(--graf-500)}
+.fim-body .registro .refrao{margin-top:1.8em}
+.page-creditos{break-before:page}
+.page-creditos .cr{min-height:{{INNER_H}};display:flex;flex-direction:column;justify-content:flex-end;font:400 .84em/1.6 var(--f-text);color:var(--graf-700)}
+.page-creditos .fm-head{margin-bottom:1.2em}
+.page-creditos .cr-t{font:400 1.6em/1.2 var(--f-display);color:var(--ink);margin:0 0 1.1em}
+.page-creditos .cr p{margin:0 0 .95em;text-wrap:pretty}
+.page-creditos .cr b{font-weight:600;color:var(--ink)}
+.page-creditos .cr a{color:var(--azul-700);border-bottom:.5pt solid var(--azul-500)}
 .backcover{page:dark;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:{{OP_T}} {{OP_S}}}
 .backcover .linkmark{width:5.5em;height:auto;margin-bottom:1.6em}
 .backcover .b{font:600 .68em/1 var(--f-ui);letter-spacing:.42em;text-transform:uppercase;color:var(--ambar-300);padding-left:.42em;margin-bottom:1.4em}
@@ -307,6 +318,9 @@ svg{display:block}
   .sec-head{margin-top:2.4em}
   .registro{margin-top:2.6em;padding-top:1.4em;border-top:.5pt dashed var(--rule)}
   .registro .sec-head{margin-top:1.1em}
+  .page-fim .cbody{padding:0;max-width:none}
+  .page-creditos .cr{min-height:0;padding-top:2em;border-top:.5pt solid var(--rule)}
+  .fim-body .nline .pg-ref{display:none}
 }
 @media screen and (max-width:600px){
   .cover{background-image:url({{COVER_URL_MOBILE}})}

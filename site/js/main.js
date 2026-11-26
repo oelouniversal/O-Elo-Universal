@@ -772,6 +772,133 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
   }
+
+  // 11. Seção 4: visita guiada pelas páginas reais do Capítulo 1
+  // Cada passo troca a página e move o holofote para o trecho dela. Quando a seção aparece,
+  // a visita dá UMA volta sozinha (abertura → 1 → 2 → 3 → 4 → abertura) e para; qualquer
+  // toque, clique ou tecla encerra a volta automática. Como o olho vivo, roda também com
+  // movimento reduzido (regra do projeto: movimento reduzido não congela a página); por ser
+  // uma volta só, que para sozinha e para com qualquer interação, não prende ninguém.
+  const tourEl = document.querySelector("[data-tour]");
+  if (tourEl) {
+    const tourPassos = Array.prototype.slice.call(tourEl.querySelectorAll(".tour-passo"));
+    const tourPaineis = Array.prototype.slice.call(tourEl.querySelectorAll(".tour-painel"));
+    const tourPaginas = Array.prototype.slice.call(tourEl.querySelectorAll(".tour-pagina"));
+    const tourFoco = tourEl.querySelector(".tour-foco");
+    const tourReduz = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const TOUR_INTERVALO = 6500;
+
+    // Página de cada passo e o trecho iluminado: [topo, altura] em % da altura da página
+    const tourRoteiro = [
+      { pagina: "abertura", foco: null },
+      { pagina: "p5", foco: [7, 34] },
+      { pagina: "p5", foco: [41, 40] },
+      { pagina: "p6", foco: [29, 48] },
+      { pagina: "p7", foco: [7, 54] }
+    ];
+
+    let tourAtual = 0;
+    let tourTimer = null;
+    let tourVisivel = false;
+    let tourPausado = false;
+    let tourEncerrado = false;
+    let tourAvancos = 0;
+
+    tourEl.style.setProperty("--tour-intervalo", TOUR_INTERVALO + "ms");
+
+    function tourMostrar(i, porUsuario) {
+      tourAtual = i;
+      tourPassos.forEach(function (b, k) {
+        const on = k === i;
+        b.classList.toggle("is-active", on);
+        b.setAttribute("aria-selected", on ? "true" : "false");
+        b.tabIndex = on ? 0 : -1;
+      });
+      tourPaineis.forEach(function (p, k) {
+        p.hidden = k !== i;
+        p.classList.toggle("is-active", k === i);
+      });
+      const passo = tourRoteiro[i];
+      tourPaginas.forEach(function (pg) {
+        pg.classList.toggle("is-active", pg.getAttribute("data-pagina") === passo.pagina);
+      });
+      if (tourFoco) {
+        if (passo.foco) {
+          tourFoco.style.top = passo.foco[0] + "%";
+          tourFoco.style.height = passo.foco[1] + "%";
+          tourFoco.classList.add("is-on");
+        } else {
+          tourFoco.classList.remove("is-on");
+        }
+      }
+      // No celular, a fileira de passos rola para mostrar o passo ativo
+      const trilha = tourPassos[i].parentElement;
+      if (trilha.scrollWidth > trilha.clientWidth + 2) {
+        trilha.scrollTo({ left: Math.max(0, tourPassos[i].offsetLeft - 16), behavior: tourReduz ? "auto" : "smooth" });
+      }
+      if (porUsuario && window.Tracking) window.Tracking.track("tour_passo", { passo: i });
+    }
+
+    function tourAgendar() {
+      clearTimeout(tourTimer);
+      const anda = tourVisivel && !tourPausado && !tourEncerrado;
+      tourEl.classList.toggle("is-autoplay", anda);
+      if (!anda) return;
+      tourTimer = setTimeout(function () {
+        tourAvancos += 1;
+        tourMostrar((tourAtual + 1) % tourRoteiro.length, false);
+        // Uma volta completa e a visita termina na abertura
+        if (tourAvancos >= tourRoteiro.length) tourEncerrado = true;
+        tourAgendar();
+      }, TOUR_INTERVALO);
+    }
+
+    function tourEncerrar() {
+      tourEncerrado = true;
+      tourAgendar();
+    }
+
+    tourPassos.forEach(function (b, i) {
+      b.addEventListener("click", function () {
+        tourEncerrar();
+        tourMostrar(i, true);
+      });
+      b.addEventListener("keydown", function (e) {
+        let alvo = null;
+        if (e.key === "ArrowDown" || e.key === "ArrowRight") alvo = (i + 1) % tourPassos.length;
+        else if (e.key === "ArrowUp" || e.key === "ArrowLeft") alvo = (i - 1 + tourPassos.length) % tourPassos.length;
+        else if (e.key === "Home") alvo = 0;
+        else if (e.key === "End") alvo = tourPassos.length - 1;
+        if (alvo === null) return;
+        e.preventDefault();
+        tourEncerrar();
+        tourMostrar(alvo, true);
+        tourPassos[alvo].focus();
+      });
+    });
+
+    // Com o mouse em cima (lendo), a visita espera; ao sair, continua
+    tourEl.addEventListener("pointerenter", function (e) {
+      if (e.pointerType === "mouse") { tourPausado = true; tourAgendar(); }
+    });
+    tourEl.addEventListener("pointerleave", function (e) {
+      if (e.pointerType === "mouse") { tourPausado = false; tourAgendar(); }
+    });
+
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          tourVisivel = entry.isIntersecting;
+          tourAgendar();
+        });
+      }, { threshold: 0.45 }).observe(tourEl);
+    }
+
+    document.addEventListener("visibilitychange", function () {
+      tourPausado = document.hidden;
+      tourAgendar();
+    });
+  }
 });
 
 

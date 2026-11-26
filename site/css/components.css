@@ -2817,6 +2817,420 @@ body.is-dev .dev-only {
 }
 
 /* --------------------------------------------------------------------------
+   Seção 4 (v2, 26/11/2026): visita guiada pelas páginas reais do Capítulo 1
+   - à esquerda, a trilha (abertura + passos 1 a 4) e o trecho real do passo ativo;
+   - à direita, a página real com um holofote dourado sobre a parte do passo.
+   -------------------------------------------------------------------------- */
+.cap-tour {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas: "trilha" "palco" "painel" "porta";
+  gap: var(--space-lg);
+  align-items: start;
+}
+
+@media (min-width: 900px) {
+  .cap-tour {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 420px);
+    grid-template-areas: "trilha palco" "painel palco" "porta palco";
+    grid-template-rows: auto auto 1fr;
+    column-gap: var(--space-3xl);
+    row-gap: var(--space-lg);
+  }
+}
+
+/* Trilha: no celular, uma fileira que rola para o lado; no computador, uma lista vertical ligada por um fio dourado */
+.tour-trilha {
+  grid-area: trilha;
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  margin: 0 calc(var(--space-md) * -1);
+  padding: 0.25rem var(--space-md);
+}
+.tour-trilha::-webkit-scrollbar { display: none; }
+
+.tour-passo {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex: none;
+  padding: 0.55rem 0.95rem 0.55rem 0.6rem;
+  border: 1px solid var(--color-rule);
+  border-radius: 999px;
+  background: #FAF7F1;
+  color: var(--color-tinta);
+  font-family: var(--font-ui);
+  text-align: left;
+  cursor: pointer;
+  overflow: hidden;
+  transition: border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tour-passo:hover { border-color: var(--color-ambar-600); }
+
+.tour-passo:focus-visible {
+  outline: 2px solid var(--color-ambar-600);
+  outline-offset: 3px;
+}
+
+.tour-passo.is-active {
+  background: var(--color-grafite-900);
+  border-color: var(--color-ambar-300);
+  color: var(--color-osso);
+  box-shadow: 0 6px 18px rgba(20, 22, 26, 0.18), 0 0 0 1px rgba(217, 169, 75, 0.25);
+}
+
+.tour-marca {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  flex: none;
+  border: 1.5px solid var(--color-ambar-600);
+  border-radius: 50%;
+  font-family: var(--font-title);
+  font-size: 0.95rem;
+  color: var(--color-ambar-700);
+  background: var(--color-papel);
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.tour-marca-vazia::after {
+  content: "";
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: var(--color-ambar-600);
+}
+
+.tour-passo.is-active .tour-marca {
+  background: var(--color-ambar-300);
+  border-color: var(--color-ambar-300);
+  color: var(--color-grafite-950);
+}
+.tour-passo.is-active .tour-marca-vazia::after { background: var(--color-grafite-950); }
+
+.tour-passo-nome {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.tour-passo-resumo { display: none; }
+
+/* Barra fina que mostra quando a visita vai avançar sozinha */
+.tour-tempo {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 100%;
+  background: var(--color-ambar-300);
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.cap-tour.is-autoplay .tour-passo.is-active .tour-tempo {
+  animation: tourTempo var(--tour-intervalo, 6500ms) linear forwards;
+}
+
+@keyframes tourTempo {
+  to { transform: scaleX(1); }
+}
+
+@media (min-width: 900px) {
+  .tour-trilha {
+    position: relative;
+    flex-direction: column;
+    gap: 0.35rem;
+    overflow: visible;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Fio dourado que liga os passos, como no caderno */
+  .tour-trilha::before {
+    content: "";
+    position: absolute;
+    left: calc(0.85rem + 0.875rem - 0.5px);
+    top: 1.6rem;
+    bottom: 1.6rem;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--color-ambar-300), var(--color-ambar-600));
+    opacity: 0.6;
+  }
+
+  .tour-passo {
+    width: 100%;
+    gap: 0.95rem;
+    padding: 0.7rem 1rem 0.7rem 0.85rem;
+    border-radius: var(--radius-lg);
+    border-color: transparent;
+    background: transparent;
+  }
+
+  .tour-passo:hover { background: rgba(236, 229, 215, 0.7); border-color: transparent; }
+
+  .tour-passo.is-active,
+  .tour-passo.is-active:hover {
+    background: var(--color-grafite-900);
+    border-color: rgba(217, 169, 75, 0.45);
+  }
+
+  .tour-passo-nome { font-family: var(--font-title); font-size: 1.15rem; font-weight: 400; }
+
+  .tour-passo-resumo {
+    display: block;
+    margin-top: 0.1rem;
+    font-size: 0.85rem;
+    color: var(--color-tinta-suave);
+  }
+
+  .tour-passo.is-active .tour-passo-resumo { color: var(--color-osso-mute); }
+}
+
+/* Painel com o trecho real do passo ativo */
+.tour-paineis {
+  grid-area: painel;
+  position: relative;
+}
+
+.tour-painel {
+  padding: var(--space-lg) var(--space-lg) var(--space-lg) calc(var(--space-lg) + 2px);
+  background: #FAF7F1;
+  border: 1px solid var(--color-rule);
+  border-left: 3px solid var(--color-ambar-600);
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+  animation: tourPainelEntra 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tour-painel[hidden] { display: none; }
+
+@keyframes tourPainelEntra {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+
+.tour-citacao {
+  font-family: var(--font-title);
+  font-style: italic;
+  font-size: 1.3rem;
+  line-height: 1.4;
+  color: var(--color-tinta);
+  margin-bottom: 0.75rem;
+}
+
+.tour-texto {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--color-tinta-suave);
+  margin-bottom: 0;
+}
+
+.tour-aviso {
+  font-size: 0.92rem;
+  font-style: italic;
+  color: var(--color-ambar-700);
+  border-top: 1px solid var(--color-rule);
+  padding-top: 0.75rem;
+  margin-bottom: 0;
+}
+
+.tour-balanca {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.6rem;
+  margin: var(--space-md) 0 0;
+}
+
+@media (min-width: 560px) {
+  .tour-balanca { grid-template-columns: 1fr 1fr; }
+}
+
+.tour-balanca > div {
+  padding: 0.7rem 0.85rem;
+  border-radius: var(--radius-sm);
+  background: #EFE8DA;
+}
+
+.tour-balanca .tour-sugere { border-top: 2px solid var(--color-azul-aco-700); }
+.tour-balanca .tour-nao-mostra { border-top: 2px solid var(--color-ambar-600); }
+
+.tour-balanca dt {
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+
+.tour-sugere dt { color: var(--color-azul-aco-700); }
+.tour-nao-mostra dt { color: var(--color-ambar-700); }
+
+.tour-balanca dd {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--color-tinta);
+}
+
+.tour-dia {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: none;
+}
+
+.tour-dia li {
+  position: relative;
+  padding: 0 0 0.85rem 1.4rem;
+  font-size: 0.98rem;
+  line-height: 1.55;
+  color: var(--color-tinta-suave);
+}
+
+.tour-dia li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.45em;
+  width: 0.6rem;
+  height: 0.6rem;
+  border: 1.5px solid var(--color-ambar-600);
+  border-radius: 50%;
+}
+
+.tour-dia li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: calc(0.3rem - 0.5px);
+  top: calc(0.45em + 0.75rem);
+  bottom: 0.2rem;
+  width: 1px;
+  background: var(--color-rule);
+}
+
+.tour-dia strong {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-tinta);
+}
+
+.tour-nota {
+  margin: 0.4rem 0 0;
+  font-family: var(--font-ui);
+  font-size: 0.82rem;
+  color: var(--color-ambar-700);
+}
+
+.tour-ficha {
+  background:
+    repeating-linear-gradient(to bottom, transparent 0, transparent 1.95rem, rgba(201, 191, 171, 0.45) 1.95rem, rgba(201, 191, 171, 0.45) 2rem);
+  padding: 0.2rem 0 0.6rem;
+}
+
+.tour-campo {
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  color: var(--color-tinta);
+  margin: 0 0 0.9rem;
+}
+
+.tour-linha {
+  display: block;
+  height: 1.3rem;
+  border-bottom: 1px solid var(--color-tinta-suave);
+  opacity: 0.45;
+}
+
+.tour-marcas {
+  display: flex;
+  gap: 0.35rem;
+  margin-top: 0.4rem;
+}
+
+.tour-marcas i {
+  width: 1.05rem;
+  height: 1.05rem;
+  border: 1.5px solid var(--color-ambar-600);
+  border-radius: 50%;
+}
+
+.tour-marcas i:nth-child(-n+3) { background: var(--color-ambar-300); border-color: var(--color-ambar-300); }
+
+/* Palco: as páginas reais empilhadas, com o holofote por cima */
+.tour-palco { grid-area: palco; }
+
+@media (min-width: 900px) {
+  .tour-palco { position: sticky; top: 96px; }
+}
+
+.tour-palco .notebook-sample-frame { margin: 0 auto; max-width: 360px; }
+
+@media (min-width: 900px) {
+  .tour-palco .notebook-sample-frame { max-width: 420px; }
+}
+
+.tour-folha {
+  width: 100%;
+  aspect-ratio: 800 / 1035;
+}
+
+.tour-pagina {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0s linear 0.5s;
+}
+
+.tour-pagina.is-active {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s ease, visibility 0s;
+}
+
+.tour-pagina .amostra-img { max-width: none; height: 100%; object-fit: cover; }
+
+.tour-foco {
+  position: absolute;
+  left: 5%;
+  right: 5%;
+  top: 0;
+  height: 100%;
+  border: 1.5px solid var(--color-ambar-300);
+  border-radius: 6px;
+  box-shadow: 0 0 0 2000px rgba(20, 22, 26, 0.42), 0 0 24px rgba(217, 169, 75, 0.5), inset 0 0 14px rgba(217, 169, 75, 0.18);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 4;
+  transition: top 0.6s cubic-bezier(0.16, 1, 0.3, 1), height 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+}
+
+.tour-foco.is-on { opacity: 1; }
+
+.tour-legenda { margin-top: 0.8rem; }
+
+.tour-porta {
+  grid-area: porta;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--color-tinta-suave);
+}
+
+.tour-porta img { flex: none; margin-top: 0.1rem; }
+
+/* --------------------------------------------------------------------------
    Seção 5: Os Sete Experimentos (Cartões das 7 Leis)
    -------------------------------------------------------------------------- */
 .experimentos-grid {

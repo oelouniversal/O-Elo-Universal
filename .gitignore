@@ -13,6 +13,12 @@ $RECYCLE.BIN/
 
 # Python (caso rode scripts locais)
 __pycache__/
+_trabalho/.venv-caderno/
+# Saídas geradas e cópias de segurança locais (as versões antigas ficam no histórico do Git)
+_trabalho/Codigo-Fonte-Editavel/Codigo-Fonte-Editavel/build/
+_trabalho/bonus/saida/
+_trabalho/amostra-antiga/
+Produto/antigos/
 *.py[cod]
 *$py.class
 .pytest_cache/
@@ -21,3 +27,11 @@ __pycache__/
 *.log
 *.tmp
 *.bak
+
+# Chaves e segredos (nunca vão para o GitHub)
+.env
+.env.*
+
+# Materiais locais da marca e rascunhos (ficam só no computador)
+O elo/
+o-elo-universal-base-do-projeto.md

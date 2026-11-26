@@ -302,17 +302,61 @@ class Book:
 </section>
 </div>'''
 
-    # ---------- fechamento
+    # ---------- fechamento (texto aprovado em 26/11/2026: "A releitura", com contraprova)
     def fim(self):
-        reg = "".join(
-            f'<li><a href="#cap-{c["n"]}-registro"><span class="n">{c["n"]}</span><span class="t">{html.escape(c["name"])}</span>'
-            f'<span class="p">{self.pg("cap-%d-registro" % c["n"])}</span></a></li>' for c in self.chs)
+        passos = render_blocks([
+            {"t": "step", "h": "Junte", "x": "Copie, uma embaixo da outra, as sete linhas “o que eu percebi” dos seus registros."},
+            {"t": "step", "h": "Procure", "x": "Leia as sete juntas. Sublinhe palavras, situações ou reações que aparecem em mais de um registro."},
+            {"t": "step", "h": "Nomeie", "x": "Escreva, em uma frase, o padrão que mais se repetiu."},
+            {"t": "step", "h": "Contraprova", "x": "Volte aos registros e procure pelo menos um momento que não se encaixa nesse padrão. Anote."},
+            {"t": "step", "h": "Conclua", "x": "Reescreva a frase do passo anterior levando em conta a contraprova."},
+            {"t": "note", "x": "**Por que a contraprova.** O filtro do Capítulo 1 continua ligado: quem procura um padrão tende a encontrá-lo (Nickerson, 1998). A contraprova é o jeito de não cair nele."},
+            {"t": "note", "x": "O padrão que você encontrar é uma pista sobre estes dias. Não é “o” padrão da sua vida, não explica quem você é e não é algo que você não possa mudar."},
+        ])
+        # as sete linhas: uma por lei, com link para o registro de cada capítulo
+        sete = "".join(
+            f'<div class="nline"><span class="nn">{c["n"]}.</span>'
+            f'<a class="pfx" href="#cap-{c["n"]}-registro">{html.escape(c["name"])}'
+            f'<span class="pg-ref"> · p. {self.pg("cap-%d-registro" % c["n"])}</span></a>'
+            f'<span class="blank"></span></div>' for c in self.chs)
+        campos = render_registro([
+            {"k": "area", "label": "Palavras e situações que se repetem:", "lines": 3},
+            {"k": "area", "label": "O padrão, em uma frase:", "lines": 2},
+            {"k": "area", "label": "A contraprova (um momento que não se encaixa):", "lines": 2},
+            {"k": "area", "label": "Minha conclusão, depois da contraprova (uma linha):", "lines": 1},
+        ])
+        fecho = render_blocks([{"t": "refrao", "x": "Pistas, não provas. A conclusão é sua, escrita a partir do que você observou."}])
         return f'''<section class="page-front page-fim" id="fechamento">
 <div class="fm-head">{O.link_mark()}<span>Fechamento</span></div>
 <h1 class="fim-q">O que se repetiu?</h1>
-<p class="fim-p">Volte aos sete registros e leia-os juntos.</p>
-<ol class="reg7">{reg}</ol>
-<div class="fld">{lines(5)}</div>
+<p class="fim-p">Você testou sete leis, uma de cada vez. Agora é a vez de olhar para os sete registros juntos. A pergunta não é se as leis são verdadeiras. É o que se repetiu em você ao longo desses dias.</p>
+<div class="cbody fim-body">
+<section class="part first" id="fechamento-experimento">
+{sec_head(1, "O experimento", "is-exp", small="A releitura", dur="1 sessão")}
+{passos}
+</section>
+<section class="part registro" id="fechamento-registro">
+{sec_head(2, "O registro", "is-reg")}
+<div class="fld"><div class="fld-l">As sete linhas “o que eu percebi”, uma por lei:</div>{sete}</div>
+{campos}
+{fecho}
+</section>
+</div>
+</section>'''
+
+    # ---------- créditos (texto aprovado em 26/11/2026)
+    def creditos(self):
+        return f'''<section class="page-front page-creditos" id="creditos">
+<div class="cr">
+<div class="fm-head">{O.link_mark()}<span>{BRAND}</span></div>
+<p class="cr-t">Caderno das Leis Herméticas</p>
+<p>© 2026 O Elo Universal. Todos os direitos reservados.<br>
+Este caderno é para uso pessoal de quem o comprou. Não pode ser copiado, revendido nem distribuído, no todo ou em parte.</p>
+<p><b>Aviso.</b> Este material é educativo e de reflexão pessoal. Não promete resultados e não substitui orientação médica, psicológica ou financeira. As referências científicas aparecem como pistas e analogias, não como prova das leis herméticas.</p>
+<p><b>Contato.</b> <a href="mailto:oelouniversal@proton.me">oelouniversal@proton.me</a></p>
+<p><b>Fontes de letra.</b> TeX Gyre Pagella (GUST Font License), Lora e Inter (SIL Open Font License 1.1).<br>
+<b>Capa.</b> Arte original, renderizada em 3D para esta edição.</p>
+</div>
 </section>'''
 
     def back(self):
@@ -378,6 +422,7 @@ class Book:
             parts.append(self.opener(ch))
             parts.append(self.body(ch))
         parts.append(self.fim())
+        parts.append(self.creditos())
         parts.append(self.back())
         m = self.c["meta"]
         title = f'{m["title"]} — {BRAND}'

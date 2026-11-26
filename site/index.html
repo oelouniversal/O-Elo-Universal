@@ -3,6 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <meta name="theme-color" content="#14161A">
   <title>O Elo Universal: Caderno das Leis Herméticas</title>
   <meta name="description" content="Sete leis, sete pistas, sete experimentos. Você não precisa acreditar em nada: precisa observar. O caderno prático que une tradição e método.">
 
@@ -169,13 +173,13 @@
             </div>
 
             <h1 class="hero-title">
-              <span class="hero-title-lead">A maioria das pessoas decora as 7 leis.</span>
-              <span class="hero-title-highlight">Poucas sabem como observá-las na própria vida.</span>
+              <span class="hero-title-lead">Você já conhece as 7 leis.</span>
+              <span class="hero-title-highlight">Agora aplique cada uma no seu dia a dia, como um cientista faria: testando.</span>
             </h1>
 
             <p class="hero-subtitle">
-              O caderno para investigar as sete leis herméticas com experimentos curtos, de 1 a 7 dias.
-              <span class="hero-subtitle-highlight">Você não precisa acreditar em nada: precisa observar.</span>
+              Um experimento curto por lei, com pistas de pesquisas publicadas em revistas como a <em>Science</em>.
+              <span class="hero-subtitle-highlight">Você anota o que se repete e tira a própria conclusão, sem precisar acreditar em nada.</span>
             </p>
 
             <!-- Tríade do subtítulo da capa: Sete leis. Sete pistas. Sete experimentos. -->
@@ -212,8 +216,7 @@
                 </strong>
               </a>
             </div>
-            <p class="hero-price-note">R$ 37 · pagamento único</p>
-            <a href="/capitulo-1" class="link-discreto hero-isca-link link-isca" data-track="clique_cta_secundario" data-track-local="hero">Prefere ler antes? O Capítulo 1 é grátis →</a>
+            <p class="hero-price-note">R$ 37 · pagamento único · garantia de 7 dias</p>
 
             <!-- Linha de Eco Dinâmica (Condicionada a UTM Campaign válida) -->
             <div id="echo-line" class="echo-line" role="status" aria-live="polite"></div>
@@ -519,67 +522,106 @@
           <h2 class="section-title">Como funciona um capítulo</h2>
           <p class="section-lead">Cada capítulo percorre o mesmo caminho, sempre na mesma ordem. Você aprende o formato no primeiro e usa nos outros seis.</p>
         </div>
-        <div class="capitulo-layout">
-          <div class="capitulo-passos stagger-grid">
-            <div class="passo-item reveal-trigger">
-              <span class="passo-numero">1</span>
-              <div class="passo-info">
-                <h4>A tradição afirma</h4>
-                <p>O que a tradição hermética diz sobre a lei. É filosofia e tradição, não física.</p>
-              </div>
+        <!-- Visita guiada: cada passo acende o trecho correspondente na página real do Capítulo 1 -->
+        <div class="cap-tour" data-tour>
+          <div class="tour-trilha" role="tablist" aria-label="Partes de um capítulo" aria-orientation="vertical">
+            <button type="button" class="tour-passo is-active" role="tab" id="tour-tab-0" aria-controls="tour-painel-0" aria-selected="true" data-passo="0">
+              <span class="tour-marca tour-marca-vazia" aria-hidden="true"></span>
+              <span class="tour-passo-texto"><span class="tour-passo-nome">A abertura</span><span class="tour-passo-resumo">A lei, a frase da tradição e uma pergunta.</span></span>
+              <span class="tour-tempo" aria-hidden="true"></span>
+            </button>
+            <button type="button" class="tour-passo" role="tab" id="tour-tab-1" aria-controls="tour-painel-1" aria-selected="false" tabindex="-1" data-passo="1">
+              <span class="tour-marca" aria-hidden="true">1</span>
+              <span class="tour-passo-texto"><span class="tour-passo-nome">A tradição afirma</span><span class="tour-passo-resumo">O que a tradição diz, dito como tradição.</span></span>
+              <span class="tour-tempo" aria-hidden="true"></span>
+            </button>
+            <button type="button" class="tour-passo" role="tab" id="tour-tab-2" aria-controls="tour-painel-2" aria-selected="false" tabindex="-1" data-passo="2">
+              <span class="tour-marca" aria-hidden="true">2</span>
+              <span class="tour-passo-texto"><span class="tour-passo-nome">A pista da ciência</span><span class="tour-passo-resumo">O que a pesquisa sugere e o que não mostra.</span></span>
+              <span class="tour-tempo" aria-hidden="true"></span>
+            </button>
+            <button type="button" class="tour-passo" role="tab" id="tour-tab-3" aria-controls="tour-painel-3" aria-selected="false" tabindex="-1" data-passo="3">
+              <span class="tour-marca" aria-hidden="true">3</span>
+              <span class="tour-passo-texto"><span class="tour-passo-nome">O experimento</span><span class="tour-passo-resumo">Um teste de 1 a 7 dias na sua rotina.</span></span>
+              <span class="tour-tempo" aria-hidden="true"></span>
+            </button>
+            <button type="button" class="tour-passo" role="tab" id="tour-tab-4" aria-controls="tour-painel-4" aria-selected="false" tabindex="-1" data-passo="4">
+              <span class="tour-marca" aria-hidden="true">4</span>
+              <span class="tour-passo-texto"><span class="tour-passo-nome">O registro</span><span class="tour-passo-resumo">Onde você anota o que observou.</span></span>
+              <span class="tour-tempo" aria-hidden="true"></span>
+            </button>
+          </div>
+
+          <div class="tour-paineis">
+            <div class="tour-painel is-active" role="tabpanel" id="tour-painel-0" aria-labelledby="tour-tab-0">
+              <p class="tour-citacao">“Tudo o que existe começa como pensamento.”</p>
+              <p class="tour-texto">Cada capítulo abre com a lei, a frase da tradição e uma pergunta para levar no dia. No Capítulo 1: <em>o que você deixou de ver hoje?</em></p>
             </div>
-            <div class="passo-item reveal-trigger">
-              <span class="passo-numero">2</span>
-              <div class="passo-info">
-                <h4>A pista da ciência</h4>
-                <p>O que a pesquisa encontrou de parecido, o que isso sugere e o que não mostra. Uma pista, não uma prova.</p>
-              </div>
+            <div class="tour-painel" role="tabpanel" id="tour-painel-1" aria-labelledby="tour-tab-1" hidden>
+              <p class="tour-citacao">“O primeiro princípio hermético diz que o Todo é mente e que o universo é mental.”</p>
+              <p class="tour-aviso">Isto é uma afirmação filosófica e espiritual. Não é um fato demonstrado pela ciência.</p>
             </div>
-            <div class="passo-item reveal-trigger">
-              <span class="passo-numero">3</span>
-              <div class="passo-info">
-                <h4>O experimento</h4>
-                <p>Um teste curto, de 1 a 7 dias, para observar a lei na sua própria rotina.</p>
-              </div>
+            <div class="tour-painel" role="tabpanel" id="tour-painel-2" aria-labelledby="tour-tab-2" hidden>
+              <p class="tour-texto">Em 1999, voluntários contavam passes de basquete num vídeo. Uma pessoa fantasiada de gorila atravessou a cena, e muitos não a viram.</p>
+              <dl class="tour-balanca">
+                <div class="tour-sugere"><dt>O que isso sugere</dt><dd>a mente não registra o mundo inteiro. Ela filtra.</dd></div>
+                <div class="tour-nao-mostra"><dt>O que isso não mostra</dt><dd>que pensar algo faça esse algo existir.</dd></div>
+              </dl>
             </div>
-            <div class="passo-item reveal-trigger">
-              <span class="passo-numero">4</span>
-              <div class="passo-info">
-                <h4>O registro</h4>
-                <p>O espaço para escrever o que você observou, fechando com uma linha sobre o que percebeu.</p>
+            <div class="tour-painel" role="tabpanel" id="tour-painel-3" aria-labelledby="tour-tab-3" hidden>
+              <ol class="tour-dia">
+                <li><strong>De manhã</strong> escolha um pensamento que você repete para si e escreva como ele soa.</li>
+                <li><strong>Durante o dia</strong> faça uma marca cada vez que ele aparecer.</li>
+                <li><strong>À noite</strong> responda: o que aconteceu hoje que não se encaixa nele?</li>
+              </ol>
+              <p class="tour-nota">O pensamento repetido · 1 dia. Os outros seis duram de 1 a 7 dias.</p>
+            </div>
+            <div class="tour-painel" role="tabpanel" id="tour-painel-4" aria-labelledby="tour-tab-4" hidden>
+              <div class="tour-ficha" aria-label="Campos do registro do Capítulo 1">
+                <p class="tour-campo">O pensamento, como ele soa:<span class="tour-linha"></span></p>
+                <p class="tour-campo">Marcas do dia:<span class="tour-marcas" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></p>
+                <p class="tour-campo">O que eu percebi sobre o meu filtro (uma linha):<span class="tour-linha"></span></p>
               </div>
+              <p class="tour-nota">A conclusão é sua, escrita a partir do que você observou.</p>
             </div>
           </div>
-          <div class="capitulo-amostra-wrapper">
-            <div class="notebook-sample-frame reveal-trigger">
-              <!-- Título / Badge de Destaque da Abertura Oficial -->
-              <div class="sample-tag-badge">
-                <span class="sample-tag-icon">❖</span>
-                <span class="sample-tag-text">Página real · Capítulo 1 (Mentalismo)</span>
-                <span class="sample-tag-icon">❖</span>
-              </div>
-              
-              <div class="sample-page-binder dark-page">
-                <img src="assets/img/amostra_p4.webp" alt="Página de abertura do Capítulo 1 (Lei do Mentalismo) do Caderno das Leis Herméticas, com o ornamento da lei e os quatro passos do capítulo" class="amostra-img" width="800" height="1035" loading="lazy">
-                
-                <!-- O Olho Vivo de Mentalismo que observa e se mexe em direções aleatórias -->
-                <div class="living-eye-portal" aria-hidden="true">
-                  <!-- Aura de respiração cósmica dourada -->
-                  <div class="living-eye-glow"></div>
-                  <!-- Pupila Viva com reflexo e movimento sacádico -->
-                  <div class="living-pupil-socket">
-                    <div class="living-pupil">
-                      <span class="pupil-core"></span>
-                      <span class="pupil-glint"></span>
+
+          <div class="tour-palco capitulo-amostra-wrapper">
+            <figure class="notebook-sample-frame">
+              <div class="sample-page-binder dark-page tour-folha">
+                <div class="tour-pagina is-active" data-pagina="abertura">
+                  <img src="assets/img/amostra_p4.webp" alt="Página de abertura do Capítulo 1 (Lei do Mentalismo), com o ornamento da lei e os quatro passos do capítulo" class="amostra-img" width="800" height="1035" loading="lazy">
+                  <!-- O Olho Vivo de Mentalismo que observa e se mexe em direções aleatórias -->
+                  <div class="living-eye-portal" aria-hidden="true">
+                    <div class="living-eye-glow"></div>
+                    <div class="living-pupil-socket">
+                      <div class="living-pupil">
+                        <span class="pupil-core"></span>
+                        <span class="pupil-glint"></span>
+                      </div>
                     </div>
                   </div>
                 </div>
-
+                <div class="tour-pagina" data-pagina="p5">
+                  <img src="assets/img/amostra_p5.webp" alt="Página 5 do caderno: O que a tradição afirma e A pista da ciência, no Capítulo 1" class="amostra-img" width="800" height="1035" loading="lazy">
+                </div>
+                <div class="tour-pagina" data-pagina="p6">
+                  <img src="assets/img/amostra_p6.webp" alt="Página 6 do caderno: o que a pista não mostra e o experimento O pensamento repetido" class="amostra-img" width="800" height="1035" loading="lazy">
+                </div>
+                <div class="tour-pagina" data-pagina="p7">
+                  <img src="assets/img/amostra_p7.webp" alt="Página 7 do caderno: O registro do Capítulo 1, com os campos para escrever" class="amostra-img" width="800" height="1035" loading="lazy">
+                </div>
+                <div class="tour-foco" aria-hidden="true"></div>
                 <div class="sample-page-crease dark-crease" aria-hidden="true"></div>
               </div>
-              <p class="amostra-caption">Página real de abertura do Capítulo 1 no caderno (A Lei do Mentalismo)</p>
-            </div>
+              <figcaption class="amostra-caption tour-legenda">Páginas reais do Capítulo 1 (Mentalismo)</figcaption>
+            </figure>
           </div>
+
+          <p class="tour-porta">
+            <img src="assets/svg/glifo-porta_claro.svg" alt="" width="22" height="22" aria-hidden="true">
+            <span>Depois do registro vem a <strong>Porta</strong>: uma pergunta que leva você à próxima lei.</span>
+          </p>
         </div>
       </div>
     </section>
@@ -733,6 +775,12 @@
           <h3 class="pv-fontes-titulo">As fontes dos outros capítulos</h3>
           <ul class="pv-fontes-lista">
             <li>
+              <img src="assets/svg/01-mentalismo_claro.svg" alt="" width="40" height="40" loading="lazy">
+              <span class="pv-fonte-lei">Mentalismo</span>
+              <span class="pv-fonte-ref">Simons e Chabris (1999), <em>Perception</em></span>
+              <a href="https://doi.org/10.1068/p281059" target="_blank" rel="noopener noreferrer" data-track="clique_doi" data-track-local="cap1">doi:10.1068/p281059</a>
+            </li>
+            <li>
               <img src="assets/svg/03-vibracao_claro.svg" alt="" width="40" height="40" loading="lazy">
               <span class="pv-fonte-lei">Vibração</span>
               <span class="pv-fonte-ref">Buzsáki e Draguhn (2004), <em>Science</em></span>
@@ -763,7 +811,7 @@
               <a href="https://doi.org/10.1037/a0014212" target="_blank" rel="noopener noreferrer" data-track="clique_doi" data-track-local="cap7">doi:10.1037/a0014212</a>
             </li>
           </ul>
-          <p class="pv-fontes-nota">O Capítulo 1 cita estudos clássicos de psicologia cognitiva (Simons e Chabris; Nickerson) sem DOI no caderno, e algumas pistas de física básica não têm referência formal. Por isso dizemos “fontes citadas”, e não “verificadas”.</p>
+          <p class="pv-fontes-nota">Algumas pistas de física básica (capítulos 3 e 4) não têm referência formal. Por isso dizemos “fontes citadas”, e não “verificadas”.</p>
         </div>
       </div>
     </section>
@@ -792,7 +840,7 @@
             <ul class="of-itens">
               <li class="of-item">
                 <h3 class="of-item-nome">Caderno das Leis Herméticas</h3>
-                <p class="of-item-meta">7 capítulos em 41 páginas, em PDF</p>
+                <p class="of-item-meta">7 capítulos e o fechamento em 43 páginas, em PDF</p>
                 <p class="of-item-desc">Uma lei por capítulo, sempre na mesma ordem: o que a tradição afirma, a pista da ciência com o seu limite, um experimento de 1 a 7 dias e as páginas de registro.</p>
               </li>
               <li class="of-item">
