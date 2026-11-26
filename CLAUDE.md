@@ -24,6 +24,7 @@ atualizado: 2026-11-25
   - Seção 4 da página virou uma visita guiada pelas páginas reais do Capítulo 1 (mantém o olho vivo). Ela roda também com movimento reduzido, como o resto da página.
   - O caderno continua assinado só por "O Elo Universal".
   - **Preço em vigor:** R$ 49,90 (já cobrado na Wiven), preço de lançamento **até 31/12/2026**. A partir de 01/01/2027, R$ 67: a página troca sozinha (`OFERTA_FIM` em `site/js/config.js`); **a Wiven precisa ser mudada para R$ 67 à mão no dia 01/01/2027**. Sem "de/por" riscado: o produto nunca custou R$ 67.
+  - **Caderno vivo:** o caderno para escrever no próprio aparelho, no link reservado `https://o-elo-universal.vercel.app/caderno-vdx9g64y1a` (fora do Google; quem tiver o link abre: risco aceito para o preço do produto). As anotações ficam só no navegador da pessoa (nada vai para servidor). Tem PDF do caderno preenchido, cópia de segurança e restauração. Texto vem do mesmo `content.json` do PDF: depois de mudar o caderno, rodar `python _trabalho/gerar_caderno_vivo.py`. O link é entregue pela Wiven depois da compra (configuração manual do dono).
   - Seção "Os sete experimentos" virou a "jornada de 22 dias": trilha das 7 leis com os dias de cada uma, terminando na releitura, e um painel com o que a pessoa faz e anota. Links `#exp-N` (eco do vídeo) abrem a lei certa.
 
 ## Cuidados
