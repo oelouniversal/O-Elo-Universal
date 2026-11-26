@@ -34,7 +34,7 @@
   <!-- Estilos -->
   <link rel="stylesheet" href="css/tokens.css?v=6">
   <link rel="stylesheet" href="css/base.css?v=7">
-  <link rel="stylesheet" href="css/components.css?v=29">
+  <link rel="stylesheet" href="css/components.css?v=30">
 </head>
 <body>
   <!-- Acessibilidade: Pular para o conteúdo principal -->
@@ -216,7 +216,7 @@
                 </strong>
               </a>
             </div>
-            <p class="hero-price-note">R$ 37 · pagamento único · garantia de 7 dias</p>
+            <p class="hero-price-note"><span data-preco>R$ 49,90</span><span data-lancamento> no lançamento, até 31/12</span> · garantia de 7 dias</p>
 
             <!-- Linha de Eco Dinâmica (Condicionada a UTM Campaign válida) -->
             <div id="echo-line" class="echo-line" role="status" aria-live="polite"></div>
@@ -634,79 +634,222 @@
         <div class="section-header">
           <span class="section-kicker">O conteúdo</span>
           <h2 class="section-title">Os sete experimentos</h2>
-          <p class="section-lead">Um por lei, de 1 a 7 dias cada. Você faz, anota e compara.</p>
+          <p class="section-lead">Um por lei, de 1 a 7 dias. Feitos em sequência, são 22 dias. No fim, você relê tudo e vê o que se repetiu.</p>
         </div>
-        <div class="experimentos-grid stagger-grid">
-          <!-- Lei 1 -->
-          <article class="card-experimento reveal-trigger" id="exp-1">
-            <div class="card-exp-top">
-              <img src="assets/svg/01-mentalismo_claro.svg" alt="Ornamento Mentalismo" class="exp-ornamento" width="48" height="48" loading="lazy">
-              <span class="exp-numero">Lei 1</span>
+        <!-- Jornada de 22 dias: cada lei ocupa os seus dias; tocar numa lei abre o experimento -->
+        <div class="jornada" data-jornada>
+          <div class="jornada-trilha" role="tablist" aria-label="Os sete experimentos, na ordem do caderno">
+            <button type="button" class="jornada-lei is-active" role="tab" id="exp-1" aria-controls="jornada-painel-1" aria-selected="true" data-lei="1" style="--dias:1">
+              <img src="assets/svg/01-mentalismo_escuro.svg" alt="" class="jornada-orn" width="34" height="34" loading="lazy">
+              <span class="jornada-nome">Mentalismo</span>
+              <span class="jornada-pontos" aria-hidden="true"><i></i></span>
+              <span class="jornada-quando">Dia 1</span>
+            </button>
+            <button type="button" class="jornada-lei" role="tab" id="exp-2" aria-controls="jornada-painel-2" aria-selected="false" tabindex="-1" data-lei="2" style="--dias:3">
+              <img src="assets/svg/02-correspondencia_escuro.svg" alt="" class="jornada-orn" width="34" height="34" loading="lazy">
+              <span class="jornada-nome">Correspondência</span>
+              <span class="jornada-pontos" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="jornada-quando">Dias 2 a 4</span>
+            </button>
+            <button type="button" class="jornada-lei" role="tab" id="exp-3" aria-controls="jornada-painel-3" aria-selected="false" tabindex="-1" data-lei="3" style="--dias:1">
+              <img src="assets/svg/03-vibracao_escuro.svg" alt="" class="jornada-orn" width="34" height="34" loading="lazy">
+              <span class="jornada-nome">Vibração</span>
+              <span class="jornada-pontos" aria-hidden="true"><i></i></span>
+              <span class="jornada-quando">Dia 5</span>
+            </button>
+            <button type="button" class="jornada-lei" role="tab" id="exp-4" aria-controls="jornada-painel-4" aria-selected="false" tabindex="-1" data-lei="4" style="--dias:2">
+              <img src="assets/svg/04-polaridade_escuro.svg" alt="" class="jornada-orn" width="34" height="34" loading="lazy">
+              <span class="jornada-nome">Polaridade</span>
+              <span class="jornada-pontos" aria-hidden="true"><i></i><i></i></span>
+              <span class="jornada-quando">Dias 6 e 7</span>
+            </button>
+            <button type="button" class="jornada-lei" role="tab" id="exp-5" aria-controls="jornada-painel-5" aria-selected="false" tabindex="-1" data-lei="5" style="--dias:7">
+              <img src="assets/svg/05-ritmo_escuro.svg" alt="" class="jornada-orn" width="34" height="34" loading="lazy">
+              <span class="jornada-nome">Ritmo</span>
+              <span class="jornada-pontos" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+              <span class="jornada-quando">Dias 8 a 14</span>
+            </button>
+            <button type="button" class="jornada-lei" role="tab" id="exp-6" aria-controls="jornada-painel-6" aria-selected="false" tabindex="-1" data-lei="6" style="--dias:4">
+              <img src="assets/svg/06-causa-e-efeito_escuro.svg" alt="" class="jornada-orn" width="34" height="34" loading="lazy">
+              <span class="jornada-nome">Causa e Efeito</span>
+              <span class="jornada-pontos" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+              <span class="jornada-quando">Dias 15 a 18</span>
+            </button>
+            <button type="button" class="jornada-lei" role="tab" id="exp-7" aria-controls="jornada-painel-7" aria-selected="false" tabindex="-1" data-lei="7" style="--dias:4">
+              <img src="assets/svg/07-genero_escuro.svg" alt="" class="jornada-orn" width="34" height="34" loading="lazy">
+              <span class="jornada-nome">Gênero</span>
+              <span class="jornada-pontos" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+              <span class="jornada-quando">Dias 19 a 22</span>
+            </button>
+            <button type="button" class="jornada-lei jornada-lei-fim" role="tab" id="exp-fim" aria-controls="jornada-painel-8" aria-selected="false" tabindex="-1" data-lei="8" style="--dias:1">
+              <img src="assets/svg/marca-elo_escuro.svg" alt="" class="jornada-orn" width="34" height="34" loading="lazy">
+              <span class="jornada-nome">A releitura</span>
+              <span class="jornada-pontos" aria-hidden="true"><i class="jornada-fim-ponto"></i></span>
+              <span class="jornada-quando">Depois</span>
+            </button>
+          </div>
+          <div class="jornada-paineis">
+          <article class="jornada-painel card-experimento is-active" role="tabpanel" id="jornada-painel-1" aria-labelledby="exp-1">
+            <header class="jp-cab">
+              <img src="assets/svg/01-mentalismo_escuro.svg" alt="" class="jp-orn" width="72" height="72" loading="lazy">
+              <div class="jp-titulos">
+                <span class="jp-rotulo">Lei 1 · Dia 1</span>
+                <h3>Mentalismo</h3>
+                <p class="exp-nome">“O pensamento repetido”</p>
+              </div>
+              <span class="exp-duracao">1 dia</span>
+            </header>
+            <div class="jp-colunas">
+              <div class="jp-bloco"><h4>O que você faz</h4><p>De manhã, escreva um pensamento que você repete para si. Durante o dia, marque cada vez que ele aparece. À noite, procure o que aconteceu e não se encaixou nele.</p></div>
+              <div class="jp-bloco"><h4>O que você anota</h4><p>O pensamento como ele soa, as marcas do dia e o que não se encaixou.</p></div>
             </div>
-            <h3>Mentalismo</h3>
-            <p class="exp-nome">“O pensamento repetido”</p>
-            <span class="exp-duracao">Duração: 1 dia</span>
+            <dl class="jp-limite">
+              <div><dt>A pista</dt><dd>a atenção filtra o que você percebe (Simons e Chabris, 1999).</dd></div>
+              <div><dt>O limite</dt><dd>não prova que pensar cria a realidade.</dd></div>
+            </dl>
+            <nav class="jp-nav" aria-label="Navegar entre os experimentos"><button type="button" class="jornada-ir jornada-ir-prox" data-ir="1">Correspondência <span aria-hidden="true">→</span></button></nav>
           </article>
-          <!-- Lei 2 -->
-          <article class="card-experimento reveal-trigger" id="exp-2">
-            <div class="card-exp-top">
-              <img src="assets/svg/02-correspondencia_claro.svg" alt="Ornamento Correspondência" class="exp-ornamento" width="48" height="48" loading="lazy">
-              <span class="exp-numero">Lei 2</span>
+          <article class="jornada-painel card-experimento" role="tabpanel" id="jornada-painel-2" aria-labelledby="exp-2" hidden>
+            <header class="jp-cab">
+              <img src="assets/svg/02-correspondencia_escuro.svg" alt="" class="jp-orn" width="72" height="72" loading="lazy">
+              <div class="jp-titulos">
+                <span class="jp-rotulo">Lei 2 · Dias 2 a 4</span>
+                <h3>Correspondência</h3>
+                <p class="exp-nome">“O gesto e o padrão”</p>
+              </div>
+              <span class="exp-duracao">3 dias</span>
+            </header>
+            <div class="jp-colunas">
+              <div class="jp-bloco"><h4>O que você faz</h4><p>No primeiro dia, descreva um gesto miúdo que você repete sem pensar. No segundo, um padrão maior da sua vida. No terceiro, coloque os dois lado a lado.</p></div>
+              <div class="jp-bloco"><h4>O que você anota</h4><p>O que combina entre os dois e, com o mesmo cuidado, o que não combina.</p></div>
             </div>
-            <h3>Correspondência</h3>
-            <p class="exp-nome">“O gesto e o padrão”</p>
-            <span class="exp-duracao">Duração: 3 dias</span>
+            <dl class="jp-limite">
+              <div><dt>A pista</dt><dd>redes de neurônios e de galáxias têm estrutura parecida (Vazza e Feletti, 2020).</dd></div>
+              <div><dt>O limite</dt><dd>semelhança entre redes não é lei, nem diz algo sobre você.</dd></div>
+            </dl>
+            <nav class="jp-nav" aria-label="Navegar entre os experimentos"><button type="button" class="jornada-ir" data-ir="-1"><span aria-hidden="true">←</span> Mentalismo</button><button type="button" class="jornada-ir jornada-ir-prox" data-ir="1">Vibração <span aria-hidden="true">→</span></button></nav>
           </article>
-          <!-- Lei 3 -->
-          <article class="card-experimento reveal-trigger" id="exp-3">
-            <div class="card-exp-top">
-              <img src="assets/svg/03-vibracao_claro.svg" alt="Ornamento Vibração" class="exp-ornamento" width="48" height="48" loading="lazy">
-              <span class="exp-numero">Lei 3</span>
+          <article class="jornada-painel card-experimento" role="tabpanel" id="jornada-painel-3" aria-labelledby="exp-3" hidden>
+            <header class="jp-cab">
+              <img src="assets/svg/03-vibracao_escuro.svg" alt="" class="jp-orn" width="72" height="72" loading="lazy">
+              <div class="jp-titulos">
+                <span class="jp-rotulo">Lei 3 · Dia 5</span>
+                <h3>Vibração</h3>
+                <p class="exp-nome">“Três momentos”</p>
+              </div>
+              <span class="exp-duracao">1 dia</span>
+            </header>
+            <div class="jp-colunas">
+              <div class="jp-bloco"><h4>O que você faz</h4><p>Manhã, tarde e noite: pare um minuto e anote seu estado em uma palavra, sua energia de 1 a 5 e o que aconteceu na última hora.</p></div>
+              <div class="jp-bloco"><h4>O que você anota</h4><p>Os três registros comparados e o que mais mexeu com você no dia.</p></div>
             </div>
-            <h3>Vibração</h3>
-            <p class="exp-nome">“Três momentos”</p>
-            <span class="exp-duracao">Duração: 1 dia</span>
+            <dl class="jp-limite">
+              <div><dt>A pista</dt><dd>o cérebro funciona em ritmos oscilatórios (Buzsáki e Draguhn, 2004).</dd></div>
+              <div><dt>O limite</dt><dd>não sustenta a ideia de “vibrar alto” para atrair coisas.</dd></div>
+            </dl>
+            <nav class="jp-nav" aria-label="Navegar entre os experimentos"><button type="button" class="jornada-ir" data-ir="-1"><span aria-hidden="true">←</span> Correspondência</button><button type="button" class="jornada-ir jornada-ir-prox" data-ir="1">Polaridade <span aria-hidden="true">→</span></button></nav>
           </article>
-          <!-- Lei 4 -->
-          <article class="card-experimento reveal-trigger" id="exp-4">
-            <div class="card-exp-top">
-              <img src="assets/svg/04-polaridade_claro.svg" alt="Ornamento Polaridade" class="exp-ornamento" width="48" height="48" loading="lazy">
-              <span class="exp-numero">Lei 4</span>
+          <article class="jornada-painel card-experimento" role="tabpanel" id="jornada-painel-4" aria-labelledby="exp-4" hidden>
+            <header class="jp-cab">
+              <img src="assets/svg/04-polaridade_escuro.svg" alt="" class="jp-orn" width="72" height="72" loading="lazy">
+              <div class="jp-titulos">
+                <span class="jp-rotulo">Lei 4 · Dias 6 e 7</span>
+                <h3>Polaridade</h3>
+                <p class="exp-nome">“A escala e o passo”</p>
+              </div>
+              <span class="exp-duracao">2 dias</span>
+            </header>
+            <div class="jp-colunas">
+              <div class="jp-bloco"><h4>O que você faz</h4><p>Escolha algo que você evita e marque, numa escala de 0 a 10, onde está hoje. No dia seguinte, dê um passo de um grau em direção ao outro polo.</p></div>
+              <div class="jp-bloco"><h4>O que você anota</h4><p>Onde você estava, onde ficou, o que mudou e o que não mudou.</p></div>
             </div>
-            <h3>Polaridade</h3>
-            <p class="exp-nome">“A escala e o passo”</p>
-            <span class="exp-duracao">Duração: 2 dias</span>
+            <dl class="jp-limite">
+              <div><dt>A pista</dt><dd>reavaliar uma situação pode mudar seu impacto emocional (Gross, 2002).</dd></div>
+              <div><dt>O limite</dt><dd>é um mecanismo estudado, não terapia nem troca de sentimentos.</dd></div>
+            </dl>
+            <nav class="jp-nav" aria-label="Navegar entre os experimentos"><button type="button" class="jornada-ir" data-ir="-1"><span aria-hidden="true">←</span> Vibração</button><button type="button" class="jornada-ir jornada-ir-prox" data-ir="1">Ritmo <span aria-hidden="true">→</span></button></nav>
           </article>
-          <!-- Lei 5 -->
-          <article class="card-experimento reveal-trigger" id="exp-5">
-            <div class="card-exp-top">
-              <img src="assets/svg/05-ritmo_claro.svg" alt="Ornamento Ritmo" class="exp-ornamento" width="48" height="48" loading="lazy">
-              <span class="exp-numero">Lei 5</span>
+          <article class="jornada-painel card-experimento" role="tabpanel" id="jornada-painel-5" aria-labelledby="exp-5" hidden>
+            <header class="jp-cab">
+              <img src="assets/svg/05-ritmo_escuro.svg" alt="" class="jp-orn" width="72" height="72" loading="lazy">
+              <div class="jp-titulos">
+                <span class="jp-rotulo">Lei 5 · Dias 8 a 14</span>
+                <h3>Ritmo</h3>
+                <p class="exp-nome">“O mapa da semana”</p>
+              </div>
+              <span class="exp-duracao">7 dias</span>
+            </header>
+            <div class="jp-colunas">
+              <div class="jp-bloco"><h4>O que você faz</h4><p>Por sete dias, dê uma nota de 1 a 5 ao seu foco em quatro horários fixos. No sétimo dia, olhe a grade inteira e procure o que se repete.</p></div>
+              <div class="jp-bloco"><h4>O que você anota</h4><p>Seus dois horários de foco mais alto e os dois mais baixos da semana.</p></div>
             </div>
-            <h3>Ritmo</h3>
-            <p class="exp-nome">“O mapa da semana”</p>
-            <span class="exp-duracao">Duração: 7 dias</span>
+            <dl class="jp-limite">
+              <div><dt>A pista</dt><dd>o horário do dia afeta a atenção, de um jeito diferente em cada pessoa (Schmidt e colegas, 2007).</dd></div>
+              <div><dt>O limite</dt><dd>o “pêndulo que compensa” é metáfora.</dd></div>
+            </dl>
+            <nav class="jp-nav" aria-label="Navegar entre os experimentos"><button type="button" class="jornada-ir" data-ir="-1"><span aria-hidden="true">←</span> Polaridade</button><button type="button" class="jornada-ir jornada-ir-prox" data-ir="1">Causa e Efeito <span aria-hidden="true">→</span></button></nav>
           </article>
-          <!-- Lei 6 -->
-          <article class="card-experimento reveal-trigger" id="exp-6">
-            <div class="card-exp-top">
-              <img src="assets/svg/06-causa-e-efeito_claro.svg" alt="Ornamento Causa e Efeito" class="exp-ornamento" width="48" height="48" loading="lazy">
-              <span class="exp-numero">Lei 6</span>
+          <article class="jornada-painel card-experimento" role="tabpanel" id="jornada-painel-6" aria-labelledby="exp-6" hidden>
+            <header class="jp-cab">
+              <img src="assets/svg/06-causa-e-efeito_escuro.svg" alt="" class="jp-orn" width="72" height="72" loading="lazy">
+              <div class="jp-titulos">
+                <span class="jp-rotulo">Lei 6 · Dias 15 a 18</span>
+                <h3>Causa e Efeito</h3>
+                <p class="exp-nome">“A cadeia de causas”</p>
+              </div>
+              <span class="exp-duracao">4 dias</span>
+            </header>
+            <div class="jp-colunas">
+              <div class="jp-bloco"><h4>O que você faz</h4><p>Escolha um resultado que se repete e escreva três causas possíveis. Mude só uma delas e observe os três dias seguintes.</p></div>
+              <div class="jp-bloco"><h4>O que você anota</h4><p>Se o resultado aconteceu, o que mais mudou em cada dia e o que dá (e o que não dá) para concluir.</p></div>
             </div>
-            <h3>Causa e Efeito</h3>
-            <p class="exp-nome">“A cadeia de causas”</p>
-            <span class="exp-duracao">Duração: 4 dias</span>
+            <dl class="jp-limite">
+              <div><dt>A pista</dt><dd>repetir algo no mesmo contexto tende a torná-lo automático (Lally e colegas, 2010).</dd></div>
+              <div><dt>O limite</dt><dd>reconhecer uma causa não é se culpar, nem controlar o resultado.</dd></div>
+            </dl>
+            <nav class="jp-nav" aria-label="Navegar entre os experimentos"><button type="button" class="jornada-ir" data-ir="-1"><span aria-hidden="true">←</span> Ritmo</button><button type="button" class="jornada-ir jornada-ir-prox" data-ir="1">Gênero <span aria-hidden="true">→</span></button></nav>
           </article>
-          <!-- Lei 7 -->
-          <article class="card-experimento reveal-trigger" id="exp-7">
-            <div class="card-exp-top">
-              <img src="assets/svg/07-genero_claro.svg" alt="Ornamento Gênero" class="exp-ornamento" width="48" height="48" loading="lazy">
-              <span class="exp-numero">Lei 7</span>
+          <article class="jornada-painel card-experimento" role="tabpanel" id="jornada-painel-7" aria-labelledby="exp-7" hidden>
+            <header class="jp-cab">
+              <img src="assets/svg/07-genero_escuro.svg" alt="" class="jp-orn" width="72" height="72" loading="lazy">
+              <div class="jp-titulos">
+                <span class="jp-rotulo">Lei 7 · Dias 19 a 22</span>
+                <h3>Gênero</h3>
+                <p class="exp-nome">“Iniciar e gestar”</p>
+              </div>
+              <span class="exp-duracao">4 dias</span>
+            </header>
+            <div class="jp-colunas">
+              <div class="jp-bloco"><h4>O que você faz</h4><p>Trabalhe 30 minutos em algo que está em aberto. Nos dois dias seguintes, deixe de lado. No quarto dia, volte ao mesmo trabalho e compare.</p></div>
+              <div class="jp-bloco"><h4>O que você anota</h4><p>Onde você travou, as ideias que apareceram na pausa e o que mudou.</p></div>
             </div>
-            <h3>Gênero</h3>
-            <p class="exp-nome">“Iniciar e gestar”</p>
-            <span class="exp-duracao">Duração: 4 dias</span>
+            <dl class="jp-limite">
+              <div><dt>A pista</dt><dd>uma pausa depois de esforço real pode ajudar tarefas criativas (Sio e Ormerod, 2009).</dd></div>
+              <div><dt>O limite</dt><dd>nada sobre homens, mulheres ou “energias”; esperar não substitui iniciar.</dd></div>
+            </dl>
+            <nav class="jp-nav" aria-label="Navegar entre os experimentos"><button type="button" class="jornada-ir" data-ir="-1"><span aria-hidden="true">←</span> Causa e Efeito</button><button type="button" class="jornada-ir jornada-ir-prox" data-ir="1">A releitura <span aria-hidden="true">→</span></button></nav>
           </article>
+          <article class="jornada-painel card-experimento" role="tabpanel" id="jornada-painel-8" aria-labelledby="exp-fim" hidden>
+            <header class="jp-cab">
+              <img src="assets/svg/marca-elo_escuro.svg" alt="" class="jp-orn" width="72" height="72" loading="lazy">
+              <div class="jp-titulos">
+                <span class="jp-rotulo">Fechamento · depois dos 22 dias</span>
+                <h3>A releitura</h3>
+                <p class="exp-nome">“O que se repetiu?”</p>
+              </div>
+              <span class="exp-duracao">1 sessão</span>
+            </header>
+            <div class="jp-colunas">
+              <div class="jp-bloco"><h4>O que você faz</h4><p>Junte as sete frases “o que eu percebi”, procure o que se repete e faça a contraprova: um momento que não se encaixa.</p></div>
+              <div class="jp-bloco"><h4>O que você anota</h4><p>O padrão em uma frase e a sua conclusão, escrita depois da contraprova.</p></div>
+            </div>
+            <dl class="jp-limite">
+              <div><dt>A pista</dt><dd>o mesmo filtro do Capítulo 1 age quando procuramos padrões nos próprios registros (Nickerson, 1998).</dd></div>
+              <div><dt>O limite</dt><dd>o padrão é uma pista sobre esses dias, não “o” padrão da sua vida.</dd></div>
+            </dl>
+            <nav class="jp-nav" aria-label="Navegar entre os experimentos"><button type="button" class="jornada-ir" data-ir="-1"><span aria-hidden="true">←</span> Gênero</button></nav>
+          </article>
+          </div>
         </div>
       </div>
     </section>
@@ -825,7 +968,7 @@
       <div class="container">
         <header class="of-cabecalho">
           <h2 class="of-titulo">O que você recebe</h2>
-          <p class="of-lead">O caderno completo e dois bônus, por um pagamento único.</p>
+          <p class="of-lead">O caderno completo, nas versões para imprimir e para celular, e dois bônus, por um pagamento único.</p>
         </header>
 
         <div class="of-grade">
@@ -841,23 +984,30 @@
               <li class="of-item">
                 <h3 class="of-item-nome">Caderno das Leis Herméticas</h3>
                 <p class="of-item-meta">7 capítulos e o fechamento em 43 páginas, em PDF</p>
-                <p class="of-item-desc">Uma lei por capítulo, sempre na mesma ordem: o que a tradição afirma, a pista da ciência com o seu limite, um experimento de 1 a 7 dias e as páginas de registro.</p>
+                <p class="of-item-desc">Uma lei por capítulo, sempre na mesma ordem: o que a tradição afirma, a pista da ciência com o seu limite, um experimento de 1 a 7 dias e as páginas de registro. No fim, a releitura dos sete registros.</p>
+              </li>
+              <li class="of-item">
+                <h3 class="of-item-nome">Versão para celular</h3>
+                <p class="of-item-meta">65 páginas no formato da tela, em PDF</p>
+                <p class="of-item-desc">O mesmo caderno, diagramado para ler e acompanhar os experimentos no celular, sem precisar ampliar.</p>
               </li>
               <li class="of-item">
                 <h3 class="of-item-nome">Mapa das 7 Leis <span class="of-bonus">bônus</span></h3>
-                <p class="of-item-meta">Visão de conjunto, em PDF</p>
+                <p class="of-item-meta">2 páginas, em PDF</p>
                 <p class="of-item-desc">As sete leis numa vista só: tradição, pista, limite e o experimento de cada uma, com a duração.</p>
               </li>
               <li class="of-item">
                 <h3 class="of-item-nome">Fontes e Limites <span class="of-bonus">bônus</span></h3>
                 <p class="of-item-meta">11 páginas, em PDF</p>
-                <p class="of-item-desc">Cada pista com a referência completa, o tipo de estudo e o que ela não permite concluir.</p>
+                <p class="of-item-desc">Cada pista com a referência completa, o tipo de estudo e o que ela não permite concluir. Todos os links são clicáveis.</p>
               </li>
             </ul>
 
             <div id="preco" class="of-preco" data-track="view_secao">
-              <p class="of-preco-valor">R$ 37</p>
-              <p class="of-preco-tipo">Pagamento único, sem mensalidade.</p>
+              <p class="of-preco-rotulo" data-lancamento>Preço de lançamento, até 31/12/2026</p>
+              <p class="of-preco-valor" data-preco>R$ 49,90</p>
+              <p class="of-preco-tipo">Pagamento único, sem mensalidade. Garantia de 7 dias.</p>
+              <p class="of-preco-depois" data-lancamento>A partir de 1º de janeiro de 2027, R$ 67. Os experimentos somam 22 dias: no lançamento, sai por menos de R$ 2,30 por dia.</p>
               <a href="https://checkout.wiven.com.br/checkout/cmwgi7hp1004901pwfzy4sq1q?offer=3V9KZ68" class="btn-primary btn-cosmic-stars cta-checkout of-cta" data-track="clique_cta_primario" data-track-local="preco" rel="noopener noreferrer">
                 <div class="stars-container" aria-hidden="true">
                   <div class="stars-field"></div>
@@ -1021,8 +1171,8 @@
               <span>Caderno das Leis Herméticas + 2 bônus</span>
             </div>
             <div class="portal-price-tag">
-              <span class="portal-price-val">R$ 37</span>
-              <span class="portal-price-sub">Pagamento único</span>
+              <span class="portal-price-val" data-preco>R$ 49,90</span>
+              <span class="portal-price-sub"><span data-lancamento>Lançamento, até 31/12 · </span>Pagamento único</span>
             </div>
           </div>
 
@@ -1098,7 +1248,7 @@
       </div>
       <div class="sticky-details">
         <span class="sticky-title">Caderno das Leis Herméticas</span>
-        <span class="sticky-subtitle">R$ 37 · pagamento único</span>
+        <span class="sticky-subtitle"><span data-preco>R$ 49,90</span><span data-lancamento> · lançamento até 31/12</span></span>
       </div>
     </div>
     <a href="https://checkout.wiven.com.br/checkout/cmwgi7hp1004901pwfzy4sq1q?offer=3V9KZ68" class="sticky-btn cta-checkout" data-track="clique_cta_primario" data-track-local="barra_fixa" rel="noopener noreferrer">
@@ -1107,8 +1257,8 @@
   </div>
 
   <!-- Scripts -->
-  <script src="js/config.js?v=24"></script>
+  <script src="js/config.js?v=25"></script>
   <script src="js/tracking.js?v=24"></script>
-  <script src="js/main.js?v=26"></script>
+  <script src="js/main.js?v=27"></script>
 </body>
 </html>

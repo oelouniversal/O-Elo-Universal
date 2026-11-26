@@ -834,7 +834,8 @@ document.addEventListener("DOMContentLoaded", function () {
       // No celular, a fileira de passos rola para mostrar o passo ativo
       const trilha = tourPassos[i].parentElement;
       if (trilha.scrollWidth > trilha.clientWidth + 2) {
-        trilha.scrollTo({ left: Math.max(0, tourPassos[i].offsetLeft - 16), behavior: tourReduz ? "auto" : "smooth" });
+        const dx = tourPassos[i].getBoundingClientRect().left - trilha.getBoundingClientRect().left;
+        trilha.scrollTo({ left: Math.max(0, trilha.scrollLeft + dx - 16), behavior: tourReduz ? "auto" : "smooth" });
       }
       if (porUsuario && window.Tracking) window.Tracking.track("tour_passo", { passo: i });
     }
@@ -898,6 +899,86 @@ document.addEventListener("DOMContentLoaded", function () {
       tourPausado = document.hidden;
       tourAgendar();
     });
+  }
+
+  // Preço de lançamento: passada a data de OFERTA_FIM, mostra o preço cheio e esconde os avisos
+  // de lançamento. O HTML já nasce no estado de lançamento, então não há troca visível antes da data.
+  if (CONFIG.OFERTA_FIM && CONFIG.PRECO_CHEIO_TEXTO) {
+    const fimOferta = new Date(CONFIG.OFERTA_FIM);
+    if (!isNaN(fimOferta.getTime()) && Date.now() > fimOferta.getTime()) {
+      document.querySelectorAll("[data-preco]").forEach(function (el) { el.textContent = CONFIG.PRECO_CHEIO_TEXTO; });
+      document.querySelectorAll("[data-lancamento]").forEach(function (el) { el.hidden = true; });
+    }
+  }
+
+  // 12. Seção 5: a jornada de 22 dias (os sete experimentos + a releitura)
+  // Tocar numa lei abre o experimento dela. Links para #exp-N (ex.: a linha de eco do vídeo)
+  // abrem direto a lei certa.
+  const jornadaEl = document.querySelector("[data-jornada]");
+  if (jornadaEl) {
+    const jLeis = Array.prototype.slice.call(jornadaEl.querySelectorAll(".jornada-lei"));
+    const jPaineis = Array.prototype.slice.call(jornadaEl.querySelectorAll(".jornada-painel"));
+    let jAtual = 0;
+
+    function jornadaMostrar(i, focar) {
+      jAtual = i;
+      jLeis.forEach(function (b, k) {
+        const on = k === i;
+        b.classList.toggle("is-active", on);
+        b.setAttribute("aria-selected", on ? "true" : "false");
+        b.tabIndex = on ? 0 : -1;
+      });
+      jPaineis.forEach(function (p, k) {
+        p.hidden = k !== i;
+        p.classList.toggle("is-active", k === i);
+      });
+      const trilha = jLeis[i].parentElement;
+      if (trilha.scrollWidth > trilha.clientWidth + 2) {
+        const dx = jLeis[i].getBoundingClientRect().left - trilha.getBoundingClientRect().left;
+        trilha.scrollTo({ left: Math.max(0, trilha.scrollLeft + dx - 16), behavior: "smooth" });
+      }
+      if (focar) jLeis[i].focus();
+      if (window.Tracking) window.Tracking.track("jornada_lei", { lei: i + 1 });
+    }
+
+    jLeis.forEach(function (b, i) {
+      b.addEventListener("click", function () { jornadaMostrar(i, false); });
+      b.addEventListener("keydown", function (e) {
+        let alvo = null;
+        if (e.key === "ArrowRight" || e.key === "ArrowDown") alvo = (i + 1) % jLeis.length;
+        else if (e.key === "ArrowLeft" || e.key === "ArrowUp") alvo = (i - 1 + jLeis.length) % jLeis.length;
+        else if (e.key === "Home") alvo = 0;
+        else if (e.key === "End") alvo = jLeis.length - 1;
+        if (alvo === null) return;
+        e.preventDefault();
+        jornadaMostrar(alvo, true);
+      });
+    });
+
+    jornadaEl.addEventListener("click", function (e) {
+      const ir = e.target.closest(".jornada-ir");
+      if (!ir) return;
+      const alvo = jAtual + parseInt(ir.getAttribute("data-ir"), 10);
+      if (alvo >= 0 && alvo < jLeis.length) jornadaMostrar(alvo, true);
+    });
+
+    // #exp-N abre a lei N e rola até a seção
+    function jornadaPeloHash(hash, rolar) {
+      const m = /^#exp-(\d|fim)$/.exec(hash || "");
+      if (!m) return false;
+      const i = m[1] === "fim" ? jLeis.length - 1 : parseInt(m[1], 10) - 1;
+      if (i < 0 || i >= jLeis.length) return false;
+      jornadaMostrar(i, false);
+      if (rolar) document.getElementById("experimentos").scrollIntoView({ behavior: "smooth", block: "start" });
+      return true;
+    }
+
+    document.addEventListener("click", function (e) {
+      const a = e.target.closest('a[href^="#exp-"]');
+      if (a && jornadaPeloHash(a.getAttribute("href"), true)) e.preventDefault();
+    });
+    window.addEventListener("hashchange", function () { jornadaPeloHash(window.location.hash, true); });
+    jornadaPeloHash(window.location.hash, true);
   }
 });
 

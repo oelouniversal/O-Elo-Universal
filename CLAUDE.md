@@ -23,6 +23,8 @@ atualizado: 2026-11-25
   - Nova edição do caderno: fechamento "A releitura" e página de créditos aprovados; DOIs do Capítulo 1 e link do Nobel. Bônus A e B refeitos. Antigos em `Produto/antigos/`. Detalhes em `Produto/Notas-Editoriais-e-Pendencias.md`.
   - Seção 4 da página virou uma visita guiada pelas páginas reais do Capítulo 1 (mantém o olho vivo). Ela roda também com movimento reduzido, como o resto da página.
   - O caderno continua assinado só por "O Elo Universal".
+  - **Preço em vigor:** R$ 49,90 (já cobrado na Wiven), preço de lançamento **até 31/12/2026**. A partir de 01/01/2027, R$ 67: a página troca sozinha (`OFERTA_FIM` em `site/js/config.js`); **a Wiven precisa ser mudada para R$ 67 à mão no dia 01/01/2027**. Sem "de/por" riscado: o produto nunca custou R$ 67.
+  - Seção "Os sete experimentos" virou a "jornada de 22 dias": trilha das 7 leis com os dias de cada uma, terminando na releitura, e um painel com o que a pessoa faz e anota. Links `#exp-N` (eco do vídeo) abrem a lei certa.
 
 ## Cuidados
 

@@ -19,7 +19,8 @@ const CONFIG = {
 
   // Dados Comerciais (Fonte: Briefing/DADOS-COMERCIAIS.md)
   NOME_PRODUTO: "O Elo Universal: Caderno das Leis Herméticas",
-  PRECO_TEXTO: "R$ 37",
+  PRECO_TEXTO: "R$ 49,90",
+  PRECO_CHEIO_TEXTO: "R$ 67", // preço a partir do fim do lançamento (OFERTA_FIM)
   PAGAMENTO_TEXTO: "pagamento único",
   CONTATO_EMAIL: "oelouniversal@proton.me",
 
@@ -46,7 +47,10 @@ const CONFIG = {
   DEPOIMENTOS: [],
 
   // Urgência Legítima (Nula: proibida qualquer escassez falsa)
-  OFERTA_FIM: null,
+  // Preço de lançamento real (decisão de 26/11/2026): R$ 49,90 até 31/12/2026, depois R$ 67.
+  // Passada a data, a página mostra PRECO_CHEIO_TEXTO e esconde os avisos de lançamento sozinha.
+  // A Wiven precisa ser mudada para R$ 67 na mesma data (manual).
+  OFERTA_FIM: "2026-12-31T23:59:59-03:00",
 
   // Telemetria inerte (Sem pixels nem scripts de terceiros)
   TRACKING_ATIVO: false,
